@@ -1,0 +1,11 @@
+{
+  "name": "calibraciones-api",
+  "version": "1.0.0",
+  "description": "Bitácora de liberaciones de calibraciones para equipos de IMX",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
