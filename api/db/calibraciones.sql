@@ -13,7 +13,7 @@ CREATE TABLE equipos(
     error VARCHAR(20),
 );
 
-CREATE TABLE users(
+CREATE TABLE usuarios(
   username VARCHAR(30) NOT NULL PRIMARY KEY,
   password VARCHAR(30) NOT NULL,
   nombre VARCHAR(60) NOT NULL,
@@ -25,7 +25,7 @@ CREATE TABLE responsables (
     usuario VARCHAR(30) NOT NULL
 );
 
-CREATE TABLE calibracion(
+CREATE TABLE calibraciones(
     id INT IDENTITY(1,1) PRIMARY KEY,
     calibrador VARCHAR(30) NOT NULL DEFAULT '',
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -33,3 +33,32 @@ CREATE TABLE calibracion(
     equipo VARCHAR(8) NOT NULL
 );
 
+CREATE TABLE verificadores(
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(50),
+    equipo VARCHAR(8) NOT NULL
+);
+
+ALTER TABLE responsables
+ADD CONSTRAINT PK_responsables
+PRIMARY KEY CLUSTERED(equipos,usuario);
+
+ALTER TABLE responsables
+ADD CONSTRAINT FK_responsables_equipo
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE responsables
+ADD CONSTRAINT FK_responsables_usuario
+FOREIGN KEY (usuario) REFERENCES usuarios(username) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE calibraciones
+ADD CONSTRAINT FK_calibraciones_verificador
+FOREIGN KEY (verificador) REFERENCES usuarios(usuario) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE calibraciones
+ADD CONSTRAINT FK_calibraciones_equipo
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
+ALTER TABLE verificadores 
+ADD CONSTRAINT FK_verificadores_equipo
+ADD CONSTRAINT (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
