@@ -2,11 +2,12 @@ require('dotenv').config();
 
 var express = require('express'),
     app = express(),
-    port = process.env.PORT || 33001,
-    bodyParser = require('body-parser');
+    port = process.env.PORT || 33001;
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+var authRoutes = require('./api/routers/auth.routes');
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
@@ -15,8 +16,9 @@ app.use((req, res, next) => {
     next();
 });
 
-console.clear();
+authRoutes(app);
 
 app.listen(port,()=>{
+    console.clear();
     console.log('Server running in port ' + port)
 });

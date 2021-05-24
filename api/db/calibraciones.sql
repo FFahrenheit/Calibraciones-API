@@ -1,5 +1,7 @@
 CREATE DATABASE calibraciones;
 
+USE  calibraciones;
+
 CREATE TABLE equipos(
     id VARCHAR(8) NOT NULL PRIMARY KEY,
     serie VARCHAR(50) NOT NULL DEFAULT 'S/N',
@@ -41,7 +43,7 @@ CREATE TABLE verificadores(
 
 ALTER TABLE responsables
 ADD CONSTRAINT PK_responsables
-PRIMARY KEY CLUSTERED(equipos,usuario);
+PRIMARY KEY CLUSTERED(equipo,usuario);
 
 ALTER TABLE responsables
 ADD CONSTRAINT FK_responsables_equipo
@@ -53,7 +55,7 @@ FOREIGN KEY (usuario) REFERENCES usuarios(username) ON DELETE CASCADE ON UPDATE 
 
 ALTER TABLE calibraciones
 ADD CONSTRAINT FK_calibraciones_verificador
-FOREIGN KEY (verificador) REFERENCES usuarios(usuario) ON DELETE CASCADE ON UPDATE CASCADE;
+FOREIGN KEY (verificador) REFERENCES usuarios(username) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE calibraciones
 ADD CONSTRAINT FK_calibraciones_equipo
