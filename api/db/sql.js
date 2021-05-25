@@ -11,17 +11,12 @@ const config = {
     }
 }
 
-module.exports = {
-    query,
-    request
-};
-
-function query(query, data) {
+const query = async(query, data) => {
     let req = getQuery(query,data);
     return request(req);
 }
 
-function getQuery(query, data) {
+const getQuery = async(query, data) => {
     let columns = [];
     let rows = [];
     if (!Array.isArray(data)) {
@@ -59,7 +54,7 @@ function getQuery(query, data) {
     }
 }
 
-function request(query) {
+const request = async(query) => {
     console.info(query);
     return new Promise((resolve, reject) => {
         new sql.ConnectionPool(config).connect().then(pool => {
@@ -74,3 +69,8 @@ function request(query) {
         });
     });
 }
+
+module.exports = {
+    query,
+    request
+};
