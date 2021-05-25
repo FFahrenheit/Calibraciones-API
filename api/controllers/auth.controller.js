@@ -1,7 +1,15 @@
 const Sql = require('../db/sql');
 const jwt = require('jsonwebtoken');
+const Identifcador = require('../middlewares/identificator')
 
 require('dotenv').config();
+
+exports.refresh = async(req,res) => {
+    console.log(Identifcador.getUser(req));
+    res.json({
+        'date':Date.now()
+    });
+}
 
 exports.login = async(req,res) => {
     let { username, password } = req.body;

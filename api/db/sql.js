@@ -12,7 +12,7 @@ const config = {
 }
 
 const parseField = (str)=>{
-    return str.toString().replace(/'/g, "''") || "";
+    return str?.toString().replace(/'/g, "''") || "";
 }
 
 const query = async(query, data) => {
