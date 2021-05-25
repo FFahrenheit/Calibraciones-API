@@ -11,6 +11,10 @@ const config = {
     }
 }
 
+const parseField = (str)=>{
+    return str.toString().replace(/'/g, "''") || "";
+}
+
 const query = async(query, data) => {
     let req = getQuery(query,data);
     return request(req);
@@ -72,5 +76,6 @@ const request = async(query) => {
 
 module.exports = {
     query,
-    request
+    request,
+    parseField
 };
