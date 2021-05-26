@@ -20,6 +20,8 @@ CREATE TABLE usuarios(
   password VARCHAR(30) NOT NULL,
   nombre VARCHAR(60) NOT NULL,
   email VARCHAR(50) NOT NULL,
+  posicion VARCHAR(30) NOT NULL DEFAULT 'usuario',
+  temporal VARCHAR(20) DEFAULT 'Interplex.0'
 );
 
 CREATE TABLE responsables (

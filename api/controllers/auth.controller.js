@@ -1,14 +1,50 @@
 const Sql = require('../db/sql');
 const jwt = require('jsonwebtoken');
-const Identifcador = require('../middlewares/identificator')
+const Identifcator = require('../middlewares/identificator')
 
 require('dotenv').config();
 
 exports.refresh = async(req,res) => {
-    console.log(Identifcador.getUser(req));
-    res.json({
-        'date':Date.now()
-    });
+    let username = Identifcator.getUser(req);
+
+    try{
+
+        let query = `SELECT * FROM dbo.usuarios WHERE username = '${ username }'`
+        let response = await Sql.request(query);
+
+        if(!response || response.length == 0){
+            return res.json({
+                ok: false,
+                error: 'No se encontró el usuario'
+            });
+        }
+        
+        let user = response[0];
+
+        let awtInfo = {
+            username : user.username,
+        };
+
+        const token = jwt.sign(awtInfo, process.env.TOKEN_SEED);
+
+        return res.json({
+            ok: true,
+            token,
+            usuario : {
+                username: user.username,
+                posicion: user.posicion,
+                nombre: user.nombre,
+                email: user.email, 
+            }
+        });
+    }
+    catch{
+        console.log(e);
+        res.json({
+            ok : false,
+            error: e
+        });
+    }
 }
 
 exports.login = async(req,res) => {
