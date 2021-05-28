@@ -8,6 +8,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 var authRoutes = require('./api/routers/auth.routes');
+var deviceRoutes = require('./api/routers/device.routes');
+
 
 app.use((req, res, next) => {
     console.log([new Date(),req.originalUrl]);
@@ -18,6 +20,7 @@ app.use((req, res, next) => {
 });
 
 authRoutes(app);
+deviceRoutes(app);
 
 app.listen(port,()=>{
     console.clear();
