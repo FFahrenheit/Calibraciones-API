@@ -10,7 +10,7 @@ CREATE TABLE equipos(
     activo VARCHAR(15) NOT NULL DEFAULT 'desconocido',
     calibracion VARCHAR(10) NOT NULL DEFAULT 'interna',
     ubicacion VARCHAR(40),
-    resInf VARCHAR(20),
+    resInf VARCHAR(20) DEFAULT 'N/A',
     resSup VARCHAR(20),
     error VARCHAR(20),
 );

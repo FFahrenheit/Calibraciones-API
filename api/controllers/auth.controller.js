@@ -40,7 +40,7 @@ exports.refresh = async(req,res) => {
     }
     catch{
         console.log(e);
-        res.json({
+        res.status(500).send({
             ok : false,
             error: e
         });
@@ -92,7 +92,7 @@ exports.login = async(req,res) => {
         
     }catch(e){
         console.log(e);
-        res.json({
+        res.status(500).send({
             ok : false,
             error: e
         });

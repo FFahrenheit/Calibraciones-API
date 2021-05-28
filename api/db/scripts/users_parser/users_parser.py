@@ -20,7 +20,7 @@ def backup():
 
         users = []
 
-        #Skip first and las entry
+        #Skip first and last entry
         for entry in lines[1:-1]:
             user = entry.split('\t')
 
