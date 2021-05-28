@@ -1,3 +1,5 @@
+import io
+
 def upload():
     filename = "source.csv"
 
@@ -14,9 +16,9 @@ def upload():
         indexes.append(serie_index)
         desc_index = headers.index('Descripción')
         indexes.append(desc_index)
-        estado_index = headers.index('Estado')
+        estado_index = headers.index('Status')
         indexes.append(estado_index)
-        activo_index = headers.index('Status')
+        activo_index = headers.index('Estado')
         indexes.append(activo_index)
         calibracion_index = headers.index('"Método de Verificacion calibracion"')
         indexes.append(calibracion_index)
@@ -30,9 +32,9 @@ def upload():
         indexes.append(error_index)
 
         print(indexes)
-        
+
         rows = []
-        for line in lines:
+        for line in lines[1:]:
             row = line.split(',')
 
             if row[id_index] != '' and row[desc_index] != '':
@@ -48,11 +50,28 @@ def upload():
                         val = val.replace('""','"')
                     if "'" in val:
                         val = val.replace("'","''")
+                    if val == 'NA' or val == "":
+                        val = 'N/A'
                     entrie.append(val)
                 rows.append(entrie)
                 print(entrie)
 
         print(len(rows))
+
+        with io.open('query.txt','w',encoding='utf-8') as file:
+            query = []
+            for registry in rows:
+                fields = []
+                for field in registry:
+                    fields.append(f"'{field}'")
+                reg = '(' + ','.join(fields) + ')'
+                query.append(reg)
+            
+            insert = 'INSERT INTO equipos(id,serie,descripcion,estado,activo,calibracion,ubicacion,resInf,resSup,error) VALUES ' 
+            insert += ',\n'.join(query)
+
+            print(insert)
+            file.write(insert)
 
 
 

@@ -5,7 +5,7 @@ USE  calibraciones;
 CREATE TABLE equipos(
     id VARCHAR(8) NOT NULL PRIMARY KEY,
     serie VARCHAR(50) NOT NULL DEFAULT 'S/N',
-    descrpcion VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(50) NOT NULL,
     estado VARCHAR(30) NOT NULL DEFAULT 'desconocido',
     activo VARCHAR(15) NOT NULL DEFAULT 'desconocido',
     calibracion VARCHAR(10) NOT NULL DEFAULT 'interna',
