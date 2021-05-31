@@ -7,7 +7,7 @@ exports.getDevice = async(req, res) => {
         let query = `SELECT * FROM equipos WHERE id = '${ id }'`;
 
         let details = await Sql.request(query);
-
+        
         if(!details || details.length == 0){
             return res.json({
                 ok: false,
@@ -15,9 +15,16 @@ exports.getDevice = async(req, res) => {
             });
         }
 
+        details = details[0]
+
+        query = `SELECT id, nombre FROM verificadores WHERE equipo = '${ id }'`;
+        verificadores = await Sql.request(query);
+
+        details['verificadores'] = verificadores;
+
         res.json({
             ok: true,
-            equipo: details[0]
+            equipo: details
         });
     }catch(e){
         console.log(e);
