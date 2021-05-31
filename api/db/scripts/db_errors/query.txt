@@ -1,0 +1,5 @@
+DELETE FROM equipos WHERE id in ('INT107','INT140','INT154','INT154','INT212')
+INSERT INTO equipos(id,serie,descripcion,estado,activo,calibracion,ubicacion,resInf,resSup,error) VALUES ('INT107','9380719','Hypot ULTRAIII,  AC Hipot','Calibración Aceptada','Activo','EXTERNO','N/A','0','127','na'),
+('INT140','N/A','Hypot III AC,  MODEL 3605','N/A','Baja','EXTERNO','MOLDEO','N/A','N/A','GO'),
+('INT154','9380209','Hypot Ultra III,  AC Hipot','Extraviado','Extraviado','EXTERNO','N/A','N/A','N/A','GO'),
+('INT212','9380902','HYPOT ULTRA III,  AC Hipot','Calibración Aceptada','Activo','EXTERNO','TRW-5874-000','N/A','N/A','GO')
