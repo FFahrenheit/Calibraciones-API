@@ -47,12 +47,14 @@ def load_responsables():
         print(set(usuarios))
         print(len(set(usuarios)))
 
-
+        usuarios = list(set(usuarios))
         # print(list(set(usuarios)))        
 
         with io.open('query.txt','w',encoding='utf-8') as file:
             pass
             # file.write(sql)
+            for u in usuarios:
+                file.write(u+'\n')
 
 if __name__ == "__main__":
     load_responsables()
