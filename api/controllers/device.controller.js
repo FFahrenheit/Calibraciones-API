@@ -22,6 +22,34 @@ exports.getDevice = async(req, res) => {
 
         details['verificadores'] = verificadores;
 
+        query = `SELECT usuarios.username as username, usuarios.nombre as nombre 
+        FROM usuarios, responsables 
+        WHERE responsables.usuario = usuarios.username 
+        AND responsables.equipo = '${ id }'`;
+        responsables = await Sql.request(query);
+
+        details['responsables'] = responsables;
+
+        query = `SELECT id, fecha, calibrador, verificador, 
+        usuarios.nombre as verifico
+        FROM calibraciones, usuarios
+        WHERE equipo = '${ id }' 
+        AND usuarios.username = calibraciones.verificador
+        ORDER BY fecha DESC`
+        calibraciones = await Sql.request(query);
+
+        details['calibraciones'] = calibraciones;
+
+        query = `SELECT TOP 1 CAST(fecha AS DATE) AS ultimo, 
+        CAST(DATEADD(year,1,fecha) AS DATE) AS siguiente,
+        CAST(DATEADD(day,344,fecha) AS DATE) AS aviso
+        FROM calibraciones
+        WHERE equipo = 'INT420'
+        ORDER BY fecha DESC`;
+        calendario = await Sql.request(query);
+
+        details['calendario'] = calendario[0];
+
         res.json({
             ok: true,
             equipo: details
