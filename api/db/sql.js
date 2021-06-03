@@ -11,6 +11,10 @@ const config = {
     }
 }
 
+const hasQuery = (req) =>{
+    return Object.keys(req.query).length !== 0;
+}
+
 const parseField = (str)=>{
     return str?.toString().replace(/'/g, "''") || "";
 }
@@ -77,5 +81,6 @@ const request = async(query) => {
 module.exports = {
     query,
     request,
-    parseField
+    parseField,
+    hasQuery
 };

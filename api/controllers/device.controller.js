@@ -44,7 +44,7 @@ exports.getDevice = async(req, res) => {
         CAST(DATEADD(year,1,fecha) AS DATE) AS siguiente,
         CAST(DATEADD(day,344,fecha) AS DATE) AS aviso
         FROM calibraciones
-        WHERE equipo = 'INT420'
+        WHERE equipo = '${ id }'
         ORDER BY fecha DESC`;
         calendario = await Sql.request(query);
 
