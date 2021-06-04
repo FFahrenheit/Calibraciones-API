@@ -15,7 +15,7 @@ exports.getDevice = async(req, res) => {
             });
         }
 
-        details = details[0]
+        details = details[0];
 
         query = `SELECT id, nombre FROM verificadores WHERE equipo = '${ id }'`;
         verificadores = await Sql.request(query);
@@ -39,16 +39,6 @@ exports.getDevice = async(req, res) => {
         calibraciones = await Sql.request(query);
 
         details['calibraciones'] = calibraciones;
-
-        query = `SELECT TOP 1 CAST(fecha AS DATE) AS ultimo, 
-        CAST(DATEADD(year,1,fecha) AS DATE) AS siguiente,
-        CAST(DATEADD(day,344,fecha) AS DATE) AS aviso
-        FROM calibraciones
-        WHERE equipo = '${ id }'
-        ORDER BY fecha DESC`;
-        calendario = await Sql.request(query);
-
-        details['calendario'] = calendario[0];
 
         res.json({
             ok: true,
