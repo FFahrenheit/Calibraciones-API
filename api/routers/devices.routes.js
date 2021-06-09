@@ -9,4 +9,7 @@ module.exports = (app) => {
 
     app.route('/devices/process')
     .get(Devices.getProcessDevices);
+
+    app.route('/devices/pending')
+    .get(Devices.getPendingDevices);
 }
