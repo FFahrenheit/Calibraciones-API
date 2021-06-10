@@ -1,5 +1,29 @@
 const Sql = require('../db/sql');
 
+exports.updateStatus = async(req, res) => {
+    const id = req.params.id;
+
+    try{
+        const status = req.body.estado;
+
+        let query = `UPDATE equipos SET estado = '${status}' WHERE id = '${id}'`;
+
+        let response = await Sql.request(query);
+
+        console.log(response);
+
+        res.json({
+            ok: true
+        });
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.getDevice = async(req, res) => {
     const id = req.params.id;
     
