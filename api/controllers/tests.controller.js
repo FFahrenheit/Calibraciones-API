@@ -1,6 +1,15 @@
 const { sendEmail } = require('../helpers/send.email');
+const { dailyNotice } = require('../tasks/daily.notice');
 
-exports.testEmail = async(req,res) =>{
+exports.testNotice = async(req, res) =>{
+    let ok = await dailyNotice();
+
+    return res.json({
+        ok
+    });
+}
+
+exports.testEmail = async(req, res) =>{
     console.log('THIS IS A TEST REQUEST');
     
     let template = {

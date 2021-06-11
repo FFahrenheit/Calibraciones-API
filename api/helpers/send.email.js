@@ -30,12 +30,12 @@ const sendEmail = async (email, template) => {
     return new Promise((resolve, reject) => {
         if (!sendEmail) {
             console.log('Server is not on production');
-            resolve(true);
+            return resolve(true);
         }
 
         if (email.length <= 0) {
             console.log('Error: VOID destinatary');
-            resolve(false);
+            return resolve(false);
         }
 
         transporter.sendMail({
@@ -47,10 +47,10 @@ const sendEmail = async (email, template) => {
             if (error) {
                 console.log('Error sending email');
                 console.log(error);
-                reject(error);
+                return reject(error);
             } else {
                 console.log('Email sent: ' + info.response);
-                resolve(true);
+                return resolve(true);
             }
         });
     });

@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const base_url = process.EMAIL_LINK;
 
-exports.deviceNotice = (devices) =>{
+exports.devicesNotice = (devices) =>{
     const date = devices[0].aviso;
     const url = base_url + '/equipos/proximos';
 
