@@ -11,12 +11,12 @@ exports.deviceNotice = (team, device) =>{
     let {
         id,
         descripcion,
-        aviso,
+        siguiente,
         ubicacion
     } = device;
 
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    aviso = aviso.toLocaleString('es-MX',options);
+    siguiente = siguiente.toLocaleString('es-MX',options);
 
     const url = base_url + '/calibraciones/empezar/' + id; 
     const url2 = base_url + '/equipos/proximos';
@@ -97,7 +97,9 @@ exports.deviceNotice = (team, device) =>{
                 }
         
                 .marked {
-                    font-family: Arial Bold, Arial, sans-serif; font-weight: bold;
+                    font-family: Arial Bold, Arial, sans-serif; 
+                    font-weight: bold;
+                    font-size: 110%;
                 }
         
                 .button {
@@ -154,7 +156,7 @@ exports.deviceNotice = (team, device) =>{
                 <table>
                     <tr>
                         <td valign="top" style="vertical-align:top;">
-                            <img src="https://dev.directorioautomotriz.com.mx/media/company/logo/8603/7bc085f9dd8182e888807d79e1af322e.png"
+                            <img src="https://i.ibb.co/ZYgG6j2/logo-removebg-preview.png"
                                 width="50" height="50">
                         </td>
                         <td valign="middle">
@@ -169,8 +171,8 @@ exports.deviceNotice = (team, device) =>{
                     El equipo <span class="marked">${ descripcion }</span> con ID 
                     <span class="marked">${ id }</span> ubicado en 
                     <span class="marked">${ ubicacion }</span> 
-                    tiene su calibración planeada en
-                    <span class="marked">20 días</span>, el día <span class="marked">${ aviso }</span> 
+                    tiene su calibración planeada dentro de
+                    <span class="marked">20 días</span>, el día <span class="marked">${ siguiente }</span> 
                 </p>
         
                 <p class="text">

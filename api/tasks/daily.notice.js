@@ -7,7 +7,7 @@ exports.dailyNotice = async() =>{
 
     return new Promise(async(resolve)=>{
         try{
-            let query = `SELECT id, descripcion, aviso, ubicacion 
+            let query = `SELECT id, descripcion, siguiente, ubicacion 
             FROM equipos
             WHERE aviso = CAST(GETDATE() AS DATE)`;  
             

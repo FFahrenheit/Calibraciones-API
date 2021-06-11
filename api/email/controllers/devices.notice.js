@@ -3,7 +3,7 @@ require('dotenv').config();
 const base_url = process.env.EMAIL_LINK;
 
 exports.devicesNotice = (devices) =>{
-    let date = devices[0].aviso;
+    let date = devices[0].siguiente;
     
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     date = date.toLocaleString('es-MX',options);
@@ -155,7 +155,7 @@ exports.devicesNotice = (devices) =>{
                 <table>
                     <tr>
                         <td valign="top" style="vertical-align:top;">
-                            <img src="https://dev.directorioautomotriz.com.mx/media/company/logo/8603/7bc085f9dd8182e888807d79e1af322e.png"
+                            <img src="https://i.ibb.co/ZYgG6j2/logo-removebg-preview.png"
                                 width="50" height="50">
                         </td>
                         <td valign="middle">
