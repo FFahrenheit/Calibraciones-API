@@ -1,9 +1,13 @@
 require('dotenv').config();
 
-const base_url = process.EMAIL_LINK;
+const base_url = process.env.EMAIL_LINK;
 
 exports.devicesNotice = (devices) =>{
-    const date = devices[0].aviso;
+    let date = devices[0].aviso;
+    
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    date = date.toLocaleString('es-MX',options);
+    
     const url = base_url + '/equipos/proximos';
 
     let tbody = '';
@@ -24,15 +28,15 @@ exports.devicesNotice = (devices) =>{
     });
 
     return {
-        subject: `Calibración de ${ id } próxima`,
+        subject: `Calibración de equipos próxima`,
         html:
         `
         <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
-
+        
         <head>
-
+        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <title>Plantilla de correo</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,13 +48,13 @@ exports.devicesNotice = (devices) =>{
                     border-left: 10px;
                     margin-top: 10px;
                 }
-
+        
                 .logo-image {
                     height: 50px !important;
                     width: auto;
                     vertical-align: middle;
                 }
-
+        
                 .logo-title {
                     color: rgb(0, 0, 92);
                     font-size: 20px;
@@ -58,26 +62,26 @@ exports.devicesNotice = (devices) =>{
                     margin-top: 15px;
                     margin-bottom: 15px;
                 }
-
+        
                 .logo {
                     margin-left: 10px;
                 }
-
+        
                 .content {
                     margin-left: 8px;
                 }
-
+        
                 .welcome {
                     font-weight: 300;
                     font-size: 18px;
                     color: black;
                 }
-
+        
                 .text {
                     font-size: 16px;
                     font-weight: 300;
                 }
-
+        
                 .ref {
                     background-color: rgb(38, 42, 105);
                     border: none;
@@ -89,23 +93,23 @@ exports.devicesNotice = (devices) =>{
                     font-size: 16px;
                     border-radius: 5px;
                 }
-
+        
                 .ref:hover {
                     cursor: pointer;
                 }
-
+        
                 .invisible-a {
                     text-decoration: none;
                 }
-
+        
                 .marked {
                     font-family: Arial Bold, Arial, sans-serif; font-weight: bold;
                 }
-
+        
                 .button {
                     border-radius: 2px;
                 }
-
+        
                 .button a {
                     padding: 8px 12px;
                     border: 1px solid rgb(38, 42, 105);
@@ -124,23 +128,28 @@ exports.devicesNotice = (devices) =>{
                     font-weight: bold;
                     text-decoration: underline;
                 }
-
+        
                 .tabla td, th{
                     word-break: break-all;
                     border: 1px solid gray;
-                    font-size: 20px;
+                    font-size: 16px;
                     padding-left: 10px;
                     padding-right: 10px;
                 }
-
+        
                 .tabla{
                     border-spacing: 0px;
                     border-collapse: separate;
                 }
-
+        
+                .test{
+                    font-size: 14px;
+                    color: rgb(122, 122, 122);
+                    font-style: italic;
+                }
             </style>
         </head>
-
+        
         <body>
             <div>
                 <table>
@@ -161,7 +170,7 @@ exports.devicesNotice = (devices) =>{
                     Los siguientes equipos tienen su calibración esperada dentro de 
                     <span class="marked">20 días</span>, el día <span class="marked">${ date }</span> 
                 </p>
-
+        
                 <table class="tabla">
                     <thead>
                         <tr>
@@ -174,16 +183,16 @@ exports.devicesNotice = (devices) =>{
                         ${ tbody }
                     </tbody>
                 </table>
-
+        
                 <p class="text">
-                    Por favor, planeen su calibración y actualizen el status en el sistema 
+                    Por favor, planeen su calibración y actualizen el status en el sistema
                     de los equipos correspondientes lo más pronto posible
                 </p>
                 <p class="text">
                     Puede ver los detalles del equipo haciendo click en su ID o ver la 
                     lista de calibraciones próximas haciendo click en el siguiente botón
                 </p>
-
+        
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
@@ -199,9 +208,10 @@ exports.devicesNotice = (devices) =>{
                         </td>
                     </tr>
                 </table>
+                <p class="test">&nbsp;</p>
             </div>
         </body>
-
+        
         </html>
         `
     };

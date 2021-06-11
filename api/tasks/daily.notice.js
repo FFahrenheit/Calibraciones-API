@@ -32,13 +32,13 @@ exports.dailyNotice = async() =>{
             var template;
 
             let emailList = result.map(u => u['email']);
+            emailList = Array.from(new Set(emailList));
 
             if(devices.length == 1){
                 let receivers = result.map(u => u['nombre']);
                 template = Templates.deviceNotice(receivers,devices[0]);
-
             }else{
-                template = Templates.devicesNotice(receivers,devices);
+                template = Templates.devicesNotice(devices);
             }
 
             let status = await sendEmail(emailList,template);

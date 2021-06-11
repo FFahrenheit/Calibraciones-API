@@ -2,6 +2,7 @@ const { sendEmail } = require('../helpers/send.email');
 const { dailyNotice } = require('../tasks/daily.notice');
 
 exports.testNotice = async(req, res) =>{
+    console.log('THIS IS A TEST REQUEST');
     let ok = await dailyNotice();
 
     return res.json({
