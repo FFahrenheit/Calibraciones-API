@@ -12,4 +12,7 @@ module.exports = (app) => {
 
     app.route('/devices/pending')
     .get(Devices.getPendingDevices);
+
+    app.route('/devices/complete')
+    .get(Devices.getAllDevices);
 }

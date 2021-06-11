@@ -8,9 +8,12 @@ exports.updateStatus = async(req, res) => {
 
         let query = `UPDATE equipos SET estado = '${status}' WHERE id = '${id}'`;
 
-        let response = await Sql.request(query);
+        await Sql.request(query);
 
-        console.log(response);
+        if(req.body.updateActive){
+            query = `UPDATE equipos SET activo = '${status}' WHERE id = '${id}'`;
+            await Sql.request(query);
+        }
 
         res.json({
             ok: true
