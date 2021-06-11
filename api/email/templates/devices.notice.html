@@ -114,6 +114,12 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             color: rgb(122, 122, 122);
             font-style: italic;
         }
+
+        .logo-link {
+            color: rgb(0, 0, 92);
+            font-size: 16px;
+            font-weight: 600;
+        }
     </style>
 </head>
 
@@ -144,21 +150,21 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                     <th>ID</th>
                     <th>Descripción</th>
                     <th>Ubicación</th>
-                    <th>Fecha</th>
+                    <th>Calibración</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><a href="${ link }" class="logo-title">${ id }</a></td>
+                    <td><a href="${ link }" class="logo-link">${ id }</a></td>
                     <td>${ descripcion }</td>
                     <td>${ ubicacion }</td>
-                    <td>${ siguiente }</td>
+                    <td>${ shortDate }</td>
                 </tr>
                 <tr>
-                    <td><a href="${ link }" class="logo-title">${ id }</a></td>
+                    <td><a href="${ link }" class="logo-link">${ id }</a></td>
                     <td>${ descripcion }</td>
                     <td>${ ubicacion }</td>
-                    <td>${ siguiente }</td>
+                    <td>${ shortDate }</td>
                 </tr>
             </tbody>
         </table>

@@ -1,3 +1,4 @@
+var Utils = require('../../helpers/utils');
 require('dotenv').config();
 
 const base_url = process.env.EMAIL_LINK;
@@ -15,6 +16,8 @@ exports.deviceNotice = (team, device) =>{
         ubicacion
     } = device;
 
+    const shortDate = Utils.convertDate(siguiente);
+
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     siguiente = siguiente.toLocaleString('es-MX',options);
 
@@ -22,7 +25,7 @@ exports.deviceNotice = (team, device) =>{
     const url2 = base_url + '/equipos/proximos';
 
     return {
-        subject: `Calibración de ${ id } próxima`,
+        subject: `Calibración de ${ id } próxima [${ shortDate }]`,
         html:
         `
         <!DOCTYPE html
@@ -171,7 +174,7 @@ exports.deviceNotice = (team, device) =>{
                     El equipo <span class="marked">${ descripcion }</span> con ID 
                     <span class="marked">${ id }</span> ubicado en 
                     <span class="marked">${ ubicacion }</span> 
-                    tiene su calibración planeada dentro de
+                    tiene su calibración esperada dentro de
                     <span class="marked">20 días</span>, el día <span class="marked">${ siguiente }</span> 
                 </p>
         

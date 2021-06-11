@@ -9,7 +9,7 @@ exports.dailyNotice = async() =>{
         try{
             let query = `SELECT id, descripcion, siguiente, ubicacion 
             FROM equipos
-            WHERE aviso = CAST(GETDATE() AS DATE)`;  
+            WHERE aviso <= CAST(GETDATE() AS DATE)`;  
             
             let devices = await Sql.request(query);
 

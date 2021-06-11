@@ -1,9 +1,11 @@
+var Utils = require('../../helpers/utils');
 require('dotenv').config();
 
 const base_url = process.env.EMAIL_LINK;
 
 exports.devicesNotice = (devices) =>{
     let date = devices[0].siguiente;
+    const shortDate = Utils.convertDate(date);
     
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     date = date.toLocaleString('es-MX',options);
@@ -18,17 +20,17 @@ exports.devicesNotice = (devices) =>{
             ubicacion
         } = device;
         const link = base_url + '/calibraciones/empezar/' + id; 
-
         tbody += `
         <tr>
-            <td><a href="${ link }" class="logo-title">${ id }</a></td>
+            <td><a href="${ link }" class="logo-link">${ id }</a></td>
             <td>${ descripcion }</td>
             <td>${ ubicacion }</td>
+            <td>${ shortDate }</td>
         </tr>`;
     });
 
     return {
-        subject: `Calibración de equipos próxima`,
+        subject: `Calibración de equipos próxima [${ shortDate }]`,
         html:
         `
         <!DOCTYPE html
@@ -147,6 +149,12 @@ exports.devicesNotice = (devices) =>{
                     color: rgb(122, 122, 122);
                     font-style: italic;
                 }
+        
+                .logo-link {
+                    color: rgb(0, 0, 92);
+                    font-size: 16px;
+                    font-weight: 600;
+                }
             </style>
         </head>
         
@@ -165,7 +173,7 @@ exports.devicesNotice = (devices) =>{
                 </table>
             </div>
             <div class="content">
-                <h4 class="welcome">Buen día, equipo</h4>
+                <h4 class="welcome">Buen día a todos,</h4>
                 <p class="text">
                     Los siguientes equipos tienen su calibración esperada dentro de 
                     <span class="marked">20 días</span>, el día <span class="marked">${ date }</span> 
@@ -177,6 +185,7 @@ exports.devicesNotice = (devices) =>{
                             <th>ID</th>
                             <th>Descripción</th>
                             <th>Ubicación</th>
+                            <th>Calibración</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -185,8 +194,8 @@ exports.devicesNotice = (devices) =>{
                 </table>
         
                 <p class="text">
-                    Por favor, planeen su calibración y actualizen el status en el sistema
-                    de los equipos correspondientes lo más pronto posible
+                    Por favor, planeen su calibración con anticipación y actualizen el status 
+                    en el sistema según corresponda 
                 </p>
                 <p class="text">
                     Puede ver los detalles del equipo haciendo click en su ID o ver la 
