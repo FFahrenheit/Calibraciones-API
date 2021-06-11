@@ -25,6 +25,7 @@ const sendEmail = async (email, template) => {
     if (debug) {
         console.log('Debug emailing is on!');
         email = 'i.lopez@mx.interplex.com'; //Just sent it to me 
+        template.html = template.html.replace('&nbsp;','Este es un correo de prueba, por favor ignore su contenido');
     }
 
     return new Promise((resolve, reject) => {
