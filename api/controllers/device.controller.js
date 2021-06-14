@@ -1,4 +1,27 @@
 const Sql = require('../db/sql');
+const Identifcator = require('../middlewares/identificator')
+
+exports.acceptCalibration = async(req, res) => {
+    try{
+        const { equipo, calibrador, fecha } = req.body;
+        const verificador = Identifcator.getUser(req);
+
+        let query = `INSERT INTO calibraciones(calibrador,fecha,verificador,equipo)
+        VALUES ('${calibrador}','${fecha}','${verificador}','${equipo}')`;
+        
+        await Sql.request(query);
+
+        res.json({
+            ok: true,
+        });
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
 
 exports.updateStatus = async(req, res) => {
     const id = req.params.id;
@@ -62,7 +85,7 @@ exports.getDevice = async(req, res) => {
         FROM calibraciones, usuarios
         WHERE equipo = '${ id }' 
         AND usuarios.username = calibraciones.verificador
-        ORDER BY fecha DESC`
+        ORDER BY fecha DESC`;
         calibraciones = await Sql.request(query);
 
         details['calibraciones'] = calibraciones;

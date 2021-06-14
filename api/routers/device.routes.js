@@ -7,4 +7,7 @@ module.exports = (app) => {
 
     app.route('/device/status/:id')
     .put([Token.verifyUser],Device.updateStatus);
+
+    app.route('/device/calibrated')
+    .post([Token.verifyUser],Device.acceptCalibration);
 }
