@@ -3,14 +3,14 @@ var Sql = require('../db/sql');
 const { sendEmail } = require('../helpers/send.email');
 const Templates = require('../helpers/email.templates');
 
-exports.dailyNotice = async() =>{
+exports.dailyExpired = async() =>{
 
     return new Promise(async(resolve)=>{
         try{
-            let query = `SELECT id, descripcion, siguiente, ubicacion 
-            FROM equipos
-            WHERE aviso = CAST(GETDATE() AS DATE)
-            AND estado = 'Calibración Aceptada'`;  
+            let query = `SELECT id, descripcion, ubicacion, siguiente
+            FROM equipos 
+            WHERE siguiente = CAST(GETDATE() AS DATE) 
+            AND estado = 'Calibración Aceptada'`;
             
             let devices = await Sql.request(query);
 
@@ -23,11 +23,18 @@ exports.dailyNotice = async() =>{
             WHERE usuarios.username = responsables.usuario
             AND (responsables.equipo IN (
                 SELECT id FROM equipos 
-                WHERE aviso = CAST(GETDATE() AS DATE)
+                WHERE siguiente = CAST(GETDATE() AS DATE)
                 AND estado = 'Calibración Aceptada'
             ) OR usuarios.posicion = 'responsable')`;
 
             let result = await Sql.request(query);
+
+            query = `UPDATE equipos
+            SET estado = 'Calibración Pendiente'
+            WHERE siguiente < CAST(GETDATE() AS DATE) 
+            AND estado = 'Calibración Aceptada'`;
+
+            // await Sqll.request(query);
 
             console.log(result);
             
@@ -45,12 +52,11 @@ exports.dailyNotice = async() =>{
 
             let status = await sendEmail(emailList,template);
             resolve(status);
-
+            
         }catch(e){
             console.log('Error on task');
             console.log(e);
             return resolve(false);
         }
     });
-
 }

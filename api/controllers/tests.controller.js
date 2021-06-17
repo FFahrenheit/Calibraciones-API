@@ -1,5 +1,15 @@
 const { sendEmail } = require('../helpers/send.email');
 const { dailyNotice } = require('../tasks/daily.notice');
+const { dailyExpired } = require('../tasks/daily.expired'); 
+
+exports.testExpired = async(req, res) =>{
+    console.log('THIS IS A TEST REQUEST');
+    let ok = await dailyExpired();
+
+    return res.json({
+        ok
+    });
+}
 
 exports.testNotice = async(req, res) =>{
     console.log('THIS IS A TEST REQUEST');

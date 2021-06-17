@@ -6,4 +6,7 @@ module.exports = (app) => {
 
     app.route('/tests/tasks/notice')
     .get(Tests.testNotice);
+    
+    app.route('/tests/tasks/expired')
+    .get(Tests.testExpired);
 }
