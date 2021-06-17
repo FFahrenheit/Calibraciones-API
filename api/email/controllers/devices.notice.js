@@ -30,7 +30,7 @@ exports.devicesNotice = (devices) =>{
     });
 
     return {
-        subject: `Calibración de equipos próxima [${ shortDate }]`,
+        subject: `Calibración de ${ devices.length } equipos próxima [${ shortDate }]`,
         html:
         `
         <!DOCTYPE html

@@ -7,7 +7,7 @@ exports.dailyExpired = async() =>{
 
     return new Promise(async(resolve)=>{
         try{
-            let query = `SELECT TOP 1 id, descripcion, ubicacion, siguiente
+            let query = `SELECT id, descripcion, ubicacion, siguiente
             FROM equipos 
             WHERE siguiente = CAST(GETDATE() AS DATE) 
             AND estado = 'Calibración Aceptada'`;
