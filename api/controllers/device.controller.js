@@ -11,6 +11,11 @@ exports.acceptCalibration = async(req, res) => {
         
         await Sql.request(query);
 
+        query = `UPDATE equipos SET estado = 'Calibración Aceptada', 
+        activo =  'Activo' WHERE id = '${ equipo }'`;
+
+        await Sql.request(query);
+
         res.json({
             ok: true,
         });
