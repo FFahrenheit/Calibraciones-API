@@ -5,7 +5,7 @@ const base_url = process.env.EMAIL_LINK;
 
 exports.deviceNotice = (team, device) =>{    
     if(team.length > 1){
-        team = team.slice(0, -1).join(',')+' y '+ team.slice(-1);
+        team = team.slice(0, -1).join(', ')+' y '+ team.slice(-1);
     }else{
         team = team[0];
     }

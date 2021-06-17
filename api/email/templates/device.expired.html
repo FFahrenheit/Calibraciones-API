@@ -141,16 +141,19 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     <div class="content">
         <h4 class="welcome">Buen día, ${ team }: </h4>
         <p class="text">
-            El equipo <span class="marked">${ descripcion }</span> con ID 
+            La calibración del equipo <span class="marked">${ descripcion }</span> con ID 
             <span class="marked">${ id }</span> ubicado en 
             <span class="marked">${ ubicacion }</span> 
-            tiene su calibración esperada dentro de
-            <span class="marked">20 días</span>, el día <span class="marked">${ siguiente }</span> 
+            ha expirado el día de hoy, <span class="marked">${ siguiente }</span> 
         </p>
 
         <p class="text">
-            Por favor, planeen su calibración y actualizen el status en el sistema
-            lo más pronto posible
+            Por favor, empiece el proceso de calibración ya que el equipo se encuentra en estado 
+            <span class="marked">Calibración pendiente</span> 
+        </p>
+        <p class="text">
+            Si ya realizó el proceso correspondiente por favor actualice el estado
+            del equipo en el sistema
         </p>
         <p class="text">
             Puede consultar más detalles haciendo click en cualquiera de los
@@ -172,7 +175,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                             </td>
                             <td class="button" bgcolor="#262a69">
                                 <a class="link" href="${ url2 }" target="_blank">
-                                    Ver calibraciones próximas
+                                    Actualizar estado
                                 </a>
                             </td>
                         </tr>

@@ -7,7 +7,7 @@ exports.dailyExpired = async() =>{
 
     return new Promise(async(resolve)=>{
         try{
-            let query = `SELECT id, descripcion, ubicacion, siguiente
+            let query = `SELECT TOP 1 id, descripcion, ubicacion, siguiente
             FROM equipos 
             WHERE siguiente = CAST(GETDATE() AS DATE) 
             AND estado = 'Calibración Aceptada'`;
@@ -45,9 +45,9 @@ exports.dailyExpired = async() =>{
 
             if(devices.length == 1){
                 let receivers = result.map(u => u['nombre']);
-                template = Templates.deviceNotice(receivers,devices[0]);
+                template = Templates.deviceExpired(receivers,devices[0]);
             }else{
-                template = Templates.devicesNotice(devices);
+                template = Templates.devicesExpired(devices);
             }
 
             let status = await sendEmail(emailList,template);
