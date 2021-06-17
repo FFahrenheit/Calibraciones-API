@@ -70,9 +70,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         }
 
         .marked {
-            font-family: Arial Bold, Arial, sans-serif; 
-            font-weight: bold;
-            font-size: 110%;
+            font-family: Arial Bold, Arial, sans-serif; font-weight: bold;
         }
 
         .button {
@@ -101,7 +99,7 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         .tabla td, th{
             word-break: break-all;
             border: 1px solid gray;
-            font-size: 20px;
+            font-size: 16px;
             padding-left: 10px;
             padding-right: 10px;
         }
@@ -111,15 +109,16 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             border-collapse: separate;
         }
 
-        .separator{
-            border-left: 10px solid #ffffff;
-            border-right: 10px solid #ffffff;
-        }
-
         .test{
             font-size: 14px;
             color: rgb(122, 122, 122);
             font-style: italic;
+        }
+
+        .logo-link {
+            color: rgb(0, 0, 92);
+            font-size: 16px;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -139,16 +138,39 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
         </table>
     </div>
     <div class="content">
-        <h4 class="welcome">Buen día, ${ team }: </h4>
+        <h4 class="welcome">Buen día a todos,</h4>
         <p class="text">
-            La calibración del equipo <span class="marked">${ descripcion }</span> con ID 
-            <span class="marked">${ id }</span> ubicado en 
-            <span class="marked">${ ubicacion }</span> 
-            ha <span class="marked">expirado</span> el día de hoy, <span class="marked">${ siguiente }</span> 
+            La calibración de los siguientes equipos ha <span class="marked">expirado</span> 
+            el día de hoy, <span class="marked">${ date }</span> 
         </p>
 
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descripción</th>
+                    <th>Ubicación</th>
+                    <th>Expira</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="${ link }" class="logo-link">${ id }</a></td>
+                    <td>${ descripcion }</td>
+                    <td>${ ubicacion }</td>
+                    <td>${ shortDate }</td>
+                </tr>
+                <tr>
+                    <td><a href="${ link }" class="logo-link">${ id }</a></td>
+                    <td>${ descripcion }</td>
+                    <td>${ ubicacion }</td>
+                    <td>${ shortDate }</td>
+                </tr>
+            </tbody>
+        </table>
+
         <p class="text">
-            Por favor, empiece el proceso de calibración ya que el equipo se encuentra en estado 
+            Por favor, empiece el proceso de calibración ya que que estos equipos se encuentran en estado 
             <span class="marked">Calibración pendiente</span> 
         </p>
         <p class="text">
@@ -156,8 +178,8 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
             del equipo en el sistema
         </p>
         <p class="text">
-            Puede consultar más detalles haciendo click en cualquiera de los
-            siguientes botones
+            Puede ver los detalles del equipo haciendo click en su ID o ver la 
+            lista de calibraciones próximas haciendo click en el siguiente botón
         </p>
 
         <table width="100%" cellspacing="0" cellpadding="0">
@@ -167,19 +189,10 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
                         <tr>
                             <td class="button" bgcolor="#262a69">
                                 <a class="link" href="${ url }" target="_blank">
-                                    Ver detalles del equipo
-                                </a>
-                            </td>
-                            <td class="separator">
-                                ó
-                            </td>
-                            <td class="button" bgcolor="#262a69">
-                                <a class="link" href="${ url2 }" target="_blank">
-                                    Actualizar estado
+                                    Ver calibraciones pendientes
                                 </a>
                             </td>
                         </tr>
-                        
                     </table>
                 </td>
             </tr>

@@ -173,7 +173,7 @@ exports.deviceExpired = (team, device) =>{
                     La calibración del equipo <span class="marked">${ descripcion }</span> con ID 
                     <span class="marked">${ id }</span> ubicado en 
                     <span class="marked">${ ubicacion }</span> 
-                    ha expirado el día de hoy, <span class="marked">${ siguiente }</span> 
+                    ha <span class="marked">expirado</span> el día de hoy, <span class="marked">${ siguiente }</span> 
                 </p>
 
                 <p class="text">
