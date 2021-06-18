@@ -18,7 +18,7 @@ exports.deviceNotice = (team, device) =>{
 
     const shortDate = Utils.convertDate(siguiente);
 
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
     siguiente = siguiente.toLocaleString('es-MX',options);
 
     const url = base_url + '/calibraciones/empezar/' + id; 

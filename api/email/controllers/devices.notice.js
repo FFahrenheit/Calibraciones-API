@@ -7,7 +7,7 @@ exports.devicesNotice = (devices) =>{
     let date = devices[0].siguiente;
     const shortDate = Utils.convertDate(date);
     
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' };
     date = date.toLocaleString('es-MX',options);
     
     const url = base_url + '/equipos/proximos';
