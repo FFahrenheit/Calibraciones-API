@@ -177,7 +177,8 @@ exports.deviceExpired = (team, device) =>{
                 </p>
 
                 <p class="text">
-                    Por favor, empiece el proceso de calibración ya que el equipo se encuentra en estado 
+                    Por favor, empiece el proceso de calibración en el <span class="marked">Laboratorio de Metrología</span>
+                    ya que el equipo se encuentra en estado 
                     <span class="marked">Calibración pendiente</span> 
                 </p>
                 <p class="text">
