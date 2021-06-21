@@ -11,6 +11,12 @@ const config = {
     }
 }
 
+const insertRecordset = async(query)=>{
+    query = query + ';SELECT SCOPE_IDENTITY() as ID';
+    const response = await request(query);
+    return response[0].ID;
+}
+
 const applyFilters = (obj) => {
     params = [];
     Object.keys(obj).forEach(key => {
@@ -30,6 +36,12 @@ const applyFilters = (obj) => {
                 break;
             case 'toSiguiente':
                 filter = `siguiente <= '${obj[key]}'`
+                break;
+            case 'fromRemaining':
+                filter = `DATEDIFF(day, GETDATE(),siguiente) >= ${obj[key]}`;
+                break;
+            case 'toRemaining':
+                filter = `DATEDIFF(day, GETDATE(),siguiente) <= ${obj[key]}`;
                 break;
             default:
                 filter = `${key} LIKE '%${obj[key]}%' COLLATE Latin1_General_CI_AI`
@@ -115,5 +127,6 @@ module.exports = {
     request,
     parseField,
     hasQuery,
-    applyFilters
+    applyFilters,
+    insertRecordset
 };

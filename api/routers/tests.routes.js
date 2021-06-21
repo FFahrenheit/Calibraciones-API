@@ -9,4 +9,7 @@ module.exports = (app) => {
     
     app.route('/tests/tasks/expired')
     .get(Tests.testExpired);
+
+    app.route('/tests/query')
+    .get(Tests.testQueries);
 }
