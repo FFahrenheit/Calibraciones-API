@@ -16,6 +16,9 @@ const applyFilters = (obj) => {
     Object.keys(obj).forEach(key => {
         let filter;
         switch (key) {
+            case 'activo':
+                filter = `activo = '${obj[key]}'`;
+                break;
             case 'fromUltima':
                 filter = `ultima >= '${obj[key]}'`
                 break;

@@ -47,6 +47,16 @@ CREATE TABLE verificadores(
     equipo VARCHAR(8) NOT NULL
 );
 
+CREATE TABLE proveedores(
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    certificado VARCHAR(100) DEFAULT NULL,
+    equipo VARCHAR(8) NOT NULL
+);
+
+ALTER TABLE proveedores
+ADD CONSTRAINT FK_proveedores_equipo
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
+
 ALTER TABLE responsables
 ADD CONSTRAINT PK_responsables
 PRIMARY KEY CLUSTERED(equipo,usuario);
