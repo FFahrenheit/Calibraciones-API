@@ -193,7 +193,7 @@ exports.devicesExpired = (devices) =>{
                 </table>
 
                 <p class="text">
-                    Por favor, empiece el proceso de calibración de estos equipos en el 
+                    Por favor, comience el proceso de calibración de estos equipos en el 
                     <span class="marked">Laboratorio de Metrología</span>, ya que se encuentran en estado 
                     <span class="marked">Calibración pendiente</span> 
                 </p>

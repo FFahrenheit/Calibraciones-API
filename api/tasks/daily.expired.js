@@ -35,7 +35,7 @@ exports.dailyExpired = async() =>{
             WHERE siguiente < CAST(GETDATE() AS DATE) 
             AND estado = 'Calibración Aceptada' AND activo = 'Activo'`;
 
-            await Sqll.request(query);
+            // await Sql.request(query);
 
             console.log(result);
             

@@ -32,7 +32,7 @@ const applyFilters = (obj) => {
                 filter = `siguiente <= '${obj[key]}'`
                 break;
             default:
-                filter = `${key} LIKE '%${obj[key]}%'`
+                filter = `${key} LIKE '%${obj[key]}%' COLLATE Latin1_General_CI_AI`
         }
         params.push(filter);
     });
