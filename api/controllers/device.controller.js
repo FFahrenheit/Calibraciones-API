@@ -9,7 +9,7 @@ exports.acceptCalibration = async(req, res) => {
         let query = `INSERT INTO calibraciones(calibrador,fecha,verificador,equipo)
         VALUES ('${calibrador}','${fecha}','${verificador}','${equipo}')`;
         
-        await Sql.request(query);
+        let id = await Sql.insertRecordset(query);
 
         query = `UPDATE equipos SET estado = 'Calibración Aceptada', 
         activo =  'Activo' WHERE id = '${ equipo }'`;
@@ -18,6 +18,7 @@ exports.acceptCalibration = async(req, res) => {
 
         res.json({
             ok: true,
+            id
         });
     }catch(e){
         console.log(e);
