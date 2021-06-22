@@ -38,7 +38,9 @@ CREATE TABLE calibraciones(
     calibrador VARCHAR(30) NOT NULL DEFAULT '',
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     verificador VARCHAR(30) NOT NULL,
-    equipo VARCHAR(8) NOT NULL
+    equipo VARCHAR(8) NOT NULL,
+    ryr VARCHAR(150) DEFAULT NULL,
+    certificado VARCHAR(150) DEFAULT NULL
 );
 
 CREATE TABLE verificadores(
