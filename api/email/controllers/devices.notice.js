@@ -195,7 +195,7 @@ exports.devicesNotice = (devices) =>{
         
                 <p class="text">
                     Por favor, planeen su calibración en el <span class="marked">Laboratorio de Metrologia</span>  
-                    con anticipación y actualizen el status 
+                    con anticipación y actualicen el status 
                     en el sistema según corresponda 
                 </p>
                 <p class="text">

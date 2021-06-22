@@ -180,7 +180,7 @@ exports.deviceNotice = (team, device) =>{
         
                 <p class="text">
                     Por favor, planeen su calibración en el <span class="marked">Laboratorio de Metrología</span> 
-                    y actualizen el status en el sistema
+                    y actualicen el status en el sistema
                     lo más pronto posible
                 </p>
                 <p class="text">
