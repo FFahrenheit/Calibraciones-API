@@ -12,4 +12,7 @@ module.exports = (app) => {
 
     app.route('/tests/query')
     .get(Tests.testQueries);
+
+    app.route('/upload/:id')
+    .post(Tests.testUpload);
 }

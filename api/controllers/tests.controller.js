@@ -2,6 +2,21 @@ const { sendEmail } = require('../helpers/send.email');
 const { dailyNotice } = require('../tasks/daily.notice');
 const { dailyExpired } = require('../tasks/daily.expired');
 const Sql = require('../db/sql');
+const Upload = require('../middlewares/upload');
+
+exports.testUpload = async (req, res) => {
+    console.log('THIS IS A TEST REQUEST');
+    try {
+        await Upload.addRyr(req, res);
+        console.log(req.file);
+    } catch (error) {
+        console.log(error);
+    } finally {
+        res.json({
+            ok: true
+        });
+    }
+}
 
 exports.testQueries = async (req, res) => {
     console.log('THIS IS A TEST REQUEST');
