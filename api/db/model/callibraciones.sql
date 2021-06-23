@@ -17,6 +17,7 @@ CREATE TABLE equipos(
     ultima DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     siguiente DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     aviso DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    prestado VARCHAR()
 );
 
 CREATE TABLE usuarios(
@@ -26,6 +27,7 @@ CREATE TABLE usuarios(
   email VARCHAR(50) NOT NULL,
   posicion VARCHAR(30) NOT NULL DEFAULT 'usuario',
   temporal VARCHAR(20) DEFAULT 'Interplex.0'
+  prestatario VARCHAR(8) DEFAULT NULL
 );
 
 CREATE TABLE responsables (
@@ -54,6 +56,10 @@ CREATE TABLE proveedores(
     certificado VARCHAR(100) DEFAULT NULL,
     equipo VARCHAR(8) NOT NULL
 );
+
+ALTER TABLE equipos
+ADD CONSTRAINT FK_equipo_prestatario
+FOREIGN KEY (prestatario) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION
 
 ALTER TABLE proveedores
 ADD CONSTRAINT FK_proveedores_equipo

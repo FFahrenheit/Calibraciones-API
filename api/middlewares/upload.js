@@ -8,7 +8,7 @@ let storageRyr = multer.diskStorage({
         let date = new Date();
         date = date.toISOString().split('T')[0];
 
-        let subfolder = 'CAL' + req.params.id + ' - ' + date;
+        let subfolder = 'CAL' + req.params.id + '_' + date;
         
         const folder = `Calibraciones/${req.params.device}/${subfolder}`;
         const path = `${__dirname}/../../upload/${folder}`;
@@ -21,7 +21,7 @@ let storageRyr = multer.diskStorage({
         date = date.toISOString().split('T')[0];
         const ext = path.extname(file.originalname);
 
-        let filename = `RYR - ${req.params.device} - ${ date } - CAL${ req.params.id }${ ext }`;
+        let filename = `RYR_${req.params.device}_${ date }_CAL${ req.params.id }${ ext }`;
         callback(null,filename);
     }
 });
@@ -31,7 +31,7 @@ let storageCertificate = multer.diskStorage({
         let date = new Date();
         date = date.toISOString().split('T')[0];
 
-        let subfolder = 'CAL' + req.params.id + ' - ' + date;
+        let subfolder = 'CAL' + req.params.id + '_' + date;
         
         const folder = `Calibraciones/${req.params.device}/${subfolder}`;
         const path = `${__dirname}/../../upload/${folder}`;
@@ -46,7 +46,7 @@ let storageCertificate = multer.diskStorage({
         date = date.toISOString().split('T')[0];
         const ext = path.extname(file.originalname);
 
-        let filename = `CERTIFICADO - ${req.params.device} - ${ date } - CAL${ req.params.id }${ ext }`;
+        let filename = `CERTIFICADO_${req.params.device}_${ date }_CAL${ req.params.id }${ ext }`;
         console.log('Filename : ' + filename);
         callback(null,filename);
     }
