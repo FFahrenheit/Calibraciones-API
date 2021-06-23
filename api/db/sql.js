@@ -22,6 +22,10 @@ const applyFilters = (obj) => {
     Object.keys(obj).forEach(key => {
         let filter;
         switch (key) {
+            case 'prestatario':
+                filter = `prestatario IN (SELECT username FROM usuarios WHERE 
+                nombre LIKE '%${obj[key]}%' OR username LIKE '%${ obj[key] }%')`;
+                break;
             case 'activo':
                 filter = `activo = '${obj[key]}'`;
                 break;

@@ -18,4 +18,7 @@ module.exports = (app) => {
 
     app.route('/devices/available')
     .get(Devices.getAvailableDevices);
+
+    app.route('/devices/borrowed')
+    .get(Devices.getBorrowedDevices);
 }
