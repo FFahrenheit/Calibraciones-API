@@ -15,4 +15,7 @@ module.exports = (app) => {
 
     app.route('/devices/complete')
     .get(Devices.getAllDevices);
+
+    app.route('/devices/available')
+    .get(Devices.getAvailableDevices);
 }

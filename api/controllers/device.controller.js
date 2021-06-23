@@ -60,7 +60,9 @@ exports.getDevice = async(req, res) => {
     const id = req.params.id;
     
     try{
-        let query = `SELECT * FROM equipos WHERE id = '${ id }'`;
+        let query = `SELECT *,
+        (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario 
+        FROM equipos WHERE id = '${ id }'`;
 
         let details = await Sql.request(query);
         
