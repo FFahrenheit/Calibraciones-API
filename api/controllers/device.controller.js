@@ -87,7 +87,7 @@ exports.getDevice = async(req, res) => {
         details['responsables'] = responsables;
 
         query = `SELECT id, fecha, calibrador, verificador, 
-        usuarios.nombre as verifico
+        usuarios.nombre as verifico, ryr, certificado 
         FROM calibraciones, usuarios
         WHERE equipo = '${ id }' 
         AND usuarios.username = calibraciones.verificador

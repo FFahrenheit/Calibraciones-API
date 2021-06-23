@@ -10,7 +10,7 @@ let storageRyr = multer.diskStorage({
 
         let subfolder = 'CAL' + req.params.id + ' - ' + date;
         
-        const folder = `calibraciones/${req.params.device}/${subfolder}`;
+        const folder = `Calibraciones/${req.params.device}/${subfolder}`;
         const path = `${__dirname}/../../upload/${folder}`;
 
         fs.mkdirSync(path, { recursive: true });
@@ -33,8 +33,10 @@ let storageCertificate = multer.diskStorage({
 
         let subfolder = 'CAL' + req.params.id + ' - ' + date;
         
-        const folder = `calibraciones/${req.params.device}/${subfolder}`;
+        const folder = `Calibraciones/${req.params.device}/${subfolder}`;
         const path = `${__dirname}/../../upload/${folder}`;
+
+        console.log('Path : ' + path);
 
         fs.mkdirSync(path, { recursive: true });
         callback(null,path);
@@ -45,6 +47,7 @@ let storageCertificate = multer.diskStorage({
         const ext = path.extname(file.originalname);
 
         let filename = `CERTIFICADO - ${req.params.device} - ${ date } - CAL${ req.params.id }${ ext }`;
+        console.log('Filename : ' + filename);
         callback(null,filename);
     }
 });
