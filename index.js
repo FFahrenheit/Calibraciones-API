@@ -8,6 +8,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 var authRoutes = require('./api/routers/auth.routes');
+var userRoutes = require('./api/routers/user.routes');
 var filesRoutes = require('./api/routers/files.routes');
 var deviceRoutes = require('./api/routers/device.routes');
 var uploadRoutes = require('./api/routers/upload.routes');
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 });
 
 authRoutes(app);
+userRoutes(app);
 filesRoutes(app);
 deviceRoutes(app);
 uploadRoutes(app);
