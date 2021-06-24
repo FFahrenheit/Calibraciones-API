@@ -11,6 +11,7 @@ var authRoutes = require('./api/routers/auth.routes');
 var filesRoutes = require('./api/routers/files.routes');
 var deviceRoutes = require('./api/routers/device.routes');
 var uploadRoutes = require('./api/routers/upload.routes');
+var borrowsRoutes = require('./api/routers/borrows.routes');
 var devicesRoutes = require('./api/routers/devices.routes');
 var ____testRoutes____ = require('./api/routers/tests.routes');
 
@@ -26,6 +27,7 @@ authRoutes(app);
 filesRoutes(app);
 deviceRoutes(app);
 uploadRoutes(app);
+borrowsRoutes(app);
 devicesRoutes(app);
 ____testRoutes____(app);
 
