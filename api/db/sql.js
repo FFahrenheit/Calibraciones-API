@@ -72,7 +72,7 @@ const query = async (query, data) => {
     return request(req);
 }
 
-const getQuery = async (query, data) => {
+const getQuery = (query, data) => {
     let columns = [];
     let rows = [];
     if (!Array.isArray(data)) {

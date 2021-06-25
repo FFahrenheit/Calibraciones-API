@@ -1,16 +1,46 @@
 const Sql = require('../db/sql');
+const Identificator = require('../middlewares/identificator');
 
-exports.getDetails = async(req, res) =>{
+exports.borrowDevice = async (req, res) => {
+    try {
+        const { id, prestatario, fecha } = req.body;
+        const prestador = Identificator.getUser(req);
+
+        const body = {
+            equipo : id,
+            prestatario,
+            fechaEntrega : fecha,
+            entrega : prestador,
+            estado : 'Entregado'
+        };
+        
+        let query = 'INSERT INTO prestamos() VALUES ?';
+
+        await Sql.query(query,body);
+
+        res.json({
+            ok: true
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
+exports.getDetails = async (req, res) => {
     const id = req.params.id;
-    
-    try{
+
+    try {
         let query = `SELECT *,
         (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario 
-        FROM equipos WHERE id = '${ id }'`;
+        FROM equipos WHERE id = '${id}'`;
 
         let details = await Sql.request(query);
-        
-        if(!details || details.length == 0){
+
+        if (!details || details.length == 0) {
             return res.json({
                 ok: false,
                 error: 'No se encontro el equipo'
@@ -22,7 +52,7 @@ exports.getDetails = async(req, res) =>{
         query = `SELECT usuarios.username as username, usuarios.nombre as nombre 
         FROM usuarios, responsables 
         WHERE responsables.usuario = usuarios.username 
-        AND responsables.equipo = '${ id }'`;
+        AND responsables.equipo = '${id}'`;
         responsables = await Sql.request(query);
 
         details['responsables'] = responsables;
@@ -33,7 +63,7 @@ exports.getDetails = async(req, res) =>{
             ok: true,
             equipo: details
         });
-    }catch(e){
+    } catch (e) {
         console.log(e);
         res.status(500).send({
             ok: false,
