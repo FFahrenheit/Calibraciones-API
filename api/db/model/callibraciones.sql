@@ -57,6 +57,34 @@ CREATE TABLE proveedores(
     equipo VARCHAR(8) NOT NULL
 );
 
+CREATE TABLE prestamos(
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    estado VARCHAR(20) DEFAULT 'Entregado',
+    fechaEntrega DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    fechaRetorno DATETIME DEFAULT NULL,
+    notas VARCHAR(120) DEFAULT '',
+    equipo VARCHAR(8) NOT NULL,
+    prestatario VARCHAR(30) NOT NULL,
+    entrega VARCHAR(30) NOT NULL,
+    recibe VARCHAR(30)
+);
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_equipo
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_prestatario
+FOREIGN KEY (prestatario) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_entrega
+FOREIGN KEY (entrega) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_recibe
+FOREIGN KEY (recibe) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 ALTER TABLE equipos
 ADD CONSTRAINT FK_equipo_prestatario
 FOREIGN KEY (prestatario) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION

@@ -2,7 +2,7 @@ const Sql = require('../db/sql');
 
 exports.getUsers = async(req, res) =>{
     try{
-        let query = "SELECT username, nombre FROM usuarios";
+        let query = "SELECT username, nombre as name FROM usuarios";
         let usuarios = await Sql.request(query);
         
         return res.json({
