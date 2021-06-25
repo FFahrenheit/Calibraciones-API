@@ -1,3 +1,21 @@
+CREATE OR ALTER TRIGGER prestarEquipo on prestamos
+FOR INSERT 
+AS DECLARE 	@Prestatario VARCHAR(30),
+	   		@Id VARCHAR(8);
+
+SELECT @Prestatario = ins.prestatario FROM INSERTED ins;
+SELECT @Id = ins.equipo FROM INSERTED ins;
+UPDATE equipos SET prestatario = @Prestatario WHERE id = @Id;
+
+CREATE OR ALTER TRIGGER dbo.regresarEquipo
+ON dbo.prestamos FOR UPDATE AS 
+BEGIN
+	IF UPDATE(fechaRetorno) 
+	BEGIN 
+		UPDATE equipos SET prestatario = NULL FROM inserted WHERE equipos.id = inserted.equipo;
+	END
+END
+
 CREATE OR ALTER TRIGGER actualizaFechas
 ON calibraciones FOR INSERT AS 
 DECLARE i CURSOR FOR

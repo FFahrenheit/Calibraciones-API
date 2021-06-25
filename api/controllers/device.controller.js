@@ -76,7 +76,7 @@ exports.getDevice = async(req, res) => {
         details = details[0];
 
         query = `SELECT id, nombre FROM verificadores WHERE equipo = '${ id }'`;
-        verificadores = await Sql.request(query);
+        const verificadores = await Sql.request(query);
 
         details['verificadores'] = verificadores;
 
@@ -84,7 +84,7 @@ exports.getDevice = async(req, res) => {
         FROM usuarios, responsables 
         WHERE responsables.usuario = usuarios.username 
         AND responsables.equipo = '${ id }'`;
-        responsables = await Sql.request(query);
+        const responsables = await Sql.request(query);
 
         details['responsables'] = responsables;
 
@@ -94,7 +94,7 @@ exports.getDevice = async(req, res) => {
         WHERE equipo = '${ id }' 
         AND usuarios.username = calibraciones.verificador
         ORDER BY fecha DESC`;
-        calibraciones = await Sql.request(query);
+        const calibraciones = await Sql.request(query);
 
         details['calibraciones'] = calibraciones;
 

@@ -53,11 +53,18 @@ exports.getDetails = async (req, res) => {
         FROM usuarios, responsables 
         WHERE responsables.usuario = usuarios.username 
         AND responsables.equipo = '${id}'`;
-        responsables = await Sql.request(query);
+        const responsables = await Sql.request(query);
 
         details['responsables'] = responsables;
 
-        details['prestamos'] = new Array(5);
+        query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas,
+        (SELECT nombre FROM usuarios WHERE username = prestamos.prestatario) as nombrePrestatario,
+        (SELECT nombre FROM usuarios WHERE username = prestamos.entrega) as nombreEntrega,
+        (SELECT nombre FROM usuarios WHERE username = prestamos.recibe) as nombreRecibe
+        FROM prestamos WHERE equipo = '${id}' ORDER BY fechaEntrega DESC`;
+
+        const prestamos = await Sql.request(query);
+        details['prestamos'] = prestamos;
 
         res.json({
             ok: true,
