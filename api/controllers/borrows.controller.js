@@ -1,22 +1,54 @@
 const Sql = require('../db/sql');
 const Identificator = require('../middlewares/identificator');
 
+exports.returnDevice = async (req, res) => {
+    try {
+        const {
+            id,
+            estado,
+            notas,
+            fecha 
+        } = req.body;
+
+        const prestador = Identificator.getUser(req);
+
+        let query = `UPDATE prestamos SET
+        estado = '${estado}',
+        notas = '${notas}',
+        fechaRetorno = '${fecha}',
+        recibe = '${prestador}'
+        WHERE id = ${id}`;
+
+        await Sql.request(query);
+
+        res.json({
+            ok: true
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.borrowDevice = async (req, res) => {
     try {
         const { id, prestatario, fecha } = req.body;
         const prestador = Identificator.getUser(req);
 
         const body = {
-            equipo : id,
+            equipo: id,
             prestatario,
-            fechaEntrega : fecha,
-            entrega : prestador,
-            estado : 'Entregado'
+            fechaEntrega: fecha,
+            entrega: prestador,
+            estado: 'Entregado'
         };
-        
+
         let query = 'INSERT INTO prestamos() VALUES ?';
 
-        await Sql.query(query,body);
+        await Sql.query(query, body);
 
         res.json({
             ok: true

@@ -6,5 +6,6 @@ module.exports = (app) =>{
     .get(Borrows.getDetails);
 
     app.route('/borrow')
-    .post([Token.verifyUser],Borrows.borrowDevice);
+    .post([Token.verifyUser],Borrows.borrowDevice)
+    .put([Token.verifyUser],Borrows.returnDevice);
 }
