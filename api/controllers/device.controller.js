@@ -1,6 +1,54 @@
 const Sql = require('../db/sql');
 const Identifcator = require('../middlewares/identificator')
 
+exports.createDevice = async(req, res) =>{
+    try{
+        console.log(req.body);
+        let query = `SELECT (MAX(SUBSTRING(id,4,3))+1) as id FROM equipos WHERE LEFT(id,3) = 'INT'`;
+        
+        let resp = await Sql.request(query);
+        let id = 'INT' + resp[0]['id'];
+
+        console.log('New id ' + id);
+
+        let device = req.body.device;
+        device.id = id;
+
+        query = `INSERT INTO equipos() VALUES ?`;
+        Sql.query(query, device);
+
+        let responsables = req.body.responsables.map( r => ( { ...r, equipo : id } ));
+        query = `INSERT INTO responsables() VALUES ?`;
+        Sql.query(query, responsables);
+
+        let verificadores = req.body.verificadores.map( v => ( { ...v, equipo: id } ));
+        query = `INSERT INTO verificadores() VALUES ?`;
+        Sql.query(query, verificadores);
+
+        let calibraciones = req.body.calibraciones.map( c => ( { ...c, equipo: id } ));
+        query = `INSERT INTO calibraciones() VALUES ?`;
+        Sql.query(query, calibraciones);
+
+        let proveedores = req.body.proveedores.map( p => ( { ...p, equipo: id } ));
+        if(proveedores.length > 0){
+            query = `INSERT INTO proveedores() VALUES ?`;
+            Sql.query(query, proveedores);
+        }
+
+        res.json({
+            ok: true,
+            id
+        });
+
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.acceptCalibration = async(req, res) => {
     try{
         const { equipo, calibrador, fecha } = req.body;

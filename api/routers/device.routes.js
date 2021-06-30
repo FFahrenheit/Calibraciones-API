@@ -10,4 +10,7 @@ module.exports = (app) => {
 
     app.route('/device/calibrated')
     .post([Token.verifyUser],Device.acceptCalibration);
+
+    app.route('/device/create')
+    .post(Device.createDevice);
 }

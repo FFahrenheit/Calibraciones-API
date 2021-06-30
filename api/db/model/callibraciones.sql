@@ -53,6 +53,7 @@ CREATE TABLE verificadores(
 
 CREATE TABLE proveedores(
     id INT IDENTITY(1,1) PRIMARY KEY,
+    nombre VARCHAR(60) NOT NULL,
     certificado VARCHAR(100) DEFAULT NULL,
     equipo VARCHAR(8) NOT NULL
 );
