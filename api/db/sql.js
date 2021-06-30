@@ -31,7 +31,6 @@ function getUpdates(query, data){
     query = query.replace("()", updates.toString());
     query = query.replace("?", " id = '" + data.id + "'");
 
-    // console.log(query);
     return query;
 }
 

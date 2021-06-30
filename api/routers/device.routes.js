@@ -3,7 +3,8 @@ const Token = require('../middlewares/interceptor')
 
 module.exports = (app) => {
     app.route('/device/:id')
-    .get(Device.getDevice);
+    .get(Device.getDevice)
+    .put(Device.editDevice);
 
     app.route('/device/status/:id')
     .put([Token.verifyUser],Device.updateStatus);

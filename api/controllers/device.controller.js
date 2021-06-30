@@ -1,9 +1,61 @@
 const Sql = require('../db/sql');
 const Identifcator = require('../middlewares/identificator')
 
-exports.createDevice = async(req, res) =>{
+exports.editDevice = async(req, res) =>{
+    let id = req.params.id;
+
     try{
         console.log(req.body);
+
+        let query = `DELETE FROM verificadores WHERE equipo = '${id}'`;
+        await Sql.request(query);
+
+        query = `DELETE FROM responsables WHERE equipo = '${id}'`;
+        await Sql.request(query);
+
+        const __proveedores = req.body.__proveedores;
+        if(__proveedores.length > 0){
+            query = `DELETE FROM proveedores WHERE equipo = '${id}' AND id NOT IN (${__proveedores.toString()})`;
+            await Sql.request(query);
+        }else{
+            query = `DELETE FROM proveedores WHERE equipo = '${id}'`;
+            await Sql.request(query);
+        }
+
+        const body = req.body.equipo;
+        query = `UPDATE equipos SET () WHERE ?`;
+        await Sql.update(query,body);
+
+        const responsables = req.body.responsables;
+        query = `INSERT INTO responsables() VALUES ?`;
+        await Sql.query(query,responsables)
+
+        if(req.body._proveedores.length>0){
+            const _proveedores = req.body._proveedores;
+            query = `INSERT INTO proveedores() VALUES ?`;
+            await Sql.query(query,_proveedores);
+        }
+
+        verificadores = req.body.verificadores;
+        query = `INSERT INTO verificadores() VALUES ?`;
+        await Sql.query(query,verificadores);
+
+        res.json({
+            ok: true,
+        });
+
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
+exports.createDevice = async(req, res) =>{
+    try{
+        // console.log(req.body);
         let query = `SELECT (MAX(SUBSTRING(id,4,3))+1) as id FROM equipos WHERE LEFT(id,3) = 'INT'`;
         
         let resp = await Sql.request(query);
@@ -146,7 +198,7 @@ exports.getDevice = async(req, res) => {
 
         details['calibraciones'] = calibraciones;
 
-        query = `SELECT nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
+        query = `SELECT id, nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
         const proveedores = await Sql.request(query);
         
         details['proveedores'] = proveedores;
