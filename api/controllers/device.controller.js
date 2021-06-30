@@ -15,24 +15,24 @@ exports.createDevice = async(req, res) =>{
         device.id = id;
 
         query = `INSERT INTO equipos() VALUES ?`;
-        Sql.query(query, device);
+        await Sql.query(query, device);
 
         let responsables = req.body.responsables.map( r => ( { ...r, equipo : id } ));
         query = `INSERT INTO responsables() VALUES ?`;
-        Sql.query(query, responsables);
+        await Sql.query(query, responsables);
 
         let verificadores = req.body.verificadores.map( v => ( { ...v, equipo: id } ));
         query = `INSERT INTO verificadores() VALUES ?`;
-        Sql.query(query, verificadores);
+        await Sql.query(query, verificadores);
 
         let calibraciones = req.body.calibraciones.map( c => ( { ...c, equipo: id } ));
         query = `INSERT INTO calibraciones() VALUES ?`;
-        Sql.query(query, calibraciones);
+        await Sql.query(query, calibraciones);
 
         let proveedores = req.body.proveedores.map( p => ( { ...p, equipo: id } ));
         if(proveedores.length > 0){
             query = `INSERT INTO proveedores() VALUES ?`;
-            Sql.query(query, proveedores);
+            await Sql.query(query, proveedores);
         }
 
         res.json({
@@ -145,6 +145,11 @@ exports.getDevice = async(req, res) => {
         const calibraciones = await Sql.request(query);
 
         details['calibraciones'] = calibraciones;
+
+        query = `SELECT nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
+        const proveedores = await Sql.request(query);
+        
+        details['proveedores'] = proveedores;
 
         res.json({
             ok: true,

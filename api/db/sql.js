@@ -12,6 +12,29 @@ const config = {
     }
 }
 
+function update(query,data){
+    let req = getUpdates(query,data);
+    return request(req);
+}
+
+function getUpdates(query, data){
+    let updates = [];
+    Object.keys(data).forEach(k => {
+        if(data[k]!=null && typeof data[k] != 'object'){
+            let val = data[k].toString().replace(/'/g,"''");
+            val = "'" + val + "'";
+            let update = k + ' = ' + val;
+            updates.push(update);
+        }
+    });
+
+    query = query.replace("()", updates.toString());
+    query = query.replace("?", " id = '" + data.id + "'");
+
+    // console.log(query);
+    return query;
+}
+
 const insertRecordset = async(query)=>{
     query = query + ';SELECT SCOPE_IDENTITY() as ID';
     const response = await request(query);
@@ -95,5 +118,6 @@ module.exports = {
     parseField,
     hasQuery,
     applyFilters,
-    insertRecordset
+    insertRecordset,
+    update
 };
