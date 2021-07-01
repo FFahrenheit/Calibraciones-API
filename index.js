@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+var cron = require('node-cron');
+
 var express = require('express'),
     app = express(),
     port = process.env.PORT || 33001;
@@ -16,8 +18,10 @@ var borrowsRoutes = require('./api/routers/borrows.routes');
 var devicesRoutes = require('./api/routers/devices.routes');
 var ____testRoutes____ = require('./api/routers/tests.routes');
 
+var scheduledTasks = require('./api/controllers/tasker.controller');
+
 app.use((req, res, next) => {
-    console.log([new Date(),req.originalUrl]);
+    console.log([ req.method, new Date(), req.originalUrl]);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -35,5 +39,6 @@ ____testRoutes____(app);
 
 app.listen(port,()=>{
     console.clear();
-    console.log('Server running in port ' + port)
+    console.log('\x1b[32m','Server running in port ' + port)
+    scheduledTasks(cron);
 });
