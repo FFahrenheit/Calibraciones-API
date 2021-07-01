@@ -154,6 +154,13 @@ exports.devicesExpired = (devices) =>{
                     font-size: 16px;
                     font-weight: 600;
                 }
+
+                .important{
+                    font-weight: 900;
+                    color: rgb(240, 0, 0);
+                    font-size: 20px;
+                    text-decoration: underline;
+                }
             </style>
         </head>
 
@@ -192,6 +199,10 @@ exports.devicesExpired = (devices) =>{
                     </tbody>
                 </table>
 
+                <p class="important">
+                    FAVOR DE INHABILITAR LOS EQUIPOS
+                </p>
+                
                 <p class="text">
                     Por favor, comience el proceso de calibración de estos equipos en el 
                     <span class="marked">Laboratorio de Metrología</span>, ya que se encuentran en estado 

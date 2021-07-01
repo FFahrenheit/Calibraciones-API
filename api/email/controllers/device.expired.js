@@ -150,6 +150,13 @@ exports.deviceExpired = (team, device) =>{
                     color: rgb(122, 122, 122);
                     font-style: italic;
                 }
+
+                .important{
+                    font-weight: 900;
+                    color: rgb(240, 0, 0);
+                    font-size: 20px;
+                    text-decoration: underline;
+                }
             </style>
         </head>
 
@@ -176,6 +183,9 @@ exports.deviceExpired = (team, device) =>{
                     ha <span class="marked">expirado</span> el día de hoy, <span class="marked">${ siguiente }</span> 
                 </p>
 
+                <p class="important">
+                    FAVOR DE INHABILITAR EL EQUIPO
+                </p>
                 <p class="text">
                     Por favor, comience el proceso de calibración en el <span class="marked">Laboratorio de Metrología</span>
                     ya que el equipo se encuentra en estado 
