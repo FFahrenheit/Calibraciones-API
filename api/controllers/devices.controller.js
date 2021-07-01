@@ -212,23 +212,25 @@ exports.getNextDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 50 
+            query = `SELECT
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
             WHERE activo = 'Activo'
             AND estado != 'En Proceso de Calibración'
             AND estado != 'Calibración Pendiente'
+            AND DATEDIFF(day,GETDATE(), siguiente) <= 30
             AND ${filters} 
             ORDER BY siguiente ASC`;
 
         } else {
-            query = `SELECT TOP 50 
+            query = `SELECT 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
             WHERE activo = 'Activo'
             AND estado != 'En Proceso de Calibración'
+            AND DATEDIFF(day,GETDATE(), siguiente) <= 30
             AND estado != 'Calibración Pendiente'
             ORDER BY siguiente ASC`;
 
