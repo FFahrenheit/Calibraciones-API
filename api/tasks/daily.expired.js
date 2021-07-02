@@ -10,7 +10,7 @@ exports.dailyExpired = async() =>{
             let query = `SELECT id, descripcion, ubicacion, siguiente
             FROM equipos 
             WHERE siguiente = CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Aceptada'`;
+            AND estado = 'Calibración Vigente'`;
             
             let devices = await Sql.request(query);
 
@@ -24,16 +24,16 @@ exports.dailyExpired = async() =>{
             AND (responsables.equipo IN (
                 SELECT id FROM equipos 
                 WHERE siguiente = CAST(GETDATE() AS DATE)
-                AND estado = 'Calibración Aceptada'
+                AND estado = 'Calibración Vigente'
             ) OR usuarios.posicion = 'responsable')`;
 
             let result = await Sql.request(query);
 
             query = `UPDATE equipos
-            SET estado = 'Calibración Pendiente',
+            SET estado = 'Calibración Vencida',
             activo = 'Inactivo'
             WHERE siguiente < CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Aceptada' AND activo = 'Activo'`;
+            AND estado = 'Calibración Vigente' AND activo = 'Activo'`;
 
             // await Sql.request(query);
 

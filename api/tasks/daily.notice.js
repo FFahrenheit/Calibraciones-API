@@ -10,7 +10,7 @@ exports.dailyNotice = async() =>{
             let query = `SELECT id, descripcion, siguiente, ubicacion 
             FROM equipos
             WHERE aviso = CAST(GETDATE() AS DATE)
-            AND estado = 'Calibración Aceptada'`;  
+            AND estado = 'Calibración Vigente'`;  
             
             let devices = await Sql.request(query);
 
@@ -24,7 +24,7 @@ exports.dailyNotice = async() =>{
             AND (responsables.equipo IN (
                 SELECT id FROM equipos 
                 WHERE aviso = CAST(GETDATE() AS DATE)
-                AND estado = 'Calibración Aceptada'
+                AND estado = 'Calibración Vigente'
             ) OR usuarios.posicion = 'responsable')`;
 
             let result = await Sql.request(query);

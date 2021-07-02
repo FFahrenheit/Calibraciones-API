@@ -133,7 +133,7 @@ exports.getPendingDevices = async (req, res) => {
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
-            WHERE estado = 'Calibración Pendiente'
+            WHERE estado = 'Calibración Vencida'
             AND ${filters} 
             ORDER BY siguiente DES`;
 
@@ -142,7 +142,7 @@ exports.getPendingDevices = async (req, res) => {
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
-            WHERE estado = 'Calibración Pendiente'
+            WHERE estado = 'Calibración Vencida'
             ORDER BY siguiente DESC`;
 
         }
@@ -218,7 +218,7 @@ exports.getNextDevices = async (req, res) => {
             FROM equipos 
             WHERE activo = 'Activo'
             AND estado != 'En Proceso de Calibración'
-            AND estado != 'Calibración Pendiente'
+            AND estado != 'Calibración Vencida'
             AND DATEDIFF(day,GETDATE(), siguiente) <= 30
             AND ${filters} 
             ORDER BY siguiente ASC`;
@@ -231,7 +231,7 @@ exports.getNextDevices = async (req, res) => {
             WHERE activo = 'Activo'
             AND estado != 'En Proceso de Calibración'
             AND DATEDIFF(day,GETDATE(), siguiente) <= 30
-            AND estado != 'Calibración Pendiente'
+            AND estado != 'Calibración Vencida'
             ORDER BY siguiente ASC`;
 
         }

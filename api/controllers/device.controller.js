@@ -111,9 +111,10 @@ exports.acceptCalibration = async(req, res) => {
         
         let id = await Sql.insertRecordset(query);
 
-        query = `UPDATE equipos SET estado = 'Calibración Aceptada', 
-        activo =  'Activo' WHERE id = '${ equipo }'`;
-
+        query = `UPDATE equipos SET estado = 'Calibración Vigente' 
+        WHERE id = '${ equipo }'`;
+        //activo =  'Activo'
+        
         await Sql.request(query);
 
         res.json({
