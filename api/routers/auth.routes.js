@@ -7,4 +7,7 @@ module.exports = (app) => {
 
     app.route('/auth/refresh')
     .post([Token.verifyUser],Auth.refresh);
+
+    app.route('/auth/recover')
+    .post(Auth.recoverPassword);
 }
