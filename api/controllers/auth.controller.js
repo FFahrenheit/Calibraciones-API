@@ -1,6 +1,8 @@
 const Sql = require('../db/sql');
 const jwt = require('jsonwebtoken');
 const Identifcator = require('../middlewares/identificator')
+const Templates = require('../helpers/email.templates');
+const { sendEmail } = require('../helpers/send.email');
 
 require('dotenv').config();
 
@@ -8,14 +10,16 @@ exports.recoverPassword = async (req, res) => {
     let username = req.body.username;
     try {
         username = Sql.parseField(username);
-        let query = `SELECT nombre, email FROM usuarios WHERE username = '${username}'`;
+        let query = `SELECT nombre, email FROM usuarios 
+        WHERE username = '${username}'
+        OR email = '${username}'`;
 
         const user = await Sql.request(query);
 
         if(user.length == 0){
             return res.json({
                 ok: false,
-                error: 'Usuario no existe'
+                error: 'El usuario especificado no existe'
             });
         }
 
@@ -23,9 +27,13 @@ exports.recoverPassword = async (req, res) => {
         query = `UPDATE usuarios  SET temporal = '${ password }' WHERE username = '${ username }'`;
         await Sql.request(query);
 
+        let ok = await sendEmail(
+            user[0]['email'],
+            Templates.restorePassword(user[0]['nombre'],password)
+        );
+
         res.json({
-            ok: false,
-            error: 'ERROR: Not really... Ok...'
+            ok,
         });
 
     } catch (e) {
