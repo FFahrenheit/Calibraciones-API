@@ -25,18 +25,22 @@ exports.changePassword = async(req, res) =>{
 exports.updateManagers = async(req, res) =>{
     try{
         let users = req.body.users;
-        
-        users = users.map(u => "'" + u + "'");
-        users = users.toString();
 
-        console.log(users);
-        let query = `UPDATE usuarios SET posicion = 'usuario' WHERE posicion = 'encargado'`;
- 
-        await Sql.request(query);
+        let promises = [ ];
 
-        query = `UPDATE usuarios SET posicion = 'encargado' WHERE username IN (${ users })`;
+        await Sql.request(
+            `UPDATE usuarios 
+            SET posicion = 'usuario' 
+            WHERE posicion != 'usuario'`);
 
-        await Sql.request(query);
+        users.forEach(u=>{
+            promises.push(Sql.request(`
+            UPDATE usuarios 
+            SET posicion = '${ u.posicion }'
+            WHERE username = '${ u.username }'`));
+        });
+
+        await Promise.all(promises);
         
         return res.json({
             ok: true
@@ -53,7 +57,7 @@ exports.updateManagers = async(req, res) =>{
 
 exports.getManagers = async(req, res) =>{
     try{
-        let query = `SELECT username, nombre as name, email 
+        let query = `SELECT username, nombre as name, email, posicion 
         FROM usuarios
         WHERE posicion != 'usuario'`;
         let usuarios = await Sql.request(query);

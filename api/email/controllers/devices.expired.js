@@ -35,9 +35,9 @@ exports.devicesExpired = (devices) =>{
         <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
         <html xmlns="http://www.w3.org/1999/xhtml">
-
+        
         <head>
-
+        
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <title>Plantilla de correo</title>
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -49,13 +49,13 @@ exports.devicesExpired = (devices) =>{
                     border-left: 10px;
                     margin-top: 10px;
                 }
-
+        
                 .logo-image {
                     height: 50px !important;
                     width: auto;
                     vertical-align: middle;
                 }
-
+        
                 .logo-title {
                     color: rgb(0, 0, 92);
                     font-size: 20px;
@@ -63,26 +63,26 @@ exports.devicesExpired = (devices) =>{
                     margin-top: 15px;
                     margin-bottom: 15px;
                 }
-
+        
                 .logo {
                     margin-left: 10px;
                 }
-
+        
                 .content {
                     margin-left: 8px;
                 }
-
+        
                 .welcome {
                     font-weight: 300;
                     font-size: 18px;
                     color: black;
                 }
-
+        
                 .text {
                     font-size: 16px;
                     font-weight: 300;
                 }
-
+        
                 .ref {
                     background-color: rgb(38, 42, 105);
                     border: none;
@@ -94,23 +94,23 @@ exports.devicesExpired = (devices) =>{
                     font-size: 16px;
                     border-radius: 5px;
                 }
-
+        
                 .ref:hover {
                     cursor: pointer;
                 }
-
+        
                 .invisible-a {
                     text-decoration: none;
                 }
-
+        
                 .marked {
                     font-family: Arial Bold, Arial, sans-serif; font-weight: bold;
                 }
-
+        
                 .button {
                     border-radius: 2px;
                 }
-
+        
                 .button a {
                     padding: 8px 12px;
                     border: 1px solid rgb(38, 42, 105);
@@ -129,7 +129,7 @@ exports.devicesExpired = (devices) =>{
                     font-weight: bold;
                     text-decoration: underline;
                 }
-
+        
                 .tabla td, th{
                     word-break: break-all;
                     border: 1px solid gray;
@@ -137,24 +137,24 @@ exports.devicesExpired = (devices) =>{
                     padding-left: 10px;
                     padding-right: 10px;
                 }
-
+        
                 .tabla{
                     border-spacing: 0px;
                     border-collapse: separate;
                 }
-
+        
                 .test{
                     font-size: 14px;
                     color: rgb(122, 122, 122);
                     font-style: italic;
                 }
-
+        
                 .logo-link {
                     color: rgb(0, 0, 92);
                     font-size: 16px;
                     font-weight: 600;
                 }
-
+        
                 .important{
                     font-weight: 900;
                     color: rgb(240, 0, 0);
@@ -163,7 +163,7 @@ exports.devicesExpired = (devices) =>{
                 }
             </style>
         </head>
-
+        
         <body>
             <div>
                 <table>
@@ -198,11 +198,10 @@ exports.devicesExpired = (devices) =>{
                         ${ tbody }
                     </tbody>
                 </table>
-
+        
                 <p class="important">
                     FAVOR DE INHABILITAR LOS EQUIPOS
                 </p>
-                
                 <p class="text">
                     Por favor, comience el proceso de calibración de estos equipos en el 
                     <span class="marked">Laboratorio de Metrología</span>, ya que se encuentran en estado 
@@ -214,9 +213,9 @@ exports.devicesExpired = (devices) =>{
                 </p>
                 <p class="text">
                     Puede ver los detalles del equipo haciendo click en su ID o ver la 
-                    lista de calibraciones próximas haciendo click en el siguiente botón
+                    lista de calibraciones vencidas haciendo click en el siguiente botón
                 </p>
-
+        
                 <table width="100%" cellspacing="0" cellpadding="0">
                     <tr>
                         <td>
@@ -224,7 +223,7 @@ exports.devicesExpired = (devices) =>{
                                 <tr>
                                     <td class="button" bgcolor="#262a69">
                                         <a class="link" href="${ url }" target="_blank">
-                                            Ver calibraciones pendientes
+                                            Ver calibraciones vencidas
                                         </a>
                                     </td>
                                 </tr>
@@ -235,7 +234,7 @@ exports.devicesExpired = (devices) =>{
                 <p class="test">&nbsp;</p>
             </div>
         </body>
-
+        
         </html>
         `
     };
