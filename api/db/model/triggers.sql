@@ -1,3 +1,12 @@
+CREATE OR ALTER TRIGGER actualizarPasswordTemporal
+ON usuarios FOR UPDATE AS 
+BEGIN
+	IF UPDATE(password) 
+	BEGIN 
+		UPDATE usuarios SET temporal = NULL WHERE username = usuarios.username;
+	END
+END
+
 CREATE OR ALTER TRIGGER prestarEquipo on prestamos
 FOR INSERT 
 AS DECLARE 	@Prestatario VARCHAR(30),

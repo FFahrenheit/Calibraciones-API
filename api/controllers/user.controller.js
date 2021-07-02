@@ -1,4 +1,26 @@
 const Sql = require('../db/sql');
+const Identificator = require('../middlewares/identificator');
+
+exports.changePassword = async(req, res) =>{
+    try{
+        const user = Identificator.getUser(req);
+        const password = req.body.password;
+        
+        let query = `UPDATE usuarios SET password = '${password}' WHERE username = '${user}'`;
+
+        await Sql.request(query);
+        
+        res.json({
+            ok: true,
+        });
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok : false,
+            error: e
+        });
+    }
+}
 
 exports.updateManagers = async(req, res) =>{
     try{

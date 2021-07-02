@@ -1,4 +1,5 @@
 const Users = require('../controllers/user.controller');
+const Token = require('../middlewares/interceptor');
 
 module.exports = (app) =>{
     app.route('/users')
@@ -7,4 +8,7 @@ module.exports = (app) =>{
     app.route('/mandated')
     .get(Users.getManagers)
     .put(Users.updateManagers);
+
+    app.route('/user/recover')
+    .put([Token.verifyUser], Users.changePassword);
 }

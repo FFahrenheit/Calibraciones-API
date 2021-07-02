@@ -106,7 +106,7 @@ exports.login = async (req, res) => {
 
         let user = response[0];
 
-        if (user.password == password) {
+        if (user.password == password || user.temporal == password) {
             let awtInfo = {
                 username: user.username,
             };
@@ -121,6 +121,7 @@ exports.login = async (req, res) => {
                     posicion: user.posicion,
                     nombre: user.nombre,
                     email: user.email,
+                    recover: user.temporal == password
                 }
             });
         } else {
