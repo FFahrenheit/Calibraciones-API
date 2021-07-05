@@ -20,7 +20,10 @@ exports.monthlyReport = async () => {
         
             let query = `SELECT id, descripcion, ubicacion, siguiente FROM
             equipos WHERE MONTH(siguiente) = '${month}'
-            AND YEAR(siguiente) = '${year}'`;
+            AND YEAR(siguiente) = '${year}'
+            AND activo = 'Activo'
+            AND estado = 'Calibración Vigente'
+            ORDER BY siguiente ASC`;
         
             let devices = await Sql.request(query);
 
@@ -34,7 +37,7 @@ exports.monthlyReport = async () => {
             let receivers = result.map(u => u['nombre']);
             let template = Templates.monthlyReport(
                 devices,
-                months[parseInt(month)-1],
+                months[parseInt(month)-1] + ' ' + year,
                 receivers
             );
 

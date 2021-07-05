@@ -1,12 +1,16 @@
 var Utils = require('../../helpers/utils');
 require('dotenv').config();
 
+const base_url = process.env.EMAIL_LINK;
+
 exports.monthlyReport = (devices, month, team = 'a todos') => {
     if(team.length > 1){
         team = team.slice(0, -1).join(', ')+' y '+ team.slice(-1);
     }else{
         team = team[0];
     }
+
+    const url = base_url + '/equipos/proximos';
 
     let tbody = '';
     devices.forEach(device=>{
@@ -177,7 +181,7 @@ exports.monthlyReport = (devices, month, team = 'a todos') => {
                 </table>
             </div>
             <div class="content">
-                <h4 class="welcome">Buen día a todos,</h4>
+                <h4 class="welcome">Buen día ${ team },</h4>
                 <p class="text">
                     Les comparto la lista de equipos con calibración planificada para el mes de 
                     <span class="marked">${ month }</span> 

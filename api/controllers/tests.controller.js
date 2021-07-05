@@ -1,8 +1,18 @@
 const { sendEmail } = require('../helpers/send.email');
 const { dailyNotice } = require('../tasks/daily.notice');
 const { dailyExpired } = require('../tasks/daily.expired');
+const { monthlyReport } = require('../tasks/monthly.report');
 const Sql = require('../db/sql');
 const Upload = require('../middlewares/upload');
+
+exports.testMonthly = async(req, res) =>{
+    console.log('THIS IS A TEST REQUEST');
+    let ok = await monthlyReport();
+    
+    return res.json({
+        ok
+    });
+}
 
 exports.testUpload = async (req, res) => {
     console.log('THIS IS A TEST REQUEST');
