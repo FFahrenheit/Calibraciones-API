@@ -40,5 +40,5 @@ ____testRoutes____(app);
 app.listen(port,()=>{
     console.clear();
     console.log('\x1b[32m','Server running in port ' + port)
-    // scheduledTasks(cron);
+    scheduledTasks(cron);
 });

@@ -35,7 +35,7 @@ exports.returnDevice = async (req, res) => {
 
 exports.borrowDevice = async (req, res) => {
     try {
-        const { id, prestatario, fecha } = req.body;
+        const { id, prestatario, fecha, compromiso } = req.body;
         const prestador = Identificator.getUser(req);
 
         const body = {
@@ -43,7 +43,8 @@ exports.borrowDevice = async (req, res) => {
             prestatario,
             fechaEntrega: fecha,
             entrega: prestador,
-            estado: 'Entregado'
+            estado: 'Entregado',
+            fechaCompromiso: compromiso
         };
 
         let query = 'INSERT INTO prestamos() VALUES ?';
@@ -89,7 +90,7 @@ exports.getDetails = async (req, res) => {
 
         details['responsables'] = responsables;
 
-        query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas,
+        query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas, fechaCompromiso,
         (SELECT nombre FROM usuarios WHERE username = prestamos.prestatario) as nombrePrestatario,
         (SELECT nombre FROM usuarios WHERE username = prestamos.entrega) as nombreEntrega,
         (SELECT nombre FROM usuarios WHERE username = prestamos.recibe) as nombreRecibe

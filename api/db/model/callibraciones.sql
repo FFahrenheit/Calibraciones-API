@@ -63,6 +63,7 @@ CREATE TABLE prestamos(
     estado VARCHAR(20) DEFAULT 'Entregado',
     fechaEntrega DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     fechaRetorno DATETIME DEFAULT NULL,
+    fechaCompromiso DATE DEFAULT NULL,
     notas VARCHAR(120) DEFAULT '',
     equipo VARCHAR(8) NOT NULL,
     prestatario VARCHAR(30) NOT NULL,
