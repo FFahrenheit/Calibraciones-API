@@ -1,6 +1,28 @@
 const Sql = require('../db/sql');
 
-exports.getBorrowedDevices = async(req, res) =>{
+exports.getParameter = async (req, res) => {
+    try {
+        let parameter = req.params.arg;
+        let query = `SELECT DISTINCT ${parameter} FROM equipos ORDER BY ${parameter}`;
+
+        let values = await Sql.request(query);
+        values = values.map(v => v['ubicacion']);
+
+        res.json({
+            ok: true,
+            [parameter]: values
+        });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
+exports.getBorrowedDevices = async (req, res) => {
     try {
         let query;
         if (Sql.hasQuery(req)) {

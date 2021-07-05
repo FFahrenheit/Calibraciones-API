@@ -21,4 +21,7 @@ module.exports = (app) => {
 
     app.route('/devices/borrowed')
     .get(Devices.getBorrowedDevices);
+
+    app.route('/devices/parameter/:arg')
+    .get(Devices.getParameter);
 }
