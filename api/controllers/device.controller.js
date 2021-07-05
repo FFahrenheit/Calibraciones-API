@@ -1,6 +1,28 @@
 const Sql = require('../db/sql');
 const Identifcator = require('../middlewares/identificator')
 
+exports.updateActive = async(req, res) =>{
+    const id = req.params.id;
+
+    try{
+        const status = req.body.activo;
+
+        let query = `UPDATE equipos SET activo = '${status}' WHERE id = '${id}'`;
+
+        await Sql.request(query);
+
+        res.json({
+            ok: true
+        });
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.editDevice = async(req, res) =>{
     let id = req.params.id;
 
