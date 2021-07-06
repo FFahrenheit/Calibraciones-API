@@ -13,6 +13,9 @@ module.exports = (app) => {
     app.route('/tests/tasks/monthly')
     .get(Tests.testMonthly);
 
+    app.route('/tests/tasks/manager')
+    .get(Tests.testManager);
+
     app.route('/tests/query')
     .get(Tests.testQueries);
 
