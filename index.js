@@ -16,12 +16,13 @@ var deviceRoutes = require('./api/routers/device.routes');
 var uploadRoutes = require('./api/routers/upload.routes');
 var borrowsRoutes = require('./api/routers/borrows.routes');
 var devicesRoutes = require('./api/routers/devices.routes');
+var providerRoutes = require('./api/routers/providers.routes');
 var ____testRoutes____ = require('./api/routers/tests.routes');
 
 var scheduledTasks = require('./api/controllers/tasker.controller');
 
 app.use((req, res, next) => {
-    console.log([ req.method, new Date(), req.originalUrl]);
+    console.log([ req.method, new Date() , req.originalUrl]);
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
@@ -35,6 +36,7 @@ deviceRoutes(app);
 uploadRoutes(app);
 borrowsRoutes(app);
 devicesRoutes(app);
+providerRoutes(app);
 ____testRoutes____(app);
 
 app.listen(port,()=>{
