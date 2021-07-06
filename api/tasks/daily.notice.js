@@ -25,7 +25,7 @@ exports.dailyNotice = async() =>{
                 SELECT id FROM equipos 
                 WHERE aviso = CAST(GETDATE() AS DATE)
                 AND estado = 'Calibración Vigente'
-            ) OR usuarios.posicion = 'responsable')`;
+            ) OR usuarios.posicion = 'encargado')`;
 
             let result = await Sql.request(query);
 

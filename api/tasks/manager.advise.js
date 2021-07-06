@@ -3,14 +3,29 @@ var Sql = require('../db/sql');
 const { sendEmail } = require('../helpers/send.email');
 const Templates = require('../helpers/email.templates');
 
-exports.dailyExpired = async() =>{
+const note = `
+<span style="font-weight: 600;
+color: rgb(240, 0, 0);
+font-size: 18px;
+background-color: yellow;
+text-decoration: underline;
+text-align: center;
+margin-bottom: 100px;">
+    Esta es una copia del correo enviado hace dos días a los
+    encargados
+</span>
+`;
+
+exports.managerAdvise = async() =>{
 
     return new Promise(async(resolve)=>{
         try{
             let query = `SELECT id, descripcion, ubicacion, siguiente
             FROM equipos 
-            WHERE siguiente = CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Vigente'`;
+            WHERE siguiente = 
+            DATEADD(d,-2,CAST(GETDATE() AS DATE)) 
+            AND estado = 'Calibración Vencida'
+            AND activo = 'Activo'`;
             
             let devices = await Sql.request(query);
 
@@ -23,25 +38,23 @@ exports.dailyExpired = async() =>{
             WHERE usuarios.username = responsables.usuario
             AND (responsables.equipo IN (
                 SELECT id FROM equipos 
-                WHERE siguiente = CAST(GETDATE() AS DATE)
-                AND estado = 'Calibración Vigente'
+                WHERE siguiente = DATEADD(d,-2,CAST(GETDATE() AS DATE)) 
+                AND estado = 'Calibración Vencida'
+                AND activo = 'Activo'
             ) OR usuarios.posicion = 'encargado')`;
 
             let result = await Sql.request(query);
 
-            query = `UPDATE equipos
-            SET estado = 'Calibración Vencida'
-            WHERE siguiente <= CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Vigente' AND activo = 'Activo'`;
-            //,activo = 'Inhabilitado'
-
-            await Sql.request(query);
-
             console.log(result);
             
             var template;
+            
+            query = `SELECT DISTINCT nombre, email
+            FROM usuarios WHERE posicion = 'gerente'`;
 
-            let emailList = result.map(u => u['email']);
+            let correos = await Sql.request(query);
+
+            let emailList = correos.map(u => u['email']);
             emailList = Array.from(new Set(emailList));
 
             if(devices.length == 1){
@@ -50,6 +63,9 @@ exports.dailyExpired = async() =>{
             }else{
                 template = Templates.devicesExpired(devices);
             }
+
+            template.html = template.html.replace('<body>','<body>' + note);
+            template.subject = '[AVISO 2 DÍAS] ' + template.subject;
 
             let status = await sendEmail(emailList,template);
             resolve(status);
