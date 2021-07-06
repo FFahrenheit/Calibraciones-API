@@ -3,6 +3,22 @@ const fs = require('fs')
 const util = require('util');
 const path = require('path');
 
+let storageISOCertificate = multer.diskStorage({
+    destination: (req, file, callback) =>{
+        const folder = `Certificados/ISO17025`;
+        const path = `${__dirname}/../../upload/${folder}`;
+
+        fs.mkdirSync(path, { recursive: true });
+        callback(null,path);
+    },
+    filename: (req, file, callback) =>{
+        const ext = path.extname(file.originalname);
+
+        let filename = `${req.params.name}_ISO17025${ ext }`;
+        callback(null,filename);
+    }
+});
+
 let storageISO = multer.diskStorage({
     destination: (req, file, callback) =>{
         let date = new Date();
@@ -76,14 +92,16 @@ let storageCertificate = multer.diskStorage({
 const uploadISO = multer({ storage: storageISO}).single('iso');
 const uploadRyr = multer({ storage: storageRyr }).single('ryr');
 const uploadCertificate = multer({ storage: storageCertificate }).single('certificate');
+const uploadISOCertificate = multer({ storage: storageISOCertificate}).single('iso');
 
 const addISO = util.promisify(uploadISO);
 const addRyr = util.promisify(uploadRyr);
 const addCertificate = util.promisify(uploadCertificate);
-
+const addISOCertificate = util.promisify(uploadISOCertificate);
 
 module.exports = {
     addCertificate,
     addRyr,
-    addISO
+    addISO,
+    addISOCertificate
 };

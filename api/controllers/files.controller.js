@@ -5,7 +5,8 @@ exports.retrieveFile = async (req, res) => {
     filename = filename.replace(/\*/g,'/');
     filename = decodeURI(filename);
     console.log(filename);
-    const directoryPath = 'upload/Certificados/ISO17025/' + filename;
+    // const directoryPath = 'upload/Certificados/ISO17025/' + filename;
+    const directoryPath = 'upload/Certificados/' + filename;
     const finalPath = path.resolve(directoryPath);
 
     console.log('Path: ' + finalPath);

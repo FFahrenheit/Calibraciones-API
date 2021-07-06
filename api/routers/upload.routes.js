@@ -9,4 +9,7 @@ module.exports = (app) => {
 
     app.route('/upload/iso/:device/:name')
     .post(Upload.uploadISO);
+
+    app.route('/upload/iso/:name')
+    .post(Upload.uploadISOCertificate);
 }
