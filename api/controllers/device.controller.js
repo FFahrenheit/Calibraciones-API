@@ -35,14 +35,14 @@ exports.editDevice = async(req, res) =>{
         query = `DELETE FROM responsables WHERE equipo = '${id}'`;
         await Sql.request(query);
 
-        const __proveedores = req.body.__proveedores;
-        if(__proveedores.length > 0){
-            query = `DELETE FROM proveedores WHERE equipo = '${id}' AND id NOT IN (${__proveedores.toString()})`;
-            await Sql.request(query);
-        }else{
-            query = `DELETE FROM proveedores WHERE equipo = '${id}'`;
-            await Sql.request(query);
-        }
+        // const __proveedores = req.body.__proveedores;
+        // if(__proveedores.length > 0){
+        //     query = `DELETE FROM proveedores WHERE equipo = '${id}' AND id NOT IN (${__proveedores.toString()})`;
+        //     await Sql.request(query);
+        // }else{
+        //     query = `DELETE FROM proveedores WHERE equipo = '${id}'`;
+        //     await Sql.request(query);
+        // }
 
         const body = req.body.equipo;
         query = `UPDATE equipos SET () WHERE ?`;
@@ -52,11 +52,11 @@ exports.editDevice = async(req, res) =>{
         query = `INSERT INTO responsables() VALUES ?`;
         await Sql.query(query,responsables)
 
-        if(req.body._proveedores.length>0){
-            const _proveedores = req.body._proveedores;
-            query = `INSERT INTO proveedores() VALUES ?`;
-            await Sql.query(query,_proveedores);
-        }
+        // if(req.body._proveedores.length>0){
+        //     const _proveedores = req.body._proveedores;
+        //     query = `INSERT INTO proveedores() VALUES ?`;
+        //     await Sql.query(query,_proveedores);
+        // }
 
         verificadores = req.body.verificadores;
         query = `INSERT INTO verificadores() VALUES ?`;
@@ -103,11 +103,11 @@ exports.createDevice = async(req, res) =>{
         query = `INSERT INTO calibraciones() VALUES ?`;
         await Sql.query(query, calibraciones);
 
-        let proveedores = req.body.proveedores.map( p => ( { ...p, equipo: id } ));
-        if(proveedores.length > 0){
-            query = `INSERT INTO proveedores() VALUES ?`;
-            await Sql.query(query, proveedores);
-        }
+        // let proveedores = req.body.proveedores.map( p => ( { ...p, equipo: id } ));
+        // if(proveedores.length > 0){
+        //     query = `INSERT INTO proveedores() VALUES ?`;
+        //     await Sql.query(query, proveedores);
+        // }
 
         res.json({
             ok: true,
@@ -221,10 +221,10 @@ exports.getDevice = async(req, res) => {
 
         details['calibraciones'] = calibraciones;
 
-        query = `SELECT id, nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
-        const proveedores = await Sql.request(query);
+        // query = `SELECT id, nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
+        // const proveedores = await Sql.request(query);
         
-        details['proveedores'] = proveedores;
+        // details['proveedores'] = proveedores;
 
         res.json({
             ok: true,

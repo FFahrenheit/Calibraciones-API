@@ -53,10 +53,16 @@ CREATE TABLE verificadores(
 
 CREATE TABLE proveedores(
     id INT IDENTITY(1,1) PRIMARY KEY,
-    nombre VARCHAR(60) NOT NULL,
-    certificado VARCHAR(100) DEFAULT NULL,
-    equipo VARCHAR(8) NOT NULL
+    nombre VARCHAR(60) NOT NULL UNIQUE,
+    certificado VARCHAR(100) DEFAULT NULL
 );
+
+-- CREATE TABLE proveedores(
+--     id INT IDENTITY(1,1) PRIMARY KEY,
+--     nombre VARCHAR(60) NOT NULL,
+--     certificado VARCHAR(100) DEFAULT NULL,
+--     equipo VARCHAR(8) NOT NULL
+-- );
 
 CREATE TABLE prestamos(
     id INT IDENTITY(1,1) PRIMARY KEY,
@@ -91,9 +97,9 @@ ALTER TABLE equipos
 ADD CONSTRAINT FK_equipo_prestatario
 FOREIGN KEY (prestatario) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION
 
-ALTER TABLE proveedores
-ADD CONSTRAINT FK_proveedores_equipo
-FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
+-- ALTER TABLE proveedores
+-- ADD CONSTRAINT FK_proveedores_equipo
+-- FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE responsables
 ADD CONSTRAINT PK_responsables
