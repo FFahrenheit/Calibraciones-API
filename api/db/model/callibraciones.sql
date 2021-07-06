@@ -54,7 +54,8 @@ CREATE TABLE verificadores(
 CREATE TABLE proveedores(
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre VARCHAR(60) NOT NULL UNIQUE,
-    certificado VARCHAR(100) DEFAULT NULL
+    certificado VARCHAR(100) DEFAULT NULL,
+    agregado DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 -- CREATE TABLE proveedores(

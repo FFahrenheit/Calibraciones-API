@@ -37,7 +37,7 @@ exports.updateProviders = async (req, res) =>{
 
 exports.getProviders = async (req, res) => {
     try {
-        let query = `SELECT id, nombre, certificado FROM proveedores`;
+        let query = `SELECT id, nombre, certificado, agregado FROM proveedores`;
 
         let proveedores = await Sql.request(query);
 
