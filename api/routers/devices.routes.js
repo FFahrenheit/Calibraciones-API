@@ -22,6 +22,9 @@ module.exports = (app) => {
     app.route('/devices/borrowed')
     .get(Devices.getBorrowedDevices);
 
+    app.route('/devices/inactive')
+    .get(Devices.getToUpdateDevices);
+
     app.route('/devices/parameter/:arg')
     .get(Devices.getParameter);
 }

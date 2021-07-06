@@ -1,3 +1,18 @@
+CREATE OR ALTER TRIGGER dbo.actualizaReferencia
+ON dbo.equipos FOR UPDATE AS 
+BEGIN
+	IF UPDATE(activo) 
+	BEGIN 
+		UPDATE equipos 
+		SET siguiente = DATEADD(year, equipos.periodo, equipos.ultima)  
+		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo != 'Referencia';
+
+		UPDATE equipos 
+		SET siguiente = '2099-12-31'  
+		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo = 'Referencia';
+	END
+END
+
 CREATE OR ALTER TRIGGER actualizarPasswordTemporal
 ON usuarios FOR UPDATE AS 
 BEGIN

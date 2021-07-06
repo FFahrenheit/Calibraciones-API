@@ -22,6 +22,48 @@ exports.getParameter = async (req, res) => {
     }
 }
 
+exports.getToUpdateDevices = async (req, res) => {
+
+    try {
+        let query;
+        if (Sql.hasQuery(req)) {
+            console.log(req.query);
+            let filters = Sql.applyFilters(req.query);
+            console.log(filters);
+            query = `SELECT
+            id, serie, descripcion, estado, activo, ubicacion, 
+            ultima, siguiente  
+            FROM equipos 
+            WHERE ${filters} 
+            ORDER BY ID ASC`;
+
+        } else {
+            query = `SELECT 
+            id, serie, descripcion, estado, activo, ubicacion, 
+            ultima, siguiente  
+            FROM equipos 
+            WHERE activo = 'Inhabilitado'
+            OR estado = 'Calibracion Vencida'
+            OR estado = 'En Proceso de Calibración'
+            ORDER BY ID ASC`;
+
+        }
+
+        let equipos = await Sql.request(query);
+
+        res.json({
+            ok: true,
+            equipos
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.getBorrowedDevices = async (req, res) => {
     try {
         let query;
@@ -281,7 +323,7 @@ exports.getDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 50 
+            query = `SELECT TOP 100 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
@@ -289,11 +331,12 @@ exports.getDevices = async (req, res) => {
             ORDER BY activo, siguiente ASC`;
 
         } else {
-            query = `SELECT TOP 50 
+            query = `SELECT TOP 100 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
             WHERE activo = 'Activo'
+            AND estado = 'Calibración Vigente'
             ORDER BY activo, siguiente ASC`;
 
         }
