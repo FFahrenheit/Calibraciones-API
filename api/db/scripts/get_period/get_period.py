@@ -1,7 +1,7 @@
 import io
 
 def get_periods():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -9,7 +9,7 @@ def get_periods():
 
         headers = lines[0].split(',')
 
-        id_index = headers.index('ID')
+        id_index = headers.index('\ufeffID')
         periodo_index = headers.index('% de Gages Calibrados')
 
         periodos = []
