@@ -2,7 +2,7 @@ import io
 import datetime
 
 def upload_responsables():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -11,9 +11,9 @@ def upload_responsables():
         headers = lines[0].split(',')
 
         index = headers.index('Fecha de Verificacion')
-        id_index = headers.index('ID')
+        id_index = headers.index('\ufeffID')
         cliente_index = headers.index('Prove-Calibracion')
-        ext_index = headers.index('"Método de Verificacion calibracion"')
+        ext_index = headers.index('Método de Verificacion calibracion')
 
         calendario = []
 
@@ -34,6 +34,7 @@ def upload_responsables():
                         cliente = 'Interplex' 
                 id_ = row[id_index].replace(' ','')
                 format_str = '%d/%m/%Y' 
+                print(id_ + ' => ' + cliente + ' => ' + fecha)
                 datetime_obj = datetime.datetime.strptime(fecha, format_str)
                 fecha = str(datetime_obj.date())
                 print(id_ + ' => ' + fecha + ' => ' + cliente)
