@@ -1,7 +1,7 @@
 import io
 
 def upload():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -9,6 +9,7 @@ def upload():
 
         headers = lines[0].split(',')
         indexes = []
+        print(headers)
 
         id_index = headers.index('\ufeffID') 
         indexes.append(id_index)
