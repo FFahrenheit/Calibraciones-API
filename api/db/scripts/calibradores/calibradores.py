@@ -1,7 +1,7 @@
 import io
 
 def errors():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -10,7 +10,9 @@ def errors():
         headers = lines[0].split(',')
         indexes = []
 
-        id_index = headers.index('ID') 
+        print(headers)
+
+        id_index = headers.index('\ufeffID') 
         indexes.append(id_index)
 
         desc_index = headers.index('Descripción')
