@@ -1,7 +1,7 @@
 import io
 
 def upload_responsables():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -10,7 +10,7 @@ def upload_responsables():
         headers = lines[0].split(',')
 
         index = headers.index('Responsable') 
-        id_index = headers.index('ID')
+        id_index = headers.index('\ufeffID')
 
         usuarios = []
 
@@ -42,7 +42,11 @@ def upload_responsables():
 
         for u in usuarios:
             # print(u)
-            sql = f"( '{u[0]}' , (SELECT COALESCE((SELECT TOP 1 username FROM usuarios WHERE nombre LIKE '%{u[1]}%' OR username LIKE '%{u[1]}%'),'i.lopez' COLLATE Latin1_General_CI_AI)))"
+            sql = f"""( '{u[0]}' , (SELECT COALESCE
+            ((SELECT TOP 1 username FROM usuarios WHERE 
+            nombre LIKE '%{u[1]}%' COLLATE Latin1_General_CI_AI 
+            OR username LIKE '%{u[1]}%' COLLATE Latin1_General_CI_AI ),
+            'i.lopez' COLLATE Latin1_General_CI_AI)))"""
             query.append(sql)
 
         # print(query)

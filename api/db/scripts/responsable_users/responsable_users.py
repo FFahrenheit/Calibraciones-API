@@ -1,7 +1,7 @@
 import io
 
 def load_responsables():
-    filename = "source.csv"
+    filename = "source-1.csv"
 
     with open(filename,'r',encoding='utf-8') as  file:
         text = file.read()
@@ -10,7 +10,7 @@ def load_responsables():
         headers = lines[0].split(',')
 
         index = headers.index('Responsable') 
-        id_index = headers.index('ID')
+        id_index = headers.index('\ufeffID')
 
         usuarios = []
 
