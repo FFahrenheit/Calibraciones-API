@@ -16,7 +16,7 @@ exports.updateProviders = async (req, res) =>{
         }
         
         if(providers.length > 0){
-            providers = providers.map(p => ({nombre: p.nombre}));
+            providers = providers.map(p => ({nombre: p.nombre, agregado: p.agregado}));
 
             query = 'INSERT INTO proveedores() VALUES ?';
 

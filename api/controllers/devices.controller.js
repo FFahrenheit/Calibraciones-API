@@ -199,7 +199,7 @@ exports.getPendingDevices = async (req, res) => {
             FROM equipos 
             WHERE estado = 'Calibración Vencida'
             AND ${filters} 
-            ORDER BY siguiente DES`;
+            ORDER BY siguiente DESC`;
 
         } else {
             query = `SELECT TOP 50 
@@ -240,7 +240,7 @@ exports.getProcessDevices = async (req, res) => {
             FROM equipos 
             WHERE estado = 'En Proceso de Calibración'
             AND ${filters} 
-            ORDER BY siguiente DES`;
+            ORDER BY siguiente DESC`;
 
         } else {
             query = `SELECT TOP 50 
