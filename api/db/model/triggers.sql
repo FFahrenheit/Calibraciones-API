@@ -18,7 +18,8 @@ ON usuarios FOR UPDATE AS
 BEGIN
 	IF UPDATE(password) 
 	BEGIN 
-		UPDATE usuarios SET temporal = NULL WHERE username = usuarios.username;
+		UPDATE usuarios SET temporal = NULL 
+		FROM inserted WHERE usuarios.username = inserted.username;
 	END
 END
 
