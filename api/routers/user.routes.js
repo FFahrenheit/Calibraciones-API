@@ -3,7 +3,8 @@ const Token = require('../middlewares/interceptor');
 
 module.exports = (app) =>{
     app.route('/users')
-    .get(Users.getUsers);
+    .get(Users.getUsers)
+    .post(Users.addUser);
 
     app.route('/mandated')
     .get(Users.getManagers)

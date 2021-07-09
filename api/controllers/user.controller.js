@@ -1,6 +1,28 @@
 const Sql = require('../db/sql');
 const Identificator = require('../middlewares/identificator');
 
+exports.addUser = async(req, res) =>{
+    try{
+        let body = req.body.user;
+        console.log(body);
+
+        let query = `INSERT INTO usuarios() VALUES ?`;
+
+        await Sql.query(query,body);
+
+        return res.json({
+            ok: true
+        });
+        
+    }catch(e){
+        console.log(e);
+        return res.status(500).send({
+            ok : false,
+            error: e
+        });
+    }
+}
+
 exports.changePassword = async(req, res) =>{
     try{
         const user = Identificator.getUser(req);
