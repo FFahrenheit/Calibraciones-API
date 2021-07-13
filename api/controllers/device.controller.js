@@ -78,10 +78,16 @@ exports.editDevice = async(req, res) =>{
 exports.createDevice = async(req, res) =>{
     try{
         // console.log(req.body);
-        let query = `SELECT (MAX(SUBSTRING(id,4,3))+1) as id FROM equipos WHERE LEFT(id,3) = 'INT'`;
+        const type = req.body.type;
+        let query = `SELECT COALESCE(
+            (MAX(SUBSTRING(id,4,3))+1),
+            1) as id FROM equipos 
+            WHERE LEFT(id,3) = '${type}'`;
         
         let resp = await Sql.request(query);
-        let id = 'INT' + resp[0]['id'];
+        let n = resp[0]['id'].toString();
+        n = n.padStart(3,'0');
+        let id = type + n;
 
         console.log('New id ' + id);
 
