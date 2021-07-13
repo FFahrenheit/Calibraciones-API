@@ -4,7 +4,7 @@ BEGIN
 	IF UPDATE(activo) 
 	BEGIN 
 		UPDATE equipos 
-		SET siguiente = DATEADD(year, equipos.periodo, equipos.ultima)  
+		SET siguiente = DATEADD(month, equipos.periodo, equipos.ultima)  
 		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo != 'Referencia';
 
 		UPDATE equipos 
@@ -51,7 +51,7 @@ FETCH NEXT FROM i INTO @equipo, @fecha
 WHILE @@FETCH_STATUS = 0
 BEGIN
 	UPDATE equipos SET ultima = @fecha WHERE equipos.id = @equipo;
-	UPDATE equipos SET siguiente = DATEADD(year,periodo,ultima) WHERE equipos.id = @equipo;
+	UPDATE equipos SET siguiente = DATEADD(month,periodo,ultima) WHERE equipos.id = @equipo;
 	UPDATE equipos SET aviso = DATEADD(day,-20,siguiente) WHERE equipos.id = @equipo;
     FETCH NEXT FROM i INTO @equipo, @fecha;
 END;

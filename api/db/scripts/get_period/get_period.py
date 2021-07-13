@@ -23,7 +23,7 @@ def get_periods():
                     print(f"Error on {id_}") 
                 
                 periodo = float(periodo)
-                periodo = round( periodo /365)
+                periodo = round( periodo /365 * 12)
                 if periodo != 1:
                     periodos.append([id_,periodo])
                 print(id_ + ' => ' + str(periodo) )
