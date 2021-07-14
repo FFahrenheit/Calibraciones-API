@@ -20,12 +20,12 @@ exports.dailyNotice = async() =>{
 
             query = `SELECT DISTINCT nombre, email
             FROM usuarios, responsables
-            WHERE usuarios.username = responsables.usuario
-            AND (responsables.equipo IN (
+            WHERE (usuarios.username = responsables.usuario
+            AND responsables.equipo IN (
                 SELECT id FROM equipos 
                 WHERE aviso = CAST(GETDATE() AS DATE)
                 AND estado = 'Calibración Vigente'
-            ) OR usuarios.posicion = 'encargado')`;
+            )) OR usuarios.posicion = 'encargado'`;
 
             let result = await Sql.request(query);
 
