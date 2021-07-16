@@ -34,6 +34,14 @@ function getUpdates(query, data){
     return query;
 }
 
+const insertRecordSetQuery = async(query, body)=>{
+    let req = getQuery(query, body);
+    console.log(req);
+    req = req +  ';SELECT SCOPE_IDENTITY() as ID';
+    const response = await request(req);
+    return response[0].ID;
+}
+
 const insertRecordset = async(query)=>{
     query = query + ';SELECT SCOPE_IDENTITY() as ID';
     const response = await request(query);
@@ -118,5 +126,6 @@ module.exports = {
     hasQuery,
     applyFilters,
     insertRecordset,
+    insertRecordSetQuery,
     update
 };

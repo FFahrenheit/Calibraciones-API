@@ -107,7 +107,10 @@ exports.createDevice = async(req, res) =>{
 
         let calibraciones = req.body.calibraciones.map( c => ( { ...c, equipo: id } ));
         query = `INSERT INTO calibraciones() VALUES ?`;
-        await Sql.query(query, calibraciones);
+        // await Sql.query(query, calibraciones);
+        let calibrationId = await Sql.insertRecordSetQuery(query,calibraciones)
+
+        console.log('Calibration ID => ' + calibrationId);
 
         // let proveedores = req.body.proveedores.map( p => ( { ...p, equipo: id } ));
         // if(proveedores.length > 0){
@@ -117,7 +120,8 @@ exports.createDevice = async(req, res) =>{
 
         res.json({
             ok: true,
-            id
+            id,
+            calibrationId
         });
 
     }catch(e){
