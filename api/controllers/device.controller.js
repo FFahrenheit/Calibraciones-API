@@ -79,8 +79,15 @@ exports.createDevice = async(req, res) =>{
     try{
         // console.log(req.body);
         const type = req.body.type;
+        /***
+         * Code for generate the next consecutive number!
+         */
         let query = `SELECT COALESCE(
-            (MAX(SUBSTRING(id,4,3))+1),
+            MAX(
+                CAST(
+                    SUBSTRING(id, 4 , LEN(id) - LEN('${type}')) 
+                    AS NUMERIC)
+                +1),
             1) as id FROM equipos 
             WHERE LEFT(id,3) = '${type}'`;
         
