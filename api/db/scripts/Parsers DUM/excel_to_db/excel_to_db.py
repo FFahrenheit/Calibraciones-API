@@ -4,11 +4,18 @@ filename = 'source.csv'
 id = '\ufeffID'
 
 def main():
+    ids = []
+    repeated = []
     entries = []
     with open(filename, 'r',encoding='utf-8', newline='') as source:
         reader = csv.DictReader(source)
         for device in reader:
             if device[id] != '' and device['Descripción'] != '':
+                if device[id] in ids:
+                    repeated.append(device[id])
+                    device[id] = 'R'+device[id]
+                ids.append(device[id])
+
                 print(device[id] + ' => ' + device['Descripción'])
                 # entries.append(device[id] + ' => ' + device['Descripción'] + '\n')
                 
@@ -55,6 +62,7 @@ def main():
             sql.write(sentence)
 
     print('Total inserts : ' + str(len(data)))
+    print(repeated)
 
 if __name__ == '__main__':
     main()
