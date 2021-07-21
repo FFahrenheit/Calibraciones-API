@@ -85,15 +85,19 @@ exports.createDevice = async(req, res) =>{
         let query = `SELECT COALESCE(
             MAX(
                 CAST(
-                    SUBSTRING(id, 4 , LEN(id) - LEN('${type}')) 
+                    SUBSTRING(id, LEN('${type}')+1 , LEN(id) - LEN('${type}')) 
                     AS NUMERIC)
                 +1),
             1) as id FROM equipos 
-            WHERE LEFT(id,3) = '${type}'`;
+            WHERE LEFT(id, LEN('${type}') ) = '${type}'`;
         
         let resp = await Sql.request(query);
         let n = resp[0]['id'].toString();
-        n = n.padStart(3,'0');
+        lens = {
+            'INT' : 3,
+            'DUM-' : 4
+        };
+        n = n.padStart(lens[type],'0');
         let id = type + n;
 
         console.log('New id ' + id);
