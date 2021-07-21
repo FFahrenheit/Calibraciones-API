@@ -3,6 +3,9 @@ exports.deviceFilters = (obj) => {
     Object.keys(obj).forEach(key => {
         let filter;
         switch (key) {
+            case 'tipo':
+                filter = `ID LIKE '${ obj[key] }%'`;
+                break;
             case 'prestado':
                 filter = `prestatario ${ obj[key] }`;
                 break;
