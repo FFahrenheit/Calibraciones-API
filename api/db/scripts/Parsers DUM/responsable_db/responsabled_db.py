@@ -36,7 +36,7 @@ def main():
             sql.write(sentences)
 
     
-    print('Total added = ' + str(len(total)))
+    print('Total added = ' + str(len(data)))
 
 
 if __name__ == '__main__':

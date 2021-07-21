@@ -2823,11 +2823,6 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-355' , (SELECT COALESCE
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
                 'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-266' , (SELECT COALESCE
-                ((SELECT TOP 1 username FROM usuarios WHERE 
-                nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
-                OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
 ( 'DUM-259' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
@@ -3002,14 +2997,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-355' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-423' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-423' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-414' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-414' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -3503,14 +3498,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-423' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-901' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-901' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-902' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-902' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -4004,14 +3999,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-901' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-1164' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-1164' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-1163' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-1163' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -4505,14 +4500,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-1164' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-340' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-340' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-342' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-342' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -5006,14 +5001,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-340' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-540' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-540' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-539' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-539' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -5507,14 +5502,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-540' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-975' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-975' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-969' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-969' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
@@ -6008,14 +6003,14 @@ INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-975' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI)));
-
-INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-1204' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI))),
+( 'DUM-1204' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
-                'linea' COLLATE Latin1_General_CI_AI))),
-( 'DUM-1205' , (SELECT COALESCE
+                'linea' COLLATE Latin1_General_CI_AI)));
+
+INSERT INTO responsables(equipo, usuario) VALUES ( 'DUM-1205' , (SELECT COALESCE
                 ((SELECT TOP 1 username FROM usuarios WHERE 
                 nombre LIKE '%moldeo%' COLLATE Latin1_General_CI_AI 
                 OR username LIKE '%moldeo%' COLLATE Latin1_General_CI_AI ),
