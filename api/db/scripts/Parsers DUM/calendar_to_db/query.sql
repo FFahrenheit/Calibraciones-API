@@ -567,7 +567,6 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-02-10','griselda.flo','DUM-260'),
 ('Interplex','2021-02-10','griselda.flo','DUM-261'),
 ('Interplex','2021-02-10','griselda.flo','DUM-262'),
-('Interplex','2021-02-10','griselda.flo','DUM-266'),
 ('Interplex','2021-02-10','griselda.flo','DUM-259'),
 ('Interplex','2021-02-10','griselda.flo','DUM-267'),
 ('Interplex','2021-02-10','griselda.flo','DUM-258'),
@@ -602,10 +601,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-02-25','griselda.flo','DUM-425'),
 ('Interplex','2021-02-25','griselda.flo','DUM-424'),
 ('Interplex','2021-02-23','griselda.flo','DUM-706'),
-('Interplex','2021-04-28','griselda.flo','DUM-707');
+('Interplex','2021-04-28','griselda.flo','DUM-707'),
+('Interplex','2021-02-22','griselda.flo','DUM-423');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-02-22','griselda.flo','DUM-423'),
-('Interplex','2021-04-28','griselda.flo','DUM-414'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-04-28','griselda.flo','DUM-414'),
 ('Interplex','2021-02-23','griselda.flo','DUM-409'),
 ('Interplex','2021-04-28','griselda.flo','DUM-412'),
 ('Interplex','2021-02-10','griselda.flo','DUM-411'),
@@ -703,10 +702,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-02-09','griselda.flo','DUM-1056'),
 ('Interplex','2021-02-09','griselda.flo','DUM-1055'),
 ('Interplex','2021-02-09','griselda.flo','DUM-1053'),
-('Interplex','2021-02-09','griselda.flo','DUM-1054');
+('Interplex','2021-02-09','griselda.flo','DUM-1054'),
+('Interplex','2021-05-26','griselda.flo','DUM-901');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-05-26','griselda.flo','DUM-901'),
-('Interplex','2021-05-26','griselda.flo','DUM-902'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-05-26','griselda.flo','DUM-902'),
 ('Interplex','2021-05-26','griselda.flo','DUM-903'),
 ('Interplex','2021-05-26','griselda.flo','DUM-905'),
 ('Interplex','2021-05-26','griselda.flo','DUM-904'),
@@ -804,10 +803,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-05-22','griselda.flo','DUM-1012'),
 ('Interplex','2021-05-22','griselda.flo','DUM-1008'),
 ('Interplex','2021-03-23','griselda.flo','DUM-1166'),
-('Interplex','2021-03-23','griselda.flo','DUM-1165');
+('Interplex','2021-03-23','griselda.flo','DUM-1165'),
+('Interplex','2021-03-23','griselda.flo','DUM-1164');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-03-23','griselda.flo','DUM-1164'),
-('Interplex','2021-03-23','griselda.flo','DUM-1163'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-03-23','griselda.flo','DUM-1163'),
 ('Interplex','2021-03-23','griselda.flo','DUM-1162'),
 ('Interplex','2021-03-23','griselda.flo','DUM-1161'),
 ('Interplex','2021-03-23','griselda.flo','DUM-1160'),
@@ -905,10 +904,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-03-09','griselda.flo','DUM-1185'),
 ('Interplex','2021-03-23','griselda.flo','DUM-334'),
 ('Interplex','2021-03-23','griselda.flo','DUM-335'),
-('Interplex','2021-03-23','griselda.flo','DUM-337');
+('Interplex','2021-03-23','griselda.flo','DUM-337'),
+('Interplex','2021-03-23','griselda.flo','DUM-340');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-03-23','griselda.flo','DUM-340'),
-('Interplex','2021-03-23','griselda.flo','DUM-342'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-03-23','griselda.flo','DUM-342'),
 ('Interplex','2021-03-23','griselda.flo','DUM-344'),
 ('Interplex','2021-03-09','griselda.flo','DUM-1177'),
 ('Interplex','2021-05-07','griselda.flo','DUM-771'),
@@ -1006,10 +1005,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-06-03','griselda.flo','DUM-552'),
 ('Interplex','2021-06-03','griselda.flo','DUM-551'),
 ('Interplex','2021-06-03','griselda.flo','DUM-550'),
-('Interplex','2021-06-03','griselda.flo','DUM-541');
+('Interplex','2021-06-03','griselda.flo','DUM-541'),
+('Interplex','2021-06-03','griselda.flo','DUM-540');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-06-03','griselda.flo','DUM-540'),
-('Interplex','2021-06-03','griselda.flo','DUM-539'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-06-03','griselda.flo','DUM-539'),
 ('Interplex','2021-06-03','griselda.flo','DUM-538'),
 ('Interplex','2021-06-03','griselda.flo','DUM-537'),
 ('Interplex','2021-06-03','griselda.flo','DUM-536'),
@@ -1107,10 +1106,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2019-09-04','griselda.flo','DUM-971'),
 ('Interplex','2019-09-04','griselda.flo','DUM-972'),
 ('Interplex','2019-09-04','griselda.flo','DUM-976'),
-('Interplex','2019-09-04','griselda.flo','DUM-970');
+('Interplex','2019-09-04','griselda.flo','DUM-970'),
+('Interplex','2019-09-04','griselda.flo','DUM-975');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2019-09-04','griselda.flo','DUM-975'),
-('Interplex','2019-09-04','griselda.flo','DUM-969'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2019-09-04','griselda.flo','DUM-969'),
 ('Interplex','2019-09-04','griselda.flo','DUM-974'),
 ('Interplex','2019-09-04','griselda.flo','DUM-977'),
 ('Interplex','2019-09-04','griselda.flo','DUM-973'),
@@ -1208,10 +1207,10 @@ INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interple
 ('Interplex','2021-06-22','griselda.flo','DUM-1200'),
 ('Interplex','2021-06-22','griselda.flo','DUM-1201'),
 ('Interplex','2021-06-22','griselda.flo','DUM-1202'),
-('Interplex','2021-06-22','griselda.flo','DUM-1203');
+('Interplex','2021-06-22','griselda.flo','DUM-1203'),
+('Interplex','2021-06-22','griselda.flo','DUM-1204');
 
-INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-06-22','griselda.flo','DUM-1204'),
-('Interplex','2021-06-22','griselda.flo','DUM-1205'),
+INSERT INTO calibraciones(calibrador,fecha,verificador,equipo) VALUES ('Interplex','2021-06-22','griselda.flo','DUM-1205'),
 ('Interplex','2021-06-22','griselda.flo','DUM-1206'),
 ('Interplex','2021-06-22','griselda.flo','DUM-1207'),
 ('Interplex','2021-06-23','griselda.flo','DUM-1208'),

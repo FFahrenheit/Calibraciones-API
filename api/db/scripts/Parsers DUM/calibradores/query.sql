@@ -579,7 +579,6 @@ INSERT INTO verificadores(
 ('DUM-260','INT107'),
 ('DUM-261','INT107'),
 ('DUM-262','INT107'),
-('DUM-266','INT107'),
 ('DUM-259','INT107'),
 ('DUM-267','INT107'),
 ('DUM-258','INT107'),
@@ -614,12 +613,12 @@ INSERT INTO verificadores(
 ('DUM-425','INT391'),
 ('DUM-424','INT391'),
 ('DUM-706','Camara de Visión'),
-('DUM-707','Camara de Visión');
+('DUM-707','Camara de Visión'),
+('DUM-423','INT404');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-423','INT404'),
-('DUM-414','INT405'),
+) VALUES ('DUM-414','INT405'),
 ('DUM-409','INT405'),
 ('DUM-412','INT405'),
 ('DUM-411','INT405'),
@@ -717,12 +716,12 @@ INSERT INTO verificadores(
 ('DUM-903','Camara de Visión'),
 ('DUM-905','Camara de Visión'),
 ('DUM-904','Camara de Visión'),
-('DUM-027','Hypot - HIPOT CONTINENTAL');
+('DUM-027','Hypot - HIPOT CONTINENTAL'),
+('DUM-028','Hypot - HIPOT CONTINENTAL');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-028','Hypot - HIPOT CONTINENTAL'),
-('DUM-034','Hypot - HIPOT CONTINENTAL'),
+) VALUES ('DUM-034','Hypot - HIPOT CONTINENTAL'),
 ('DUM-1014','LVDT'),
 ('DUM-616','Hypot'),
 ('DUM-618','LVDT'),
@@ -820,12 +819,12 @@ INSERT INTO verificadores(
 ('DUM-1157','Camara de Visión'),
 ('DUM-1156','Camara de Visión'),
 ('DUM-1155','Camara de Visión'),
-('DUM-1154','Camara de Visión');
+('DUM-1154','Camara de Visión'),
+('DUM-1153','Camara de Visión');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-1153','Camara de Visión'),
-('DUM-1152','Camara de Visión'),
+) VALUES ('DUM-1152','Camara de Visión'),
 ('DUM-1151','Camara de Visión'),
 ('DUM-1150','Camara de Visión'),
 ('DUM-1149','Camara de Visión'),
@@ -923,12 +922,12 @@ INSERT INTO verificadores(
 ('DUM-768','INT514'),
 ('DUM-766','INT515'),
 ('DUM-767','INT515'),
-('DUM-764','INT515');
+('DUM-764','INT515'),
+('DUM-765','INT515');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-765','INT515'),
-('DUM-762','INT515'),
+) VALUES ('DUM-762','INT515'),
 ('DUM-763','INT515'),
 ('DUM-760','INT515'),
 ('DUM-761','INT515'),
@@ -1026,12 +1025,12 @@ INSERT INTO verificadores(
 ('DUM-560','Rotary'),
 ('DUM-559','Rotary'),
 ('DUM-030','Hypot'),
-('DUM-029','Hypot');
+('DUM-029','Hypot'),
+('DUM-033','Hypot');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-033','Hypot'),
-('DUM-855','Camara de Visión'),
+) VALUES ('DUM-855','Camara de Visión'),
 ('DUM-854','Camara de Visión'),
 ('DUM-853','Camara de Visión'),
 ('DUM-841','Hypot'),
@@ -1129,12 +1128,12 @@ INSERT INTO verificadores(
 ('DUM-611','Camara de Visión'),
 ('DUM-610','Camara de Visión'),
 ('DUM-609','Camara de Visión'),
-('DUM-608','Camara de Visión');
+('DUM-608','Camara de Visión'),
+('DUM-607','Camara de Visión');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-607','Camara de Visión'),
-('DUM-416','INT388'),
+) VALUES ('DUM-416','INT388'),
 ('DUM-419','INT388'),
 ('DUM-479','Rotary'),
 ('DUM-1000','Camara de Visión'),
@@ -1232,12 +1231,12 @@ INSERT INTO verificadores(
 ('DUM-1213','Camara de Visión'),
 ('DUM-1214','Camara de Visión'),
 ('DUM-1215','Camara de Visión'),
-('DUM-1216','Camara de Visión');
+('DUM-1216','Camara de Visión'),
+('DUM-1217','Camara de Visión');
 
 INSERT INTO verificadores(
     equipo, nombre
-) VALUES ('DUM-1217','Camara de Visión'),
-('DUM-1218','Camara de Visión'),
+) VALUES ('DUM-1218','Camara de Visión'),
 ('DUM-1219','Camara de Visión'),
 ('DUM-1221','Rotary'),
 ('DUM-1222','Rotary'),

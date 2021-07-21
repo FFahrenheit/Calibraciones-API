@@ -585,7 +585,6 @@ INSERT INTO equipos(
 ('DUM-260','6428 CORTO EKR-EKS','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
 ('DUM-261','6428 CORTO EKR-EKQ','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
 ('DUM-262','6428 CORTO EKR-EKM','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
-('DUM-266','6428 CORTO EKQ-EKM','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
 ('DUM-259','6428 CORTO EKP-EKR','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
 ('DUM-267','6428 CORTO EKM-EKN','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
 ('DUM-258','6428 CORTO EKL-EKP','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NO GO','6'),
@@ -620,13 +619,13 @@ INSERT INTO equipos(
 ('DUM-425','7614 TP Pin 2 (.90)','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
 ('DUM-424','7614 TP Pin 1 (.80)','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
 ('DUM-706','7614 S/Pin Plastico Superior','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
-('DUM-707','7614 S/Pin Plastico Inferior','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6');
+('DUM-707','7614 S/Pin Plastico Inferior','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
+('DUM-423','7614 Pza Ok hypot','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-423','7614 Pza Ok hypot','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
-('DUM-414','7614 Pin3 corto 2.10','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-414','7614 Pin3 corto 2.10','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
 ('DUM-409','7614 Pin3 alto 2.55','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
 ('DUM-412','7614 Pin2 corto 2.10','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
 ('DUM-411','7614 Pin2 alto 2.53','Calibración Aceptada','Activo','INTERNO','COT-7614-000','NA','NA','NA - NA','6'),
@@ -724,13 +723,13 @@ INSERT INTO equipos(
 ('DUM-1056','5670 Apertura Bracket NOK 9.781','Calibración Aceptada','Activo','INTERNO','COT-5670-000','NA','NA','NA - NA','6'),
 ('DUM-1055','5670  Apertura Bracket OK 9.94','Calibración Aceptada','Activo','INTERNO','COT-5670-000','NA','NA','NA - NA','6'),
 ('DUM-1053','5670  Apertura Bracket OK 9.87','Calibración Aceptada','Activo','INTERNO','COT-5670-000','NA','NA','NA - NA','6'),
-('DUM-1054','5670  Apertura Bracket OK 9.87','Calibración Aceptada','Activo','INTERNO','COT-5670-000','NA','NA','NA - NA','6');
+('DUM-1054','5670  Apertura Bracket OK 9.87','Calibración Aceptada','Activo','INTERNO','COT-5670-000','NA','NA','NA - NA','6'),
+('DUM-901','Altura OK candado 1.41','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-901','Altura OK candado 1.41','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
-('DUM-902','Altura OK candado 1.40','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-902','Altura OK candado 1.40','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
 ('DUM-903','Altura OK candado 1.35','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
 ('DUM-905','Altura No OK 1.468','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
 ('DUM-904','Altura No OK','Calibración Aceptada','Activo','INTERNO','COT-5552-000','NA','NA','NA - NA','6'),
@@ -828,13 +827,13 @@ INSERT INTO equipos(
 ('DUM-1012','9917 Corto en pines','Calibración Aceptada','Activo','INTERNO','BOS-9917-000','NA','NA','NA - NA','6'),
 ('DUM-1008',' 9917 Corto en terminal Pin 4-5','Calibración Aceptada','Activo','INTERNO','BOS-9917-000','NA','NA','NA - NA','6'),
 ('DUM-1166','9307 Pza Ok TP','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
-('DUM-1165','9307 Pin8D TP .591','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6');
+('DUM-1165','9307 Pin8D TP .591','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
+('DUM-1164','9307 Pin8C TP .58','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-1164','9307 Pin8C TP .58','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
-('DUM-1163','9307 Pin8B TP .581','Baja','Baja','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-1163','9307 Pin8B TP .581','Baja','Baja','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
 ('DUM-1162','9307 Pin8A TP .664','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
 ('DUM-1161','9307 Pin7D TP .640','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
 ('DUM-1160','9307 Pin7C TP .567','Calibración Aceptada','Activo','INTERNO','BOS-9307-000','NA','NA','NA - NA','6'),
@@ -932,13 +931,13 @@ INSERT INTO equipos(
 ('DUM-1185','7567 Pza OK','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NO GO','6'),
 ('DUM-334','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
 ('DUM-335','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
-('DUM-337','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6');
+('DUM-337','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
+('DUM-340','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-340','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
-('DUM-342','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-342','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
 ('DUM-344','7567 Prueba de Fuga ','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
 ('DUM-1177','7567 Platinado Incompleto','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NO GO','6'),
 ('DUM-771','7567 Pin4 Alt. 6.89','Calibración Aceptada','Activo','INTERNO','BOS-7567-000','NA','NA','NA - NA','6'),
@@ -1036,13 +1035,13 @@ INSERT INTO equipos(
 ('DUM-552','6194- Corto 3-4','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-551','6194 Corto 2-3','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-550','6194 Corto 1-2','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
-('DUM-541','6194 Continuidad 6','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6');
+('DUM-541','6194 Continuidad 6','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
+('DUM-540','6194 Continuidad 5','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-540','6194 Continuidad 5','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
-('DUM-539','6194 Continuidad 4','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-539','6194 Continuidad 4','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-538','6194 Continuidad 3','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-537','6194 Continuidad 2','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-536','6194 Continuidad 1','Calibración Aceptada','Activo','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
@@ -1140,13 +1139,13 @@ INSERT INTO equipos(
 ('DUM-971','6257 Pin 3 corto 9.57','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
 ('DUM-972','6257 Pin 3 corto 9.48','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
 ('DUM-976','6257 Pin 3 corto ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
-('DUM-970','6257 Pin 2 corto 9.80 ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6');
+('DUM-970','6257 Pin 2 corto 9.80 ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
+('DUM-975','6257 Pin 2 corto ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-975','6257 Pin 2 corto ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
-('DUM-969','6257 Pin 1 corto 9.37 ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-969','6257 Pin 1 corto 9.37 ','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
 ('DUM-974','6257 Pin 1 corto 5.26','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
 ('DUM-977','6257 Pieza OK','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
 ('DUM-973',' 6257 Pin 1 corto 5.19','Baja','Baja','INTERNO','HDL-6257-000','NA','NA','NA - NA','6'),
@@ -1238,19 +1237,19 @@ INSERT INTO equipos(
 ('DUM-650','6194 TP Conector 1','Baja','Baja','INTERNO','BOS-6194-000','NA','NA','NA - NA','6'),
 ('DUM-307','5671-Pieza 31 Apertura','Baja','Baja','','','','',' - ','6'),
 ('DUM-238','6734 Pza OK','Baja','Baja','','','','',' - ','6'),
-('RDUM-266','6428-Corto Ter 4-5','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NA','6'),
+('DUM-266','6428-Corto Ter 4-5','Calibración Aceptada','Activo','INTERNO','DEN-6428-000','NA','NA','NA - NA','6'),
 ('DUM-1198','10027 Pin 1 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1199','10027 Pin 4 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1200','10027 Pin 5 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1201','10027 Pin 6 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1202','10027 Pin 9 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
-('DUM-1203','10027 Pin 10 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6');
+('DUM-1203','10027 Pin 10 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
+('DUM-1204','10027 Pin 11 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6');
 
 INSERT INTO equipos(
     id, descripcion, estado, activo, calibracion,
     ubicacion, resInf, resSup, error, periodo
-) VALUES ('DUM-1204','10027 Pin 11 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
-('DUM-1205','10027 Pin 12 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
+) VALUES ('DUM-1205','10027 Pin 12 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1206','10027 Pin 13 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1207','10027 Pin 14 Corto','Calibración Aceptada','Activo','INTERNO','BRO-10027-000','NA','NA','NA - NA','6'),
 ('DUM-1208','6151 Pieza OK','Calibración Aceptada','Activo','INTERNO','HEL-6151-000','NA','NA','NA - NA','6'),
