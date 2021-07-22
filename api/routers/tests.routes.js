@@ -9,6 +9,9 @@ module.exports = (app) => {
 
     app.route('/tests/tasks/dailyBackup')
     .get(Tests.testBackup);
+
+    app.route('/tests/tasks/weeklyBackup')
+    .get(Tests.testWeekBackup);
     
     app.route('/tests/tasks/expired')
     .get(Tests.testExpired);
