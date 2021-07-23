@@ -25,6 +25,9 @@ module.exports = (app) => {
     app.route('/devices/inactive')
     .get(Devices.getToUpdateDevices);
 
+    app.route('/devices/attach')
+    .get(Devices.getAttachmentDevices)
+
     app.route('/devices/parameter/:arg')
     .get(Devices.getParameter);
 }
