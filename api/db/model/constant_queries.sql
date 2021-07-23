@@ -4,6 +4,11 @@ UPDATE equipos SET estado = 'Calibración Vigente' WHERE estado = 'Calibración 
 
 UPDATE calibraciones SET fecha = DATEADD(HOUR,5,fecha) WHERE DATEPART(HOUR,fecha) = 0;
 
+SELECT CONCAT('"',ubicacion,'",')
+FROM equipos
+GROUP BY ubicacion
+ORDER BY ubicacion ASC;
+
 INSERT INTO usuarios(username,password,nombre,email,posicion)
 VALUES
 ('moldeo','123','Moldeos','i.lopez@mx.interplex.com','usuario')

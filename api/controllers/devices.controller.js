@@ -71,7 +71,7 @@ exports.getBorrowedDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 100 
+            query = `SELECT 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente, 
             (SELECT nombre FROM usuarios WHERE username = equipos.prestatario)
@@ -82,7 +82,7 @@ exports.getBorrowedDevices = async (req, res) => {
             ORDER BY siguiente ASC`;
 
         } else {
-            query = `SELECT TOP 100 
+            query = `SELECT  
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente,
             (SELECT nombre FROM usuarios WHERE username = equipos.prestatario)
@@ -193,7 +193,7 @@ exports.getPendingDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 50 
+            query = `SELECT  
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
@@ -202,7 +202,7 @@ exports.getPendingDevices = async (req, res) => {
             ORDER BY siguiente DESC`;
 
         } else {
-            query = `SELECT TOP 50 
+            query = `SELECT  
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
@@ -234,7 +234,7 @@ exports.getProcessDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 50 
+            query = `SELECT  
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
@@ -243,13 +243,12 @@ exports.getProcessDevices = async (req, res) => {
             ORDER BY siguiente DESC`;
 
         } else {
-            query = `SELECT TOP 50 
+            query = `SELECT  
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
             WHERE estado = 'En Proceso de Calibración'
             ORDER BY siguiente DESC`;
-
         }
 
         let equipos = await Sql.request(query);
