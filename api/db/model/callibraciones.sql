@@ -3,7 +3,7 @@ CREATE DATABASE calibraciones;
 USE  calibraciones;
 
 CREATE TABLE equipos(
-    id VARCHAR(8) NOT NULL PRIMARY KEY,
+    id VARCHAR(40) NOT NULL PRIMARY KEY,
     serie VARCHAR(50) NOT NULL DEFAULT 'S/N',
     descripcion VARCHAR(100) NOT NULL,
     estado VARCHAR(30) NOT NULL DEFAULT 'desconocido',
@@ -17,7 +17,7 @@ CREATE TABLE equipos(
     ultima DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     siguiente DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
     aviso DATE NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    prestado VARCHAR()
+    prestatario VARCHAR(30) DEFAULT NULL
 );
 
 CREATE TABLE usuarios(
@@ -27,11 +27,10 @@ CREATE TABLE usuarios(
   email VARCHAR(50) NOT NULL,
   posicion VARCHAR(30) NOT NULL DEFAULT 'usuario',
   temporal VARCHAR(20) DEFAULT 'Interplex.0'
-  prestatario VARCHAR(8) DEFAULT NULL
 );
 
 CREATE TABLE responsables (
-    equipo VARCHAR(8) NOT NULL,
+    equipo VARCHAR(40) NOT NULL,
     usuario VARCHAR(30) NOT NULL
 );
 
@@ -40,7 +39,7 @@ CREATE TABLE calibraciones(
     calibrador VARCHAR(30) NOT NULL DEFAULT '',
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     verificador VARCHAR(30) NOT NULL,
-    equipo VARCHAR(8) NOT NULL,
+    equipo VARCHAR(40) NOT NULL,
     ryr VARCHAR(150) DEFAULT NULL,
     certificado VARCHAR(150) DEFAULT NULL
 );
@@ -48,7 +47,7 @@ CREATE TABLE calibraciones(
 CREATE TABLE verificadores(
     id INT IDENTITY(1,1) PRIMARY KEY,
     nombre VARCHAR(50),
-    equipo VARCHAR(8) NOT NULL
+    equipo VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE proveedores(
@@ -62,7 +61,7 @@ CREATE TABLE proveedores(
 --     id INT IDENTITY(1,1) PRIMARY KEY,
 --     nombre VARCHAR(60) NOT NULL,
 --     certificado VARCHAR(100) DEFAULT NULL,
---     equipo VARCHAR(8) NOT NULL
+--     equipo VARCHAR(40) NOT NULL
 -- );
 
 CREATE TABLE prestamos(
@@ -72,7 +71,7 @@ CREATE TABLE prestamos(
     fechaRetorno DATETIME DEFAULT NULL,
     fechaCompromiso DATE DEFAULT NULL,
     notas VARCHAR(120) DEFAULT '',
-    equipo VARCHAR(8) NOT NULL,
+    equipo VARCHAR(40) NOT NULL,
     prestatario VARCHAR(30) NOT NULL,
     entrega VARCHAR(30) NOT NULL,
     recibe VARCHAR(30)
@@ -124,4 +123,4 @@ FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
 
 ALTER TABLE verificadores 
 ADD CONSTRAINT FK_verificadores_equipo
-ADD CONSTRAINT (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE CASCADE ON UPDATE CASCADE;
