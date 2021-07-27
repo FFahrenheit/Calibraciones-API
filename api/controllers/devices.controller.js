@@ -34,6 +34,7 @@ exports.getAttachmentDevices = async (req, res) => {
                 ultima, siguiente  
                 FROM equipos 
                 WHERE ${filters} 
+                AND LEFT(id, 3) != 'DUM' 
                 ORDER BY activo, siguiente ASC`;
 
         } else {
@@ -42,6 +43,7 @@ exports.getAttachmentDevices = async (req, res) => {
                 ultima, siguiente  
                 FROM equipos 
                 WHERE activo = 'Activo'
+                AND LEFT(id, 3) != 'DUM' 
                 AND estado = 'Calibración Vigente'
                 ORDER BY ultima DESC, activo, siguiente ASC`;
 
