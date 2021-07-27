@@ -24,3 +24,5 @@ VALUES
 INSERT INTO usuarios(username,password,nombre,email,posicion)
 VALUES
 ('linea','123','Línea','i.lopez@mx.interplex.com','usuario')
+
+DELETE FROM calibraciones WHERE LEFT(equipo,'3') = 'FIX';
