@@ -6,7 +6,7 @@ exports.dailyBackup = async() =>{
         try{
             const route = `C:\\backup\\Calibraciones\\calibraciones.bak`;
             const query = `BACKUP DATABASE calibraciones 
-            TO DISK = '${ route }'`;
+            TO DISK = '${ route }' WITH INIT`;
         
             await Sql.request(query);
 

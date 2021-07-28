@@ -26,3 +26,21 @@ VALUES
 ('linea','123','Línea','i.lopez@mx.interplex.com','usuario')
 
 DELETE FROM calibraciones WHERE LEFT(equipo,'3') = 'FIX';
+
+-- Para actualización manual de fecha de calibración
+DELETE FROM calibraciones WHERE id = '';
+
+UPDATE calibraciones SET fecha = ''
+
+UPDATE equipos SET ultima = '' WHERE equipos.id = '';
+UPDATE equipos SET siguiente = DATEADD(month,periodo,ultima) WHERE equipos.id = '';
+UPDATE equipos SET aviso = DATEADD(day,-20,siguiente) WHERE equipos.id = '';
+
+--Remplazar los /
+SELECT id, descripcion FROM equipos WHERE id LIKE '%/%';
+
+SELECT REPLACE(id,'/','--') FROM equipos WHERE id LIKE '%/%';
+
+UPDATE equipos SET id = REPLACE(id,'/','--') WHERE id LIKE '%/%';
+
+SELECT id, descripcion FROM equipos WHERE id LIKE '%--%'
