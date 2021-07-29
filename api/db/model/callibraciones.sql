@@ -73,6 +73,7 @@ CREATE TABLE prestamos(
     notas VARCHAR(120) DEFAULT '',
     equipo VARCHAR(40) NOT NULL,
     prestatario VARCHAR(30) NOT NULL,
+    operador VARCHAR(40) DEFAULT NULL,
     entrega VARCHAR(30) NOT NULL,
     recibe VARCHAR(30)
 );

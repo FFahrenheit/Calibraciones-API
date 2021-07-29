@@ -44,3 +44,16 @@ SELECT REPLACE(id,'/','--') FROM equipos WHERE id LIKE '%/%';
 UPDATE equipos SET id = REPLACE(id,'/','--') WHERE id LIKE '%/%';
 
 SELECT id, descripcion FROM equipos WHERE id LIKE '%--%'
+
+--Actualizar las vencidas
+UPDATE equipos
+            SET estado = 'Calibración Vencida'
+            WHERE siguiente <= CAST(GETDATE() AS DATE) 
+            AND estado = 'Calibración Vigente' AND activo = 'Activo'
+
+INSERT INTO usuarios(username,password,nombre,email,posicion)
+VALUES
+('operador','','operador','i.lopez@mx.interplex.com','usuario');
+
+ALTER TABLE prestamos 
+ADD operador VARCHAR(40) DEFAULT NULL;
