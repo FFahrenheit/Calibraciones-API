@@ -93,10 +93,17 @@ exports.createDevice = async(req, res) =>{
         
         let resp = await Sql.request(query);
         let n = resp[0]['id'].toString();
-        lens = {
-            'INT' : 3,
-            'DUM-' : 4
-        };
+        let lens;
+        if(type.startsWith('INT')){
+            lens = 3;
+        }else if(type.startsWith('DUM')){
+            lens = 4
+        }else if(type.startsWith('FIX')){
+            lens = 3;
+        }else{
+            lens = 3;
+        }
+        
         n = n.padStart(lens[type],'0');
         let id = type + n;
 

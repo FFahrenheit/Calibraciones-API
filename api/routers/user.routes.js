@@ -12,4 +12,7 @@ module.exports = (app) =>{
 
     app.route('/user/recover')
     .put([Token.verifyUser], Users.changePassword);
+
+    app.route('/admin/delete')
+    .delete([Token.verifyUser], Users.deleteRecord);
 }

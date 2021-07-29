@@ -1,6 +1,30 @@
 const Sql = require('../db/sql');
 const Identificator = require('../middlewares/identificator');
 
+exports.deleteRecord = async(req, res) =>{
+    try{
+        let { table, id } = req.body;
+        
+        table = Sql.parseField(table);
+        id = Sql.parseField(id);
+
+        let query = `DELETE FROM "${table}" WHERE id = '${id}'`;
+
+        await Sql.request(query);
+
+        return res.json({
+            ok: true
+        });
+        
+    }catch(e){
+        console.log(e);
+        return res.status(500).send({
+            ok : false,
+            error: e
+        });
+    }
+}
+
 exports.addUser = async(req, res) =>{
     try{
         let body = req.body.user;
