@@ -13,6 +13,6 @@ module.exports = (app) =>{
     app.route('/user/recover')
     .put([Token.verifyUser], Users.changePassword);
 
-    app.route('/admin/delete')
+    app.route('/admin/:table/:id')
     .delete([Token.verifyUser], Users.deleteRecord);
 }

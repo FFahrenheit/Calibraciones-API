@@ -82,7 +82,10 @@ exports.createDevice = async(req, res) =>{
         /***
          * Code for generate the next consecutive number!
          */
-        let query = `SELECT COALESCE(
+
+        let query;
+        if(!type.startsWith('FIX')){
+            query =  `SELECT COALESCE(
             MAX(
                 CAST(
                     SUBSTRING(id, LEN('${type}')+1 , LEN(id) - LEN('${type}')) 
@@ -90,6 +93,16 @@ exports.createDevice = async(req, res) =>{
                 +1),
             1) as id FROM equipos 
             WHERE LEFT(id, LEN('${type}') ) = '${type}'`;
+        }else{
+            query = `SELECT COALESCE(
+                MAX(
+                    CAST(
+                        RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC
+                    )
+                +1),
+            1) AS id FROM equipos
+            WHERE LEFT(id,3) = 'FIX'`
+        }
         
         let resp = await Sql.request(query);
         let n = resp[0]['id'].toString();
@@ -103,7 +116,7 @@ exports.createDevice = async(req, res) =>{
         }else{
             lens = 3;
         }
-        
+
         n = n.padStart(lens[type],'0');
         let id = type + n;
 

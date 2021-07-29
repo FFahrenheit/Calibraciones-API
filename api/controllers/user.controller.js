@@ -3,7 +3,7 @@ const Identificator = require('../middlewares/identificator');
 
 exports.deleteRecord = async(req, res) =>{
     try{
-        let { table, id } = req.body;
+        let { table, id } = req.params;
         
         table = Sql.parseField(table);
         id = Sql.parseField(id);
