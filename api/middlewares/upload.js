@@ -2,6 +2,34 @@ const multer = require('multer');
 const fs = require('fs')
 const util = require('util');
 const path = require('path');
+const Sql = require('../db/sql');
+
+let storageResource = multer.diskStorage({
+    destination: (req, file, callback) =>{
+        const { device, type } = req.params;
+        console.log( { device , type });
+        const folder = `Recursos/${type}`;
+
+        const path = `${__dirname}/../../upload/${folder}`;
+
+        fs.mkdirSync(path, { recursive: true });
+        callback(null,path);
+    },
+    filename: async(req, file, callback) =>{
+        const ext = path.extname(file.originalname);
+        const { device , type } = req.params;
+
+        let query = `SELECT COUNT(*) + 1 as ID FROM recursos WHERE
+        equipo = '${device}' AND tipo = '${type}'`;
+
+        let resp = await Sql.request(query);
+        console.log(resp);
+        let id = resp[0]['ID'];
+
+        let filename = `${device}_${type}_${id}${ ext }`;
+        callback(null,filename);
+    }
+});
 
 let storageISOCertificate = multer.diskStorage({
     destination: (req, file, callback) =>{
@@ -93,9 +121,11 @@ const uploadISO = multer({ storage: storageISO}).single('iso');
 const uploadRyr = multer({ storage: storageRyr }).single('ryr');
 const uploadCertificate = multer({ storage: storageCertificate }).single('certificate');
 const uploadISOCertificate = multer({ storage: storageISOCertificate}).single('iso');
+const uploadResource = multer({storage: storageResource}).single('resource');
 
 const addISO = util.promisify(uploadISO);
 const addRyr = util.promisify(uploadRyr);
+const addResource = util.promisify(uploadResource);
 const addCertificate = util.promisify(uploadCertificate);
 const addISOCertificate = util.promisify(uploadISOCertificate);
 
@@ -103,5 +133,6 @@ module.exports = {
     addCertificate,
     addRyr,
     addISO,
+    addResource,
     addISOCertificate
 };

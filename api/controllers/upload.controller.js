@@ -1,6 +1,41 @@
 const Upload = require('../middlewares/upload');
 const Sql = require('../db/sql');
 
+exports.uploadResource = async(req, res) =>{
+    try{
+        await Upload.addResource(req,res);
+
+        let file = req.file.path.toString();
+
+        const filename = file.substring(file.indexOf(req.params.type));
+        
+        let query = `INSERT INTO recursos(equipo,tipo,archivo,version) VALUES (
+            '${req.params.device}',
+            '${req.params.type}',
+            '${filename}',
+            (
+                SELECT COUNT(*) + 1 FROM recursos WHERE 
+                equipo = '${req.params.device}' AND 
+                tipo = '${req.params.type}'
+            )
+        )`;
+
+        await Sql.request(query);
+
+        res.json({
+            ok: true,
+            filename
+        });
+
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.uploadISOCertificate = async(req, res) =>{
     try{
         await Upload.addISOCertificate(req,res);

@@ -12,4 +12,7 @@ module.exports = (app) => {
 
     app.route('/upload/iso/:name')
     .post(Upload.uploadISOCertificate);
+
+    app.route('/upload/resource/:device/:type')
+    .post(Upload.uploadResource);
 }

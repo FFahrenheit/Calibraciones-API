@@ -78,6 +78,18 @@ CREATE TABLE prestamos(
     recibe VARCHAR(30)
 );
 
+CREATE TABLE recursos(
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    version INT NOT NULL DEFAULT 1,
+    tipo VARCHAR(30),
+    equipo VARCHAR(40) NOT NULL,
+    archivo VARCHAR(120)
+);
+
+ALTER TABLE recursos
+ADD CONSTRAINT FK_recursos_equipo
+FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE NO ACTION ON UPDATE CASCADE;
+
 ALTER TABLE prestamos
 ADD CONSTRAINT FK_prestamos_equipo
 FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE NO ACTION ON UPDATE CASCADE;
