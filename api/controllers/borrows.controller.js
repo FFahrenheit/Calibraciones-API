@@ -69,7 +69,8 @@ exports.getDetails = async (req, res) => {
 
     try {
         let query = `SELECT *,
-        (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario 
+        (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario,
+        (SELECT TOP 1 operador FROM prestamos WHERE equipo = equipos.id ORDER BY ID DESC) as operador
         FROM equipos WHERE id = '${id}'`;
 
         let details = await Sql.request(query);

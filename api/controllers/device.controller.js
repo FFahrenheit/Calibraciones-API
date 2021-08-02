@@ -225,7 +225,8 @@ exports.getDevice = async(req, res) => {
     
     try{
         let query = `SELECT *,
-        (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario 
+        (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario,
+        (SELECT TOP 1 operador FROM prestamos WHERE equipo = equipos.id ORDER BY ID DESC) as operador  
         FROM equipos WHERE id = '${ id }'`;
 
         let details = await Sql.request(query);
@@ -261,6 +262,15 @@ exports.getDevice = async(req, res) => {
         const calibraciones = await Sql.request(query);
 
         details['calibraciones'] = calibraciones;
+
+        query = `SELECT id, tipo, version, archivo, fecha 
+        FROM recursos
+        WHERE equipo = '${ id }'
+        ORDER BY fecha DESC`;
+
+        const recursos = await Sql.request(query);
+
+        details['recursos'] = recursos;
 
         // query = `SELECT id, nombre, certificado FROM proveedores WHERE equipo = '${ id }'`;
         // const proveedores = await Sql.request(query);

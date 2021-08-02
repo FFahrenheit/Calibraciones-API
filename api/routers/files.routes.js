@@ -6,4 +6,7 @@ module.exports = (app) =>{
 
     app.route('/file/:name')
     .get(Files.retrieveFile);
+
+    app.route('/resource/:name')
+    .get(Files.retrieveResource);
 }

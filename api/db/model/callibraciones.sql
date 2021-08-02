@@ -83,7 +83,8 @@ CREATE TABLE recursos(
     version INT NOT NULL DEFAULT 1,
     tipo VARCHAR(30),
     equipo VARCHAR(40) NOT NULL,
-    archivo VARCHAR(120)
+    archivo VARCHAR(120),
+    fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
 
 ALTER TABLE recursos
