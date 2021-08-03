@@ -1,14 +1,22 @@
 CREATE OR ALTER TRIGGER dbo.actualizaReferencia
 ON dbo.equipos FOR UPDATE AS 
 BEGIN
-	IF UPDATE(activo) 
+	IF UPDATE(activo) OR UPDATE(periodo)
 	BEGIN 
 		UPDATE equipos 
 		SET siguiente = DATEADD(month, equipos.periodo, equipos.ultima)  
 		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo != 'Referencia';
 
 		UPDATE equipos 
+		SET aviso = DATEADD(day, -20, equipos.siguiente)  
+		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo != 'Referencia';
+
+		UPDATE equipos 
 		SET siguiente = '2099-12-31'  
+		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo = 'Referencia';
+
+		UPDATE equipos 
+		SET aviso = DATEADD(day, -20, equipos.siguiente)  
 		FROM inserted WHERE equipos.id = inserted.id AND inserted.activo = 'Referencia';
 	END
 END
