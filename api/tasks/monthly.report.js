@@ -23,6 +23,7 @@ exports.monthlyReport = async () => {
             AND YEAR(siguiente) = '${year}'
             AND activo = 'Activo'
             AND estado = 'Calibración Vigente'
+            AND LEFT(id,3) = 'INT'
             ORDER BY siguiente ASC`;
         
             let devices = await Sql.request(query);
