@@ -368,7 +368,7 @@ exports.getDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 100 
+            query = `SELECT 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 

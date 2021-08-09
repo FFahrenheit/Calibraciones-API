@@ -61,3 +61,9 @@ ADD operador VARCHAR(40) DEFAULT NULL;
 --Para actualizar fecha de siguiente y última
 UPDATE equipos SET siguiente = DATEADD(month,periodo,ultima);
 UPDATE equipos SET aviso = DATEADD(day,-20,siguiente);
+
+--Lista actual de ubicaciones
+SELECT CONCAT('''',ubicacion,''',') 
+FROM equipos 
+GROUP BY ubicacion
+ORDER BY ubicacion;
