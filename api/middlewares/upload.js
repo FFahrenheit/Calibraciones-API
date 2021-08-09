@@ -19,7 +19,8 @@ let storageResource = multer.diskStorage({
         const ext = path.extname(file.originalname);
         const { device , type } = req.params;
 
-        let query = `SELECT COUNT(*) + 1 as ID FROM recursos WHERE
+        let query = `SELECT 
+        COALESCE(MAX(version) + 1, 1) as ID FROM recursos WHERE
         equipo = '${device}' AND tipo = '${type}'`;
 
         let resp = await Sql.request(query);

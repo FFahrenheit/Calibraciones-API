@@ -14,7 +14,7 @@ exports.uploadResource = async(req, res) =>{
             '${req.params.type}',
             '${filename}',
             (
-                SELECT MAX(version) + 1 FROM recursos WHERE 
+                SELECT COALESCE(MAX(version) + 1, 1) FROM recursos WHERE 
                 equipo = '${req.params.device}' AND 
                 tipo = '${req.params.type}'
             )
