@@ -10,13 +10,10 @@ exports.dailyExpired = async() =>{
             let query = `SELECT id, descripcion, ubicacion, siguiente
             FROM equipos 
             WHERE siguiente = CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Vigente'`;
+            AND estado = 'Calibración Vigente'
+            AND activo = 'Activo'`;
             
             let devices = await Sql.request(query);
-
-            if(!devices || devices.length <= 0){
-                return resolve(true);
-            }
 
             query = `SELECT DISTINCT nombre, email
             FROM usuarios, responsables
@@ -36,6 +33,10 @@ exports.dailyExpired = async() =>{
             //,activo = 'Inhabilitado'
 
             await Sql.request(query);
+
+            if(!devices || devices.length <= 0){
+                return resolve(true);
+            }
 
             console.log(result);
             
