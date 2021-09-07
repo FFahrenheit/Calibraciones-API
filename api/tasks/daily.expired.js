@@ -32,7 +32,7 @@ exports.dailyExpired = async() =>{
             query = `UPDATE equipos
             SET estado = 'Calibración Vencida'
             WHERE siguiente <= CAST(GETDATE() AS DATE) 
-            AND estado = 'Calibración Vigente' AND activo = 'Activo'`;
+            AND estado = 'Calibración Vigente' AND (activo = 'Activo' OR activo='Inhabilitado')`;
             //,activo = 'Inhabilitado'
 
             await Sql.request(query);

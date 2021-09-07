@@ -193,7 +193,7 @@ exports.deviceExpired = (team, device) =>{
                 </p>
                 <p class="text">
                     Si ya realizó el proceso correspondiente por favor actualice el estado
-                    del equipo en el sistema
+                    del equipo en el sistema y realice las medidas correspondientes
                 </p>
                 <p class="text">
                     Puede consultar más detalles haciendo click en cualquiera de los
