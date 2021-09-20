@@ -67,3 +67,8 @@ SELECT CONCAT('''',ubicacion,''',')
 FROM equipos 
 GROUP BY ubicacion
 ORDER BY ubicacion;
+
+SELECT CAST( RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC ) 
+as id, descripcion, ubicacion 
+FROM equipos
+WHERE LEFT(id,3) = 'FIX';
