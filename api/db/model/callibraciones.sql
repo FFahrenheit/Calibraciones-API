@@ -73,7 +73,9 @@ CREATE TABLE prestamos(
     notas VARCHAR(120) DEFAULT '',
     equipo VARCHAR(40) NOT NULL,
     prestatario VARCHAR(30) NOT NULL,
+    retorna VARCHAR(30) DEFAULT NULL,
     operador VARCHAR(40) DEFAULT NULL,
+    operadorRegresa VARCHAR(40) DEFAULT NULL,
     entrega VARCHAR(30) NOT NULL,
     recibe VARCHAR(30)
 );
@@ -98,6 +100,10 @@ FOREIGN KEY (equipo) REFERENCES equipos(id) ON DELETE NO ACTION ON UPDATE CASCAD
 ALTER TABLE prestamos
 ADD CONSTRAINT FK_prestamos_prestatario
 FOREIGN KEY (prestatario) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE CASCADE;
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_retorna
+FOREIGN KEY (retorna) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 ALTER TABLE prestamos
 ADD CONSTRAINT FK_prestamos_entrega

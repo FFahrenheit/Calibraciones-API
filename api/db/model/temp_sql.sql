@@ -31,3 +31,13 @@ INSERT INTO verificadores(nombre,equipo) VALUES
 ('INT143','INT470')
 
 DELETE FROM verificadores WHERE nombre = 'INT062 y INT143';
+
+ALTER TABLE prestamos
+ADD retorna VARCHAR(30) DEFAULT NULL;
+
+ALTER TABLE prestamos
+ADD CONSTRAINT FK_prestamos_retorna
+FOREIGN KEY (retorna) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE prestamos
+ADD operadorRegresa VARCHAR(40) DEFAULT NULL;

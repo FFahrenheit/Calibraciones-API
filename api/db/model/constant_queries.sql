@@ -68,7 +68,14 @@ FROM equipos
 GROUP BY ubicacion
 ORDER BY ubicacion;
 
+--Obtener lista de FIX con Id entero
 SELECT CAST( RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC ) 
 as id, descripcion, ubicacion 
 FROM equipos
 WHERE LEFT(id,3) = 'FIX';
+
+-- Obtener FIX con solo leer el número
+SELECT * 
+FROM equipos 
+WHERE LEFT(id,3) = 'FIX'
+AND CAST (RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC) = 1
