@@ -16,7 +16,9 @@ exports.returnDevice = async (req, res) => {
         estado = '${estado}',
         notas = '${notas}',
         fechaRetorno = '${fecha}',
-        recibe = '${prestador}'
+        recibe = '${prestador}',
+        operadorRegresa = operador,
+        retorna = prestatario
         WHERE id = ${id}`;
 
         await Sql.request(query);
