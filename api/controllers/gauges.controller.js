@@ -1,4 +1,38 @@
 const Sql = require('../db/sql');
+const Identificator = require('../middlewares/identificator');
+
+exports.lendDevices = async(req, res) => {
+    try{
+        let devices = req.body.devices;
+        let borrows = [];
+        devices.forEach(d => {
+            borrows.push({
+                equipo: d,
+                estado: 'Entregado',
+                fechaCompromiso: new Date().toISOString().split('T')[0],
+                //fechEntrega: Automático,
+                entrega: Identificator.getUser(req),
+                operador: req.body.operator,
+                prestatario: 'operador',
+            });
+        });
+        
+        let query = 'INSERT INTO prestamos() VALUES ?';
+
+        await Sql.query(query, borrows);
+
+        res.json({
+            ok: true
+        });
+        
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
 
 exports.getDevice = async(req, res) => {
     try{

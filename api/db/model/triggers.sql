@@ -31,14 +31,22 @@ BEGIN
 	END
 END
 
-CREATE OR ALTER TRIGGER prestarEquipo on prestamos
-FOR INSERT 
-AS DECLARE 	@Prestatario VARCHAR(30),
-	   		@Id VARCHAR(40);
-SELECT @Prestatario = ins.prestatario FROM INSERTED ins;
-SELECT @Id = ins.equipo FROM INSERTED ins;
-UPDATE equipos SET prestatario = @Prestatario WHERE id = @Id;
+CREATE OR ALTER TRIGGER prestarEquipo
+ON prestamos FOR INSERT AS 
+DECLARE i CURSOR FOR
+SELECT equipo, prestatario FROM inserted;
+DECLARE @Id VARCHAR(40), @Prestatario VARCHAR(30);
+OPEN i;
+FETCH NEXT FROM i INTO @Id, @Prestatario
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	UPDATE equipos SET prestatario = @Prestatario WHERE id = @Id;
+    FETCH NEXT FROM i INTO @Id, @Prestatario;
+END;
+CLOSE i;
+DEALLOCATE i;
 
+--TO DO: Update for each row like above ^
 CREATE OR ALTER TRIGGER dbo.regresarEquipo
 ON dbo.prestamos FOR UPDATE AS 
 BEGIN
