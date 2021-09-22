@@ -1,6 +1,39 @@
 const Sql = require('../db/sql');
 const Identificator = require('../middlewares/identificator');
 
+exports.returnDevices = async(req, res) =>{
+    try{
+        let devices = req.body.devices.map(d => `'${ d }'`).toString();
+        let notes = req.body.notes.replace("'","''");
+        let status = req.body.status;
+        let returner = req.body.operator.replace("'","''");
+        let receiver = Identificator.getUser(req);
+
+        let query = `UPDATE prestamos 
+        SET estado = '${status}',
+        notas = '${notes}',
+        retorna = 'operador',
+        operadorRegresa = '${returner}',
+        fechaRetorno = CURRENT_TIMESTAMP,        
+        recibe = '${receiver}'
+        WHERE estado = 'Entregado'
+        AND equipo IN (${devices})`;
+
+        await Sql.request(query);
+
+        res.json({
+            ok: true
+        });
+        
+    }catch(e){
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.lendDevices = async(req, res) => {
     try{
         let devices = req.body.devices;

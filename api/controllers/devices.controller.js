@@ -118,7 +118,7 @@ exports.getBorrowedDevices = async (req, res) => {
             ultima, siguiente, 
             (SELECT nombre FROM usuarios WHERE username = equipos.prestatario)
             as nombrePrestatario,
-            (SELECT operador FROM usuarios WHERE username = equipos.prestatario)
+            (SELECT TOP 1 operador FROM prestamos WHERE equipo = equipos.id ORDER BY id DESC)
             as operador
             FROM equipos 
             WHERE ${filters}

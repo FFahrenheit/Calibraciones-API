@@ -46,15 +46,23 @@ END;
 CLOSE i;
 DEALLOCATE i;
 
---TO DO: Update for each row like above ^
-CREATE OR ALTER TRIGGER dbo.regresarEquipo
-ON dbo.prestamos FOR UPDATE AS 
+CREATE OR ALTER TRIGGER regresarEquipo
+ON prestamos FOR INSERT AS 
+DECLARE i CURSOR FOR
+SELECT equipo FROM inserted;
+DECLARE @Id VARCHAR(40);
+OPEN i;
+FETCH NEXT FROM i INTO @Id
+WHILE @@FETCH_STATUS = 0
 BEGIN
 	IF UPDATE(fechaRetorno) 
 	BEGIN 
-		UPDATE equipos SET prestatario = NULL FROM inserted WHERE equipos.id = inserted.equipo;
+		UPDATE equipos SET prestatario = NULL FROM inserted WHERE equipos.id = @Id;
 	END
-END
+    FETCH NEXT FROM i INTO @Id;
+END;
+CLOSE i;
+DEALLOCATE i;
 
 CREATE OR ALTER TRIGGER actualizaFechas
 ON calibraciones FOR INSERT AS 
