@@ -94,10 +94,12 @@ exports.getDetails = async (req, res) => {
 
         details['responsables'] = responsables;
 
-        query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas, fechaCompromiso, operador, 
+        query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas, fechaCompromiso, 
+        operador, operadorRegresa,
         (SELECT nombre FROM usuarios WHERE username = prestamos.prestatario) as nombrePrestatario,
         (SELECT nombre FROM usuarios WHERE username = prestamos.entrega) as nombreEntrega,
-        (SELECT nombre FROM usuarios WHERE username = prestamos.recibe) as nombreRecibe
+        (SELECT nombre FROM usuarios WHERE username = prestamos.recibe) as nombreRecibe,
+        (SELECT nombre FROM usuarios WHERE username = prestamos.retorna) as nombreRetorna
         FROM prestamos WHERE equipo = '${id}' ORDER BY fechaEntrega DESC`;
 
         const prestamos = await Sql.request(query);
