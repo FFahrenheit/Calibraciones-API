@@ -8,4 +8,7 @@ module.exports = (app) =>{
 
     app.route('/gauges/:id')
     .get(Gauges.getDevice);
+
+    app.route('/gauge/:id')
+    .get(Gauges.getDetails);
 }
