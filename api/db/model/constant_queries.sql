@@ -78,4 +78,18 @@ WHERE LEFT(id,3) = 'FIX';
 SELECT * 
 FROM equipos 
 WHERE LEFT(id,3) = 'FIX'
-AND CAST (RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC) = 1
+AND CAST (RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC) = 1;
+
+-- FIX con nuevo código con F concatenada
+SELECT CONCAT('F',RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1)) 
+AS id, descripcion, ubicacion 
+FROM equipos
+WHERE LEFT(id,3) = 'FIX'
+ORDER BY CAST( RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC);
+
+-- Lista con estado
+SELECT id AS ID_Completo, CONCAT('F',RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1)) 
+AS ID_Abreviado, descripcion as Descripcion, ubicacion as Ubicacion, activo as Estado, calibracion as Calibracion
+FROM equipos
+WHERE LEFT(id,3) = 'FIX'
+ORDER BY CAST( RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC);

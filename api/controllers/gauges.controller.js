@@ -35,9 +35,6 @@ exports.getDetails = async (req, res) => {
         let details = result[0];
         const id = result[0]['id'];
 
-        /**
-         * TODO: Adaptar querie
-         */
         query = `SELECT id, estado, fechaEntrega, fechaRetorno, notas, fechaCompromiso, 
         operador, operadorRegresa,   
         (SELECT nombre FROM usuarios WHERE username = prestamos.prestatario) as nombrePrestatario,
@@ -69,13 +66,14 @@ exports.returnDevices = async (req, res) => {
         let status = req.body.status;
         let returner = req.body.operator.replace("'", "''");
         let receiver = Identificator.getUser(req);
+        let date = req.body.date || new Date();
 
         let query = `UPDATE prestamos 
         SET estado = '${status}',
         notas = '${notes}',
         retorna = 'operador',
         operadorRegresa = '${returner}',
-        fechaRetorno = CURRENT_TIMESTAMP,        
+        fechaRetorno = '${date}',
         recibe = '${receiver}'
         WHERE estado = 'Entregado'
         AND equipo IN (${devices})`;
@@ -104,7 +102,7 @@ exports.lendDevices = async (req, res) => {
                 equipo: d,
                 estado: 'Entregado',
                 fechaCompromiso: new Date().toISOString().split('T')[0],
-                //fechEntrega: Automático,
+                fechaEntrega: req.body.date || new Date(),
                 entrega: Identificator.getUser(req),
                 operador: req.body.operator,
                 prestatario: 'operador',
