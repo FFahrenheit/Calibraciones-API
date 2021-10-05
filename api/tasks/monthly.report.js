@@ -28,6 +28,10 @@ exports.monthlyReport = async () => {
         
             let devices = await Sql.request(query);
 
+            if(!devices || devices.length <= 0){
+                return resolve(true);
+            }
+
             query = `SELECT nombre, email FROM usuarios WHERE posicion = 'encargado'`;
 
             let result = await Sql.request(query);

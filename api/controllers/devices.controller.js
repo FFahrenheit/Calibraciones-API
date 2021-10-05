@@ -29,7 +29,7 @@ exports.getAttachmentDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 100 
+            query = `SELECT  
                 id, serie, descripcion, estado, activo, ubicacion, 
                 ultima, siguiente  
                 FROM equipos 
@@ -160,14 +160,14 @@ exports.getAvailableDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 100 
+            query = `SELECT 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente
             FROM equipos 
             WHERE ${filters}
             AND activo = 'Activo' 
             AND prestatario IS NULL
-            ORDER BY siguiente ASC`;
+            ORDER BY siguiente DESC`;
 
         } else {
             query = `SELECT TOP 100 
@@ -176,7 +176,7 @@ exports.getAvailableDevices = async (req, res) => {
             FROM equipos 
             WHERE prestatario IS NULL
             AND activo = 'Activo'
-            ORDER BY siguiente ASC`;
+            ORDER BY siguiente DESC`;
         }
 
         let equipos = await Sql.request(query);
@@ -201,7 +201,7 @@ exports.getAllDevices = async (req, res) => {
             console.log(req.query);
             let filters = Sql.applyFilters(req.query);
             console.log(filters);
-            query = `SELECT TOP 100 
+            query = `SELECT 
             id, serie, descripcion, estado, activo, ubicacion, 
             ultima, siguiente  
             FROM equipos 
