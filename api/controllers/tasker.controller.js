@@ -2,16 +2,16 @@ const Events = require('../helpers/tasks');
 require('dotenv').config();
 
 module.exports = (cron) => {
-    const everyDayAt8 = '0 5 7 * * *';
-    const everyDayAt7 = '0 10 7 * * *';
-    const everyDayAt9 = '0 20 7 * * *';
-    const firstDayOfMonthAt9 = ' 0 15 7 1 * *';
-    const everyDayAt0 = '0 0 0 * * *';
-    const everyWeek = '0 15 0 * * 1';
+    const everyDayAt705 = '0 5 7 * * *';
+    const everyDayAt710 = '0 10 7 * * *';
+    const everyDayAt720 = '0 20 7 * * *';
+    const firstDayOfMonthAt715 = ' 0 15 7 1 * *';
+    const everyDayAt000 = '0 0 0 * * *';
+    const everyWeekAt015 = '0 15 0 * * Monday';
 
     let tasks = [];
 
-    let task = cron.schedule(everyDayAt8, async () => {
+    let task = cron.schedule(everyDayAt705, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.dailyExpired();
@@ -20,7 +20,7 @@ module.exports = (cron) => {
     });
     tasks.push(task);
 
-    task = cron.schedule(everyDayAt7, async () => {
+    task = cron.schedule(everyDayAt710, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.dailyNotice();
@@ -29,7 +29,7 @@ module.exports = (cron) => {
     });
     tasks.push(task);
 
-    task = cron.schedule(firstDayOfMonthAt9, async () => {
+    task = cron.schedule(firstDayOfMonthAt715, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.monthlyReport();
@@ -38,7 +38,7 @@ module.exports = (cron) => {
     });
     tasks.push(task);
 
-    task = cron.schedule(everyDayAt9, async () => {
+    task = cron.schedule(everyDayAt720, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.managerAdvise();
@@ -47,7 +47,7 @@ module.exports = (cron) => {
     });
     tasks.push(task);
 
-    task = cron.schedule(everyDayAt0, async () => {
+    task = cron.schedule(everyDayAt000, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.dailyBackup();
@@ -56,7 +56,7 @@ module.exports = (cron) => {
     });
     tasks.push(task);
 
-    task = cron.schedule(everyWeek, async () => {
+    task = cron.schedule(everyWeekAt015, async () => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.weeklyBackup();
