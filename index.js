@@ -13,6 +13,7 @@ app.set('trust proxy', true);
 var authRoutes = require('./api/routers/auth.routes');
 var userRoutes = require('./api/routers/user.routes');
 var filesRoutes = require('./api/routers/files.routes');
+var tasksRoutes = require('./api/routers/tasks.routes');
 var deviceRoutes = require('./api/routers/device.routes');
 var gaugesRoutes = require('./api/routers/gauges.routes');
 var uploadRoutes = require('./api/routers/upload.routes');
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 authRoutes(app);
 userRoutes(app);
 filesRoutes(app);
+tasksRoutes(app);
 deviceRoutes(app);
 gaugesRoutes(app);
 uploadRoutes(app);
