@@ -12,4 +12,10 @@ module.exports = (app) => {
 
     app.route('/tasks/advise')
     .get(Tasks.sendManagerAdvise);
+
+    app.route('/tasks/backup/daily')
+    .get(Tasks.forceDailyBackup);
+
+    app.route('/tasks/backup/weekly')
+    .get(Tasks.forceWeeklyBackup);
 }
