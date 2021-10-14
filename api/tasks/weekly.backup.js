@@ -11,7 +11,7 @@ exports.weeklyBackup = async() =>{
             const filename = `${year}-${month}-${day}_calibraciones.bak`
             const route = `C:\\backup\\Calibraciones\\Historial\\${ filename }`;
             const query = `BACKUP DATABASE calibraciones 
-            TO DISK = '${ route }'`;
+            TO DISK = '${ route }' WITH INIT`;
         
             await Sql.request(query);
 
