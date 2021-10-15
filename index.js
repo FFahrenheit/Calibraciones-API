@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-var cron = require('node-cron');
+const cron = require('node-cron');
 
-var express = require('express'),
+const express = require('express'),
     app = express(),
     port = process.env.PORT || 33001;
 
@@ -10,19 +10,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('trust proxy', true);
 
-var authRoutes = require('./api/routers/auth.routes');
-var userRoutes = require('./api/routers/user.routes');
-var filesRoutes = require('./api/routers/files.routes');
-var tasksRoutes = require('./api/routers/tasks.routes');
-var deviceRoutes = require('./api/routers/device.routes');
-var gaugesRoutes = require('./api/routers/gauges.routes');
-var uploadRoutes = require('./api/routers/upload.routes');
-var borrowsRoutes = require('./api/routers/borrows.routes');
-var devicesRoutes = require('./api/routers/devices.routes');
-var providerRoutes = require('./api/routers/providers.routes');
-var ____testRoutes____ = require('./api/routers/tests.routes');
+const authRoutes = require('./api/routers/auth.routes');
+const userRoutes = require('./api/routers/user.routes');
+const filesRoutes = require('./api/routers/files.routes');
+const tasksRoutes = require('./api/routers/tasks.routes');
+const chartRoutes = require('./api/routers/charts.routes');
+const deviceRoutes = require('./api/routers/device.routes');
+const gaugesRoutes = require('./api/routers/gauges.routes');
+const uploadRoutes = require('./api/routers/upload.routes');
+const borrowsRoutes = require('./api/routers/borrows.routes');
+const devicesRoutes = require('./api/routers/devices.routes');
+const providerRoutes = require('./api/routers/providers.routes');
+const ____testRoutes____ = require('./api/routers/tests.routes');
 
-var scheduledTasks = require('./api/controllers/tasker.controller');
+const scheduledTasks = require('./api/controllers/tasker.controller');
 
 app.use((req, res, next) => {
     let ip = req.ip;
@@ -38,6 +39,7 @@ authRoutes(app);
 userRoutes(app);
 filesRoutes(app);
 tasksRoutes(app);
+chartRoutes(app);
 deviceRoutes(app);
 gaugesRoutes(app);
 uploadRoutes(app);

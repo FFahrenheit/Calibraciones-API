@@ -93,3 +93,24 @@ AS ID_Abreviado, descripcion as Descripcion, ubicacion as Ubicacion, activo as E
 FROM equipos
 WHERE LEFT(id,3) = 'FIX'
 ORDER BY CAST( RIGHT(id, CHARINDEX('-', REVERSE(id) + '-') - 1) AS NUMERIC);
+
+--Ultimos 30 días :o
+;WITH cte AS
+(
+	SELECT CAST(GETDATE() AS DATE) AS fecha
+	UNION ALL
+	SELECT DATEADD(DAY, -1, fecha)
+	FROM cte
+	WHERE fecha > GETDATE()-29
+)
+
+--Siguientes 30 días :o
+;WITH cte AS
+(
+	SELECT CAST(GETDATE() AS DATE) AS fecha
+	UNION ALL
+	SELECT DATEADD(DAY, 1, fecha)
+	FROM cte
+	WHERE fecha <= GETDATE()+29
+)
+SELECT * FROM cte;
