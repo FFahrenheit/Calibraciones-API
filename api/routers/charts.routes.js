@@ -6,4 +6,7 @@ module.exports = (app) =>{
 
     app.route('/charts/done')
     .get(Charts.getDoneCalibrations);
+
+    app.route('/charts/borrows')
+    .get(Charts.getBorrowsMovement);
 }
