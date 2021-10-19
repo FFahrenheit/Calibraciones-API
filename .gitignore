@@ -3,3 +3,4 @@ node_modules
 .DS_Store
 assets/.DS_Store
 api/db/scripts/users_parser/*.txt
+daemon
