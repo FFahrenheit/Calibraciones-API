@@ -50,6 +50,6 @@ ____testRoutes____(app);
 
 app.listen(port, () => {
     console.clear();
-    console.log('\x1b[32m', 'Server running in port ' + port)
+    console.log('\x1b[32m', `Server running in port ${port} on ${process.env.NODE_ENV} mode`);
     scheduledTasks(cron);
 });

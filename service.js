@@ -1,19 +1,49 @@
 const Service = require('node-windows').Service
+const path = require('path');
 
-const srvc = new Service({
+const srv = new Service({
     name: 'CalibracionesAPI',
     description: 'Service for Calibraciones API Service',
-    script: "C:\\Users\\I.Lopez\\projects\\Calibraciones-API\\index.js"
+    script: path.join(__dirname, 'index.js'),
+    env: {
+        name: 'NODE_ENV',
+        value: 'production'
+    }
 });
 
-srvc.on('install', () => {
+srv.on('install', () => {
     console.log('Service installed');
-    srvc.start();
+    srv.start();
 });
 
-srvc.on('uninstall', () => {
+srv.on('uninstall', () => {
     console.log('Service uninstalled');
-    console.log('The service exists: ', srvc.exists);
+    console.log('The service exists: ', srv.exists);
 });
 
-srvc.install();
+srv.on('error', () => {
+    console.log('Error installing service');
+});
+
+srv.on('alreadyinstalled', () => {
+    console.log('Service is installed');
+});
+
+srv.on('alreadyuninstalled', () => {
+    console.log('Service is uninstalled');
+});
+
+srv.on('stop', () => {
+    console.log('Service is stopped');
+});
+
+srv.on('start', () => {
+    console.log('Service started');
+});
+
+try {
+    srv.install();
+}catch(e){
+    console.log('Error');
+    console.log(e);
+}
