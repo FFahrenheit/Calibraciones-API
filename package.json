@@ -4,7 +4,7 @@
   "description": "Bitácora de liberaciones de calibraciones para equipos de IMX",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js >> tmp/log.log",
+    "test": "nodemon index.js",
     "start": "nodemon index.js",
     "deploy": "node service.js"
   },
