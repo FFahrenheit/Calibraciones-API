@@ -69,6 +69,9 @@ module.exports = (cron) => {
     
     if (skip) {
         console.log('\x1b[34m%s\x1b[0m', '> ' + tasks.length + ' tasks skipped ');
+        tasks.forEach(t => {
+            t.stop();
+        });
     } else {
         tasks.forEach(t => {
             t.start();

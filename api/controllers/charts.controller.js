@@ -15,7 +15,7 @@ exports.getBorrowsMovement = async(req, res) => {
         (SELECT COUNT(*) FROM prestamos WHERE CAST(fechaRetorno AS DATE) = cte.fecha) AS regresados,
         (SELECT COUNT(*) FROM prestamos WHERE CAST(fechaEntrega AS DATE) <= cte.fecha AND 
         (CAST(fechaRetorno AS DATE ) >= cte.fecha OR fechaRetorno IS NULL)) AS prestados
-        FROM cte;`;
+        FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
         
@@ -48,7 +48,7 @@ exports.getDoneCalibrations = async(req, res) => {
         (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'FIX%') as fixtures,
         (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'DUM%') as dummies,
         (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha) as total
-        FROM cte;`;
+        FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
         
@@ -81,7 +81,7 @@ exports.getNextDevices = async(req, res) =>{
         (SELECT COUNT(*) FROM equipos WHERE activo = 'Activo' AND siguiente = cte.fecha AND id LIKE 'FIX%') as fixtures,
         (SELECT COUNT(*) FROM equipos WHERE activo = 'Activo' AND siguiente = cte.fecha AND id LIKE 'DUM%') as dummies,
         (SELECT COUNT(*) FROM equipos WHERE activo = 'Activo' AND siguiente = cte.fecha) as total
-        FROM cte`;
+        FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
 
