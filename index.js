@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const cron = require('node-cron');
 const fs = require('fs');
-const nodeSSPI = require('node-sspi');
 
 const express = require('express'),
     app = express(),
@@ -36,15 +35,7 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-
-    let windowsUser = new nodeSSPI({
-        retrieveGroups: true
-    });
-
-    windowsUser.authenticate(req, res, err => {
-        res.finished || next();
-    });
-    
+    next();
 });
 
 authRoutes(app);

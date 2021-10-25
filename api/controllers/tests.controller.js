@@ -12,6 +12,11 @@ const Upload = require('../middlewares/upload');
 
 exports.getWindowsData = async (req, res) => {
     try {
+        console.log({
+            user: req.connection.user,
+            id: req.connection.userSid,
+            groups: req.connection.userGroups
+        });
         return res.json({
             ok: true,
             user: req.connection.user,

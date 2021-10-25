@@ -1,4 +1,5 @@
 const Tests = require('../controllers/tests.controller');
+const WinAuth = require('../middlewares/windows.auth');
 
 module.exports = (app) => {
     app.route('/tests/email')
@@ -29,5 +30,5 @@ module.exports = (app) => {
     .post(Tests.testUpload);
 
     app.route('/tests/auth/windows')
-    .get(Tests.getWindowsData);
+    .get([WinAuth.verifyWindowsUser], Tests.getWindowsData);
 }
