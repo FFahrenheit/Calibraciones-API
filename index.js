@@ -1,12 +1,13 @@
 require('dotenv').config();
 
 const cron = require('node-cron');
+const fs = require('fs');
+const nodeSSPI = require('node-sspi');
 
 const express = require('express'),
     app = express(),
     port = process.env.PORT || 33001;
 
-const fs = require('fs');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -24,6 +25,7 @@ const borrowsRoutes = require('./api/routers/borrows.routes');
 const devicesRoutes = require('./api/routers/devices.routes');
 const providerRoutes = require('./api/routers/providers.routes');
 const ____testRoutes____ = require('./api/routers/tests.routes');
+const windowsAuthRoutes = require('./api/routers/windows.auth.routes');
 
 const scheduledTasks = require('./api/controllers/tasker.controller');
 
@@ -34,7 +36,15 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH,OPTIONS');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    next();
+
+    let windowsUser = new nodeSSPI({
+        retrieveGroups: true
+    });
+
+    windowsUser.authenticate(req, res, err => {
+        res.finished || next();
+    });
+    
 });
 
 authRoutes(app);
@@ -49,6 +59,7 @@ borrowsRoutes(app);
 devicesRoutes(app);
 providerRoutes(app);
 ____testRoutes____(app);
+windowsAuthRoutes(app);
 
 app.listen(port, () => {
     console.clear();

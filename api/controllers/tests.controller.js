@@ -10,6 +10,22 @@ const { weeklyBackup } = require('../tasks/weekly.backup');
 const Sql = require('../db/sql');
 const Upload = require('../middlewares/upload');
 
+exports.getWindowsData = async (req, res) => {
+    try {
+        return res.json({
+            ok: true,
+            user: req.connection.user,
+            id: req.connection.userSid,
+            groups: req.connection.userGroups
+        });
+    } catch (e) {
+        return res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
 exports.testWeekBackup = async(req, res) =>{
     console.log('THIS IS A TEST REQUEST');
     let ok = await weeklyBackup();

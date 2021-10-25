@@ -27,4 +27,7 @@ module.exports = (app) => {
 
     app.route('/tests/upload/:id')
     .post(Tests.testUpload);
+
+    app.route('/tests/auth/windows')
+    .get(Tests.getWindowsData);
 }
