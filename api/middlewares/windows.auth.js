@@ -6,10 +6,10 @@ let verifyWindowsUser = (req, res, next) => {
     });
 
     windowsUser.authenticate(req, res, err => {
-        console.log(err);
+        console.log('Error: ' + err);
         next();
         res.finished || next();
-    });    
+    });
 }
 
 module.exports = {

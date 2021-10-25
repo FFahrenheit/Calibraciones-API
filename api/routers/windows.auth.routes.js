@@ -1,6 +1,7 @@
 const WindowsAuth = require('../controllers/windows.auth.controller');
+const WinAuth = require('../middlewares/windows.auth');
 
 module.exports = (app) => {
-    // app.route('/auth/win')
-    // .get(WindowsAuth.foo);
+    app.route('/auth/win')
+    .get([WinAuth.verifyWindowsUser], WindowsAuth.loginWithWindows);
 }

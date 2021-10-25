@@ -7,7 +7,6 @@ const express = require('express'),
     app = express(),
     port = process.env.PORT || 33001;
 
-
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('trust proxy', true);
@@ -56,13 +55,13 @@ app.listen(port, () => {
     console.clear();
     console.log('\x1b[32m', `Server running in port ${port} on ${process.env.NODE_ENV} mode`);
     scheduledTasks(cron);
-    
+
     if (process.env.NODE_ENV == 'production') {
-        fs.appendFile('daemon/calibracionesapi.restarts.log', 
-        new Date() + ': Server restarted\n', (err) => {
-            if(err){
-                console.log("Couldn't update log");
-            }
-        });
+        fs.appendFile('daemon/calibracionesapi.restarts.log',
+            new Date() + ': Server restarted\n', (err) => {
+                if (err) {
+                    console.log("Couldn't update log");
+                }
+            });
     }
 });
