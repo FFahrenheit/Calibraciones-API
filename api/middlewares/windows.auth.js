@@ -1,16 +1,7 @@
-const nodeSSPI = require('node-sspi');
+// const nodeSSPI = require('node-sspi');
+const { sso } = require('node-expose-sspi');
 
-let verifyWindowsUser = (req, res, next) => {
-    let windowsUser = new nodeSSPI({
-        retrieveGroups: true
-    });
-
-    windowsUser.authenticate(req, res, err => {
-        console.log('Error: ' + err);
-        next();
-        res.finished || next();
-    });
-}
+let verifyWindowsUser = sso.auth();
 
 module.exports = {
     verifyWindowsUser

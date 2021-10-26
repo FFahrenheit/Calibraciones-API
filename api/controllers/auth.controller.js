@@ -1,6 +1,6 @@
 const Sql = require('../db/sql');
 const jwt = require('jsonwebtoken');
-const Identifcator = require('../middlewares/identificator')
+const Identifcator = require('../middlewares/identificator');
 const Templates = require('../helpers/email.templates');
 const { sendEmail } = require('../helpers/send.email');
 

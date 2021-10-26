@@ -29,6 +29,6 @@ module.exports = (app) => {
     app.route('/tests/upload/:id')
     .post(Tests.testUpload);
 
-    app.route('/tests/auth/windows')
+    app.route('/tests/auth/node-sspi')
     .get([WinAuth.verifyWindowsUser], Tests.getWindowsData);
 }
