@@ -12,7 +12,14 @@ if (process.env.NODE_ENV == 'production') {
 
 exports.loginWithWindows = async (req, res) => {
     try {
-        const returnUrl = 'http://' + req.query.redirect || baseUrl;
+        const returnUrl = req.query.redirect? 
+        'http://' + req.query.redirect : baseUrl;
+
+        console.log(returnUrl);
+
+        if (!req.sso) {
+            return res.redirect(returnUrl + '?error=incorrect');
+        }
 
         const user = {
             name: req.sso.user.name,                //Username
@@ -31,7 +38,7 @@ exports.loginWithWindows = async (req, res) => {
             return res.redirect(returnUrl + '?error=forbidden');
         }
 
-        let query = `SELECT * FROM dbo.usuarios WHERE username = '${ user.name }'`
+        let query = `SELECT * FROM dbo.usuarios WHERE username = '${user.name}'`
         let response = await Sql.request(query);
 
         if (!response || response.length == 0) { //Si no existe el usuario, lo creamos
