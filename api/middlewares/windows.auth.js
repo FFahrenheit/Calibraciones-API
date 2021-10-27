@@ -1,4 +1,3 @@
-// const nodeSSPI = require('node-sspi');
 const { sso } = require('node-expose-sspi');
 const cors = require('cors');
 const session = require('express-session');
@@ -17,8 +16,6 @@ let useSession = session({
     saveUninitialized: true
 });
 
-
-
 let verifyWindowsUser = sso.auth({
     useSession: false,
     useGroups: false,
@@ -35,8 +32,8 @@ let handleWindowsErrors = (err, req, res, next) => {
 }
 
 module.exports = {
-    verifyWindowsUser,
     handleWindowsErrors,
-    useCors,
-    useSession
+    verifyWindowsUser,
+    useSession,
+    useCors
 };

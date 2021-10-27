@@ -4,97 +4,139 @@ const Sql = require('../db/sql');
 const jwt = require('jsonwebtoken');
 const { sso } = require('node-expose-sspi');
 
-exports.loginWithSSO = async(req, res) => {
-    console.log(req.sso);
-    if (!req.sso) {
-      return res.status(401).end();
-    }
-    if (req.session) {
-      req.session.sso = req.sso;
-    }
-    return res.json({
-      sso: req.sso,
-    });
+exports.loginWithSSO = async (req, res) => {
+    try{
+        if (!req.sso) { //No se completó
+            return res.json({
+                ok: false,
+                error: 'Credenciales inválidas'
+            })
+        }
+        //Se completó
+        if (req.session) {
+            req.session.sso = req.sso;
+        }
 
+        const resp = await getToken(req.sso);
+
+        return res.json({
+            ok: true,
+            ... resp
+        });
+        
+    }catch(e){
+        console.log(e);
+        return res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
 }
 
-exports.loginWithCredentials = async(req, res) => {
+exports.loginWithCredentials = async (req, res) => {
     console.log('connect', req.body);
     const domain = sso.getDefaultDomain();
     console.log('domain: ', domain);
-  
+
     const credentials = { // : UserCredential 
-      domain,
-      user: req.body.login,
-      password: req.body.password,
+        domain,
+        user: req.body.login,
+        password: req.body.password,
     };
 
     console.log('credentials: ', credentials);
     const ssoObject = await sso.connect(credentials);
     console.log('ssoObject: ', ssoObject);
     if (ssoObject && req.session) {
-      req.session.sso = ssoObject;
-      return res.json({
-        sso: req.session.sso,
-      });
+        req.session.sso = ssoObject;
+        return res.json({
+            sso: req.session.sso,
+        });
     }
     return res.status(401).json({
-      error: 'bad login/password.',
+        error: 'bad login/password.',
     });
 };
 
-
-let baseUrl;
-if (process.env.NODE_ENV == 'production') {
-    baseUrl = process.env.EMAIL_LINK + '/inicio/login';
-} else {
-    baseUrl = 'http://localhost:4200' + '/inicio/login';
-}
-
-let getToken = async(sso)=> {
-    return new Promise(async(resolve, reject) => {
-        const user = {
-            name: sso.user.name,                //Username
-            domain: sso.user.domain,            //Dominio
-            displayName: sso.user.displayName,  //Nombre
-            mail: sso.user.adUser.mail[0] || '' //Email
-        };
-
-        console.log(user);
-        
-        if (user.domain != 'INTERPLEX') {
-            console.log('Not in domain!');
-            reject('Not in domain');
-        }
-
-        let query = `SELECT * FROM dbo.usuarios WHERE username = '${ user.name }'`
-        let response = await Sql.request(query);
-
-        if (!response || response.length == 0) { //Si no existe el usuario, lo creamos
+const getToken = async (sso) => {
+    return new Promise(async (resolve, reject) => {
+        try{
+            let created = false;
+            const email = typeof sso.user.adUser.mail != 'undefined' ? 
+                sso.user.adUser.mail[0] : 'i.lopez@mx.interplex.com'; 
             
-            const awtInfo = {
-                username: 'i.lopez'
+            const user = {
+                name: sso.user.name,                //Username
+                domain: sso.user.domain,            //Dominio
+                displayName: sso.user.displayName,  //Nombre
+                mail: email                         //Email
+            };
+            console.log(user);
+
+            if (user.domain != 'INTERPLEX') {
+                console.log('Not in domain!');
+                reject('Not in domain');
+            }
+
+            let query = `SELECT * FROM dbo.usuarios WHERE username = '${user.name}'`
+            let response = await Sql.request(query);
+
+            if (!response || response.length == 0) { //Si no existe el usuario, lo creamos
+                
+                created = true;
+                const pass = Math.random();
+                const body = {
+                    username: user.name,
+                    password: pass,
+                    nombre: user.displayName,
+                    email: user.mail,
+                    posicion: 'usuario',
+                    temporal: Math.random()
+                };
+        
+                let query = 'INSERT INTO usuarios() VALUES ?';
+        
+                await Sql.query(query, body);
+
+                response = [ body ];
+                console.log(response);
+            }
+
+            let bdUser = response[0];
+
+            let awtInfo = {
+                username: bdUser.username,
             };
 
             const token = jwt.sign(awtInfo, process.env.TOKEN_SEED);
-            return resolve(token);
+            return resolve({
+                token,
+                usuario: {
+                    username: bdUser.username,
+                    posicion: bdUser.posicion,
+                    nombre: bdUser.nombre,
+                    email: bdUser.email,
+                    recover: created 
+                }
+            });
+        }catch(e){
+            return reject(e);
         }
-
-        let bdUser = response[0];
-
-        let awtInfo = {
-            username: bdUser.username,
-        };
-
-        const token = jwt.sign(awtInfo, process.env.TOKEN_SEED);
-        return resolve(token);
     });
 }
 
+/*
+Lecagy controller, doesn't have use
+anymore
+*/
 exports.loginWithWindows = async (req, res) => {
     try {
-        const returnUrl = req.query.redirect? 
-        'http://' + req.query.redirect : baseUrl;
+        const baseUrl = process.env.NODE_ENV == 'production'
+            ? process.env.EMAIL_LINK + '/inicio/login'
+            : 'http://localhost:4200' + '/inicio/login';
+
+        const returnUrl = req.query.redirect ?
+            'http://' + req.query.redirect : baseUrl;
 
         console.log(returnUrl);
 
@@ -102,7 +144,7 @@ exports.loginWithWindows = async (req, res) => {
             return res.redirect(returnUrl + '?error=incorrect');
         }
 
-        const token = await getToken(req.sso);
+        const token = await getToken(req.sso).token;
         return res.redirect(returnUrl + '?token=' + token);
 
     } catch (e) {
