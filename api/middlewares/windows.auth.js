@@ -1,5 +1,23 @@
 // const nodeSSPI = require('node-sspi');
 const { sso } = require('node-expose-sspi');
+const cors = require('cors');
+const session = require('express-session');
+
+let useCors = cors((req, callback) => {
+    const options = {
+        credentials: true,
+        origin: req.headers.origin
+    };
+    callback(null, options);
+});
+
+let useSession = session({
+    secret: 'MySecret',
+    resave: false,
+    saveUninitialized: true
+});
+
+
 
 let verifyWindowsUser = sso.auth({
     useSession: false,
@@ -18,5 +36,7 @@ let handleWindowsErrors = (err, req, res, next) => {
 
 module.exports = {
     verifyWindowsUser,
-    handleWindowsErrors
+    handleWindowsErrors,
+    useCors,
+    useSession
 };
