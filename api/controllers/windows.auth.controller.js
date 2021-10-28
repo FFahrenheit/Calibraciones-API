@@ -5,12 +5,12 @@ const jwt = require('jsonwebtoken');
 const { sso } = require('node-expose-sspi');
 
 exports.loginWithSSO = async (req, res) => {
-    try{
+    try {
         if (!req.sso) { //No se completó
             return res.json({
                 ok: false,
                 error: 'Credenciales inválidas'
-            })
+            });
         }
         //Se completó
         if (req.session) {
@@ -21,10 +21,10 @@ exports.loginWithSSO = async (req, res) => {
 
         return res.json({
             ok: true,
-            ... resp
+            ...resp
         });
-        
-    }catch(e){
+
+    } catch (e) {
         console.log(e);
         return res.status(500).send({
             ok: false,
@@ -34,37 +34,52 @@ exports.loginWithSSO = async (req, res) => {
 }
 
 exports.loginWithCredentials = async (req, res) => {
-    console.log('connect', req.body);
-    const domain = sso.getDefaultDomain();
-    console.log('domain: ', domain);
+    try {
+        const domain = sso.getDefaultDomain();
 
-    const credentials = { // : UserCredential 
-        domain,
-        user: req.body.login,
-        password: req.body.password,
-    };
+        const credentials = { // : UserCredential 
+            domain,
+            user: req.body.login,
+            password: req.body.password,
+        };
 
-    console.log('credentials: ', credentials);
-    const ssoObject = await sso.connect(credentials);
-    console.log('ssoObject: ', ssoObject);
-    if (ssoObject && req.session) {
-        req.session.sso = ssoObject;
+        // console.log(credentials);
+
+        const ssoObject = await sso.connect(credentials);
+
+        if (!ssoObject) {
+            return res.json({
+                ok: false,
+                error: 'Credenciales inválidas'
+            });
+        }
+
+        if (req.session) {
+            req.session.sso = ssoObject;
+        }
+
+        const resp = await getToken(ssoObject);
         return res.json({
-            sso: req.session.sso,
+            ok: true,
+            ...resp
+        });
+
+    } catch (e) {
+        console.log(e);
+        return res.status(500).send({
+            ok: false,
+            error: e
         });
     }
-    return res.status(401).json({
-        error: 'bad login/password.',
-    });
 };
 
 const getToken = async (sso) => {
     return new Promise(async (resolve, reject) => {
-        try{
+        try {
             let created = false;
-            const email = typeof sso.user.adUser.mail != 'undefined' ? 
-                sso.user.adUser.mail[0] : 'i.lopez@mx.interplex.com'; 
-            
+            const email = typeof sso.user.adUser.mail != 'undefined' ?
+                sso.user.adUser.mail[0] : 'i.lopez@mx.interplex.com';
+
             const user = {
                 name: sso.user.name,                //Username
                 domain: sso.user.domain,            //Dominio
@@ -82,7 +97,7 @@ const getToken = async (sso) => {
             let response = await Sql.request(query);
 
             if (!response || response.length == 0) { //Si no existe el usuario, lo creamos
-                
+
                 created = true;
                 const pass = Math.random();
                 const body = {
@@ -93,12 +108,12 @@ const getToken = async (sso) => {
                     posicion: 'usuario',
                     temporal: Math.random()
                 };
-        
+
                 let query = 'INSERT INTO usuarios() VALUES ?';
-        
+
                 await Sql.query(query, body);
 
-                response = [ body ];
+                response = [body];
                 console.log(response);
             }
 
@@ -116,10 +131,10 @@ const getToken = async (sso) => {
                     posicion: bdUser.posicion,
                     nombre: bdUser.nombre,
                     email: bdUser.email,
-                    recover: created 
+                    recover: created
                 }
             });
-        }catch(e){
+        } catch (e) {
             return reject(e);
         }
     });
