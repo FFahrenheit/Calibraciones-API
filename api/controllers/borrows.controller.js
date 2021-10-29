@@ -72,6 +72,7 @@ exports.getDetails = async (req, res) => {
     try {
         let query = `SELECT *,
         (SELECT nombre FROM usuarios WHERE username = equipos.prestatario) as nombrePrestatario,
+        (SELECT email FROM usuarios WHERE username = equipos.prestatario) as emailPrestatario,
         (SELECT TOP 1 operador FROM prestamos WHERE equipo = equipos.id ORDER BY ID DESC) as operador
         FROM equipos WHERE id = '${id}'`;
 
@@ -86,7 +87,8 @@ exports.getDetails = async (req, res) => {
 
         details = details[0];
 
-        query = `SELECT usuarios.username as username, usuarios.nombre as nombre 
+        query = `SELECT usuarios.username as username, usuarios.nombre as nombre,
+        usuarios.email as email 
         FROM usuarios, responsables 
         WHERE responsables.usuario = usuarios.username 
         AND responsables.equipo = '${id}'`;
