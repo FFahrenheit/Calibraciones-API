@@ -1,7 +1,54 @@
 const Sql = require('../db/sql');
 
-exports.getBorrowsMovement = async(req, res) => {
-    try{
+exports.getCalibrationComparison = async (req, res) => {
+    try {
+        const query = `;WITH cte AS
+        (
+            SELECT CAST(GETDATE() AS DATE) AS fecha
+            UNION ALL
+            SELECT DATEADD(DAY, -1, fecha)
+            FROM cte
+            WHERE fecha >= GETDATE()-30
+        )
+        SELECT CONVERT(VARCHAR, cte.fecha) as fecha,
+        (
+                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
+                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
+                fecha) AS DATE) = cte.fecha AND equipo LIKE 'INT%'
+        ) as equiposEsperados,
+        (
+                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
+                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
+                fecha) AS DATE) = cte.fecha AND equipo LIKE 'FIX%'
+        ) as fixturesEsperados,
+        (
+                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
+                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
+                fecha) AS DATE) = cte.fecha AND equipo LIKE 'DUM%'
+        ) as dummiesEsperados,
+        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'INT%') as equipos,
+        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'FIX%') as fixtures,
+        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'DUM%') as dummies
+        FROM cte ORDER BY cte.fecha ASC`;
+
+        let result = await Sql.request(query);
+
+        return res.json({
+            ok: true,
+            data: result
+        });
+
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }
+}
+
+exports.getBorrowsMovement = async (req, res) => {
+    try {
         const query = `;WITH cte AS
         (
             SELECT CAST(GETDATE() AS DATE) AS fecha
@@ -18,13 +65,13 @@ exports.getBorrowsMovement = async(req, res) => {
         FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
-        
+
         return res.json({
             ok: true,
-            data: result 
+            data: result
         });
-        
-    }catch(e){
+
+    } catch (e) {
         console.log(e);
         res.status(500).send({
             ok: false,
@@ -33,8 +80,8 @@ exports.getBorrowsMovement = async(req, res) => {
     }
 }
 
-exports.getDoneCalibrations = async(req, res) => {
-    try{
+exports.getDoneCalibrations = async (req, res) => {
+    try {
         const query = `;WITH cte AS
         (
             SELECT CAST(GETDATE() AS DATE) AS fecha
@@ -51,13 +98,13 @@ exports.getDoneCalibrations = async(req, res) => {
         FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
-        
+
         return res.json({
             ok: true,
-            data: result 
+            data: result
         });
-        
-    }catch(e){
+
+    } catch (e) {
         console.log(e);
         res.status(500).send({
             ok: false,
@@ -66,8 +113,8 @@ exports.getDoneCalibrations = async(req, res) => {
     }
 }
 
-exports.getNextDevices = async(req, res) =>{
-    try{
+exports.getNextDevices = async (req, res) => {
+    try {
         const query = `;WITH cte AS
         (
             SELECT CAST(GETDATE() AS DATE) AS fecha
@@ -87,10 +134,10 @@ exports.getNextDevices = async(req, res) =>{
 
         return res.json({
             ok: true,
-            data: result 
+            data: result
         });
-        
-    }catch(e){
+
+    } catch (e) {
         console.log(e);
         res.status(500).send({
             ok: false,

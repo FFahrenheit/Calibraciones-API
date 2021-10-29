@@ -9,4 +9,7 @@ module.exports = (app) =>{
 
     app.route('/charts/borrows')
     .get(Charts.getBorrowsMovement);
+
+    app.route('/charts/comparison')
+    .get(Charts.getCalibrationComparison);
 }
