@@ -1,4 +1,5 @@
 const { sendEmail } = require('../helpers/send.email');
+const path = require('path');
 
 const { dailyNotice } = require('../tasks/daily.notice');
 const { dailyExpired } = require('../tasks/daily.expired');
@@ -127,5 +128,17 @@ exports.testEmail = async (req, res) => {
     res.json({
         ok: true,
         response
+    });
+}
+
+exports.returnIco = (req, res) => {
+    return res.sendFile(path.resolve('api/assets/logo.ico'), (err) => {
+        if (err) {
+            console.log(err);
+            res.json({
+                ok: false,
+                message: err
+            });
+        }
     });
 }

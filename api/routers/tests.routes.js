@@ -31,4 +31,11 @@ module.exports = (app) => {
 
     app.route('/tests/auth/node-sspi')
     .get([WinAuth.verifyWindowsUser], Tests.getWindowsData);
+
+
+    app.route('/')
+    .get( (req, res) => res.json({
+        ok: true,
+        message: "Server running!"  
+    }));
 }
