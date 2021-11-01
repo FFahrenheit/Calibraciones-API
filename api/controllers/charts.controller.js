@@ -2,34 +2,35 @@ const Sql = require('../db/sql');
 
 exports.getCalibrationComparison = async (req, res) => {
     try {
-        const query = `;WITH cte AS
+        const query = `
+        ;WITH cte AS
         (
             SELECT CAST(GETDATE() AS DATE) AS fecha
             UNION ALL
             SELECT DATEADD(DAY, -1, fecha)
             FROM cte
-            WHERE fecha >= GETDATE()-30
+            WHERE fecha >= GETDATE()-60
         )
         SELECT CONVERT(VARCHAR, cte.fecha) as fecha,
         (
-                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
-                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
-                fecha) AS DATE) = cte.fecha AND equipo LIKE 'INT%'
-        ) as equiposEsperados,
+			SELECT COUNT(*) FROM Calibrados WHERE esperada = cte.fecha AND equipo LIKE 'INT%'
+		) as equiposEsperados,
         (
-                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
-                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
-                fecha) AS DATE) = cte.fecha AND equipo LIKE 'FIX%'
+			SELECT COUNT(*) FROM Calibrados WHERE esperada = cte.fecha AND equipo LIKE 'FIX%'
         ) as fixturesEsperados,
         (
-                SELECT COUNT(*) FROM calibraciones WHERE CAST(DATEADD(M,
-                (SELECT periodo FROM equipos WHERE id = calibraciones.equipo),
-                fecha) AS DATE) = cte.fecha AND equipo LIKE 'DUM%'
+			SELECT COUNT(*) FROM Calibrados WHERE esperada = cte.fecha AND equipo LIKE 'DUM%'
         ) as dummiesEsperados,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'INT%') as equipos,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'FIX%') as fixtures,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'DUM%') as dummies
-        FROM cte ORDER BY cte.fecha ASC`;
+        (
+			SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'INT%'
+		) as equipos,
+        (
+			SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'FIX%'
+		) as fixtures,
+        (
+			SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'DUM%'
+		) as dummies
+        FROM cte ORDER BY cte.fecha ASC;`;
 
         let result = await Sql.request(query);
 
