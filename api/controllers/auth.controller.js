@@ -24,7 +24,8 @@ exports.recoverPassword = async (req, res) => {
         }
 
         let password = getRandom();
-        query = `UPDATE usuarios  SET temporal = '${ password }' WHERE username = '${ username }'`;
+        query = `UPDATE usuarios  SET temporal = '${ password }' WHERE username = '${ username }' 
+        OR email = '${email}'`;
         await Sql.request(query);
 
         let ok = await sendEmail(
@@ -50,7 +51,7 @@ exports.refresh = async (req, res) => {
 
     try {
 
-        let query = `SELECT * FROM dbo.usuarios WHERE username = '${username}'`
+        let query = `SELECT * FROM dbo.usuarios WHERE username = '${ username }'`
         let response = await Sql.request(query);
 
         if (!response || response.length == 0) {
@@ -94,7 +95,7 @@ exports.login = async (req, res) => {
     username = Sql.parseField(username);
 
     try {
-        let query = `SELECT * FROM dbo.usuarios WHERE username = '${username}'`
+        let query = `SELECT * FROM dbo.usuarios WHERE username = '${ username }' OR email = '${ username }'`
         let response = await Sql.request(query);
 
         if (!response || response.length == 0) {

@@ -92,10 +92,10 @@ exports.getDoneCalibrations = async (req, res) => {
             WHERE fecha >= GETDATE()-30
         )
         SELECT CONVERT(VARCHAR, cte.fecha) as fecha,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'INT%') as equipos,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'FIX%') as fixtures,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha AND equipo LIKE 'DUM%') as dummies,
-        (SELECT COUNT(*) FROM calibraciones WHERE CAST(fecha AS DATE) = cte.fecha) as total
+        (SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'INT%') as equipos,
+        (SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'FIX%') as fixtures,
+        (SELECT COUNT(*) FROM Recientes WHERE fecha = cte.fecha AND equipo LIKE 'DUM%') as dummies,
+        (SELECT COUNT(*) Recientes WHERE fecha = cte.fecha) as total
         FROM cte ORDER BY cte.fecha ASC`;
 
         let result = await Sql.request(query);
