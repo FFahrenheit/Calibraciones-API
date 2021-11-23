@@ -1,6 +1,6 @@
 CREATE DATABASE calibraciones;
 
-USE  calibraciones;
+USE calibraciones;
 
 CREATE TABLE equipos(
     id VARCHAR(40) NOT NULL PRIMARY KEY,

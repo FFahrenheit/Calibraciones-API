@@ -29,7 +29,11 @@ exports.editDevice = async(req, res) =>{
     try{
         console.log(req.body);
 
-        let query = `DELETE FROM verificadores WHERE equipo = '${id}'`;
+        const body = req.body.equipo;
+        let query = `UPDATE equipos SET () WHERE ?`;
+        await Sql.update(query,body);
+
+        query = `DELETE FROM verificadores WHERE equipo = '${id}'`;
         await Sql.request(query);
 
         query = `DELETE FROM responsables WHERE equipo = '${id}'`;
@@ -43,10 +47,6 @@ exports.editDevice = async(req, res) =>{
         //     query = `DELETE FROM proveedores WHERE equipo = '${id}'`;
         //     await Sql.request(query);
         // }
-
-        const body = req.body.equipo;
-        query = `UPDATE equipos SET () WHERE ?`;
-        await Sql.update(query,body);
 
         const responsables = req.body.responsables;
         query = `INSERT INTO responsables() VALUES ?`;
