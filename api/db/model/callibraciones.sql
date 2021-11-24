@@ -36,7 +36,7 @@ CREATE TABLE responsables (
 
 CREATE TABLE calibraciones(
     id INT IDENTITY(1,1) PRIMARY KEY,
-    calibrador VARCHAR(30) NOT NULL DEFAULT '',
+    calibrador VARCHAR(120) NOT NULL DEFAULT '',
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     verificador VARCHAR(30) NOT NULL,
     equipo VARCHAR(40) NOT NULL,
@@ -83,9 +83,9 @@ CREATE TABLE prestamos(
 CREATE TABLE recursos(
     id INT IDENTITY(1,1) PRIMARY KEY,
     version INT NOT NULL DEFAULT 1,
-    tipo VARCHAR(30),
+    tipo VARCHAR(120),
     equipo VARCHAR(40) NOT NULL,
-    archivo VARCHAR(120),
+    archivo VARCHAR(255),
     fecha DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 );
 
