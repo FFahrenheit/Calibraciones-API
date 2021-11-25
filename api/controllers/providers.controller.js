@@ -7,8 +7,12 @@ exports.updateProviders = async (req, res) =>{
         let query;
 
         if(deleted.length > 0){
-
-            deleted = deleted.toString();
+            
+            if(deleted.length == 1){
+                deleted = deleted[0];
+            }else{
+                deleted = deleted.toString();
+            }
 
             query = `DELETE FROM proveedores WHERE id in (${deleted})`;
 
@@ -28,6 +32,7 @@ exports.updateProviders = async (req, res) =>{
         });
 
     }catch(e){
+        console.log(e);
         return res.status(500).send({
             ok: false,
             error: e
@@ -46,6 +51,7 @@ exports.getProviders = async (req, res) => {
             proveedores
         });
     } catch (e) {
+        console.log(e);
         return res.status(500).send({
             ok: false,
             error: e
