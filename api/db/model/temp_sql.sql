@@ -41,3 +41,6 @@ FOREIGN KEY (retorna) REFERENCES usuarios(username) ON DELETE NO ACTION ON UPDAT
 
 ALTER TABLE prestamos
 ADD operadorRegresa VARCHAR(40) DEFAULT NULL;
+
+ALTER TABLE proveedores 
+ADD expiracion DATE NOT NULL DEFAULT '2099-12-31';

@@ -20,7 +20,7 @@ exports.updateProviders = async (req, res) =>{
         }
         
         if(providers.length > 0){
-            providers = providers.map(p => ({nombre: p.nombre, agregado: p.agregado}));
+            providers = providers.map(p => ({nombre: p.nombre, agregado: p.agregado, expiracion: p.expiracion}));
 
             query = 'INSERT INTO proveedores() VALUES ?';
 
@@ -42,7 +42,7 @@ exports.updateProviders = async (req, res) =>{
 
 exports.getProviders = async (req, res) => {
     try {
-        let query = `SELECT id, nombre, certificado, agregado FROM proveedores`;
+        let query = `SELECT id, nombre, certificado, agregado, expiracion FROM proveedores`;
 
         let proveedores = await Sql.request(query);
 
