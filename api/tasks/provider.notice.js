@@ -7,7 +7,7 @@ exports.providerNotice = async () => {
     return new Promise(async (resolve) => {
         try {
 
-            let query = `SELECT expiracion, nombre 
+            let query = `SELECT expiracion, nombre, id 
             FROM proveedores
             WHERE expiracion = DATEADD(d,20,CAST(GETDATE() AS DATE));`;
 
@@ -26,23 +26,13 @@ exports.providerNotice = async () => {
 
             let receivers = result.map(u => u['nombre']);
             
-            let ok = 0;
+            const template = Templates.providerNotice(
+                receivers,
+                providers
+            );
+            let ok = await sendEmail(emailList, template);
 
-            for (const p of providers) {
-                let template = Templates.providerNotice(
-                    receivers,
-                    p['nombre'],
-                    p['expiracion']
-                );
-    
-                let status = await sendEmail(emailList, template);
-                console.log(status);
-                if(status){
-                    ok += 1;
-                }
-            }
-
-            resolve(ok == providers.length);
+            resolve(ok);
 
         } catch (e) {
             console.log('Error on task');

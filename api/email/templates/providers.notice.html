@@ -141,17 +141,39 @@ PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD
     <div class="content">
         <h4 class="welcome">Buen día, ${ team }: </h4>
         <p class="text">
-            El certificado del proveedor 
-            <span class="marked"> ${ proveedor }</span>
-            está próximo a vencer en 
+            Los siguientes certificados de proveedores
+            están próximo a vencer en 
             <span class="marked">20 días</span>, 
             el día <span class="marked"> ${ siguiente }</span> 
         </p>
 
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Proveedor</th>
+                    <th>Expiración</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>${ id }</td>
+                    <td>${ nombre }</td>
+                    <td>${ expiracion }</td>
+                </tr>
+                <tr>
+                    <td>${ id }</td>
+                    <td>${ nombre }</td>
+                    <td>${ expiracion }</td>
+                </tr>
+            </tbody>
+        </table>
+
         <p class="text">
-            Por favor, planeen su certificación con <span class="marked">${ proveedor }</span> 
+            Por favor, planeen su certificación con el respectivo proveedor
             y suban el nuevo certificado lo más pronto posible
         </p>
+        
         <p class="text">
             Puede consultar más detalles haciendo click en el siguiente botón
         </p>
