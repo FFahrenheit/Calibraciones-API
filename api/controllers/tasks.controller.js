@@ -1,15 +1,8 @@
-const { dailyNotice } = require('../tasks/daily.notice');
-const { dailyExpired } = require('../tasks/daily.expired');
-const { monthlyReport } = require('../tasks/monthly.report');
-const { managerAdvise } = require('../tasks/manager.advise');
-const { dailyBackup } = require('../tasks/daily.backup');
-const { weeklyBackup } = require('../tasks/weekly.backup');
-const { providerNotice } = require('../tasks/provider.notice');
-const { providerExpired } = require('../tasks/provider.expired')
+const Tasks = require('../helpers/tasks');
 
 exports.sendProvidersExpired = async(req, res) => {
     try {
-        let ok = await providerExpired();
+        let ok = await Tasks.providerExpired();
         return res.json({
             ok
         });
@@ -24,7 +17,7 @@ exports.sendProvidersExpired = async(req, res) => {
 
 exports.sendProvidersNotice = async(req, res) => {
     try {
-        let ok = await providerNotice();
+        let ok = await Tasks.providerNotice();
         return res.json({
             ok
         });
@@ -39,7 +32,7 @@ exports.sendProvidersNotice = async(req, res) => {
 
 exports.sendDailyNotice = async (req, res) => {
     try {
-        let ok = await dailyNotice();
+        let ok = await Tasks.dailyNotice();
         return res.json({
             ok
         });
@@ -54,7 +47,7 @@ exports.sendDailyNotice = async (req, res) => {
 
 exports.sendDailyExpired = async (req, res) => {
     try {
-        let ok = await dailyExpired();
+        let ok = await Tasks.dailyExpired();
         return res.json({
             ok
         });
@@ -69,7 +62,7 @@ exports.sendDailyExpired = async (req, res) => {
 
 exports.sendMonthlyReport = async (req, res) => {
     try {
-        let ok = await monthlyReport();
+        let ok = await Tasks.monthlyReport();
         return res.json({
             ok
         });
@@ -84,7 +77,7 @@ exports.sendMonthlyReport = async (req, res) => {
 
 exports.sendManagerAdvise = async (req, res) => {
     try {
-        let ok = await managerAdvise();
+        let ok = await Tasks.managerAdvise();
         return res.json({
             ok
         });
@@ -99,7 +92,7 @@ exports.sendManagerAdvise = async (req, res) => {
 
 exports.forceDailyBackup = async (req, res) => {
     try {
-        let ok = await dailyBackup();
+        let ok = await Tasks.dailyBackup();
         return res.json({
             ok
         });
@@ -114,7 +107,7 @@ exports.forceDailyBackup = async (req, res) => {
 
 exports.forceWeeklyBackup = async (req, res) => {
     try {
-        let ok = await weeklyBackup();
+        let ok = await Tasks.weeklyBackup();
         return res.json({
             ok
         });

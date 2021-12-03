@@ -8,6 +8,8 @@ module.exports = (cron) => {
     const firstDayOfMonthAt715 = ' 0 15 7 1 * *';
     const everyDayAt000 = '0 0 0 * * *';
     const everyWeekAt015 = '0 15 0 * * Monday';
+    const everyDayAt650 = '0 50 6 * * *';
+    const everyDayAt655 = '0 55 6 * * *';
 
     let tasks = [];
 
@@ -60,6 +62,24 @@ module.exports = (cron) => {
         let date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
         await Events.weeklyBackup();
+        date = new Date().toString();
+        console.log('\x1b[33m%s\x1b[0m', 'Task finished at ' + date);
+    });
+    tasks.push(task);
+
+    task = cron.schedule(everyDayAt650, async () => {
+        let date = new Date().toString();
+        console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
+        await Events.providerNotice();
+        date = new Date().toString();
+        console.log('\x1b[33m%s\x1b[0m', 'Task finished at ' + date);
+    });
+    tasks.push(task);
+
+    task = cron.schedule(everyDayAt655, async () => {
+        let date = new Date().toString();
+        console.log('\x1b[33m%s\x1b[0m', 'Running task at ' + date);
+        await Events.providerExpired();
         date = new Date().toString();
         console.log('\x1b[33m%s\x1b[0m', 'Task finished at ' + date);
     });
