@@ -18,4 +18,7 @@ module.exports = (app) => {
 
     app.route('/tasks/backup/weekly')
     .get(Tasks.forceWeeklyBackup);
+
+    app.route('/tasks/providers/notice')
+    .get(Tasks.sendProvidersNotice);
 }

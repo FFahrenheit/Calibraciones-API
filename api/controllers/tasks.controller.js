@@ -4,6 +4,22 @@ const { monthlyReport } = require('../tasks/monthly.report');
 const { managerAdvise } = require('../tasks/manager.advise');
 const { dailyBackup } = require('../tasks/daily.backup');
 const { weeklyBackup } = require('../tasks/weekly.backup');
+const { providerNotice } = require('../tasks/provider.notice');
+
+exports.sendProvidersNotice = async(req, res) => {
+    try {
+        let ok = await providerNotice();
+        return res.json({
+            ok
+        });
+    } catch (e) {
+        console.log(e);
+        res.status(500).send({
+            ok: false,
+            error: e
+        });
+    }    
+}
 
 exports.sendDailyNotice = async (req, res) => {
     try {
