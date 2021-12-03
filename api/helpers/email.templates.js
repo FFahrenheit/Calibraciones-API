@@ -5,6 +5,7 @@ const { devicesExpired } = require('../email/controllers/devices.expired');
 const { restorePassword } = require('../email/controllers/password.restore');
 const { monthlyReport } = require('../email/controllers/monthly.report');
 const { providerNotice } = require('../email/controllers/providers.notice');
+const { providersExpired } = require('../email/controllers/providers.expired');
 
 module.exports = {
     deviceNotice,
@@ -13,5 +14,6 @@ module.exports = {
     devicesExpired,
     restorePassword,
     monthlyReport,
-    providerNotice
+    providerNotice,
+    providersExpired
 }

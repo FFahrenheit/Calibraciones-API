@@ -4,7 +4,7 @@ require('dotenv').config();
 const base_url = process.env.EMAIL_LINK;
 
 //id, nombre, fecha
-exports.providerNotice = (team, proveedores) =>{    
+exports.providersExpired = (team, proveedores) =>{    
     if(team.length > 1){
         team = team.slice(0, -1).join(', ')+' y '+ team.slice(-1);
     }else{
@@ -29,12 +29,12 @@ exports.providerNotice = (team, proveedores) =>{
         </tr>`;
     });
 
-    const qty = proveedores.length == 1 ? '1 proveedor' : proveedores.length + ' proveedores';
+    const qty = proveedores.length == 1 ? '1 proveedor expirados' : proveedores.length + ' proveedores expirados';
 
     const url = base_url + '/usuarios/proveedores/ver';
 
     return {
-        subject: `Certificado de ${ qty } próximo a expirar [${ shortDate }]`,
+        subject: `Certificado de ${ qty } [${ shortDate }]`,
         html:
         `
         <!DOCTYPE html
@@ -180,10 +180,8 @@ exports.providerNotice = (team, proveedores) =>{
             <div class="content">
                 <h4 class="welcome">Buen día, ${ team }: </h4>
                 <p class="text">
-                    Los siguientes certificados de proveedores
-                    están próximo a vencer en 
-                    <span class="marked">20 días</span>, 
-                    el día <span class="marked"> ${ siguiente }</span> 
+                    Los certificación de los siguientes proveedores
+                    han expirado el dia de hoy, <span class="marked"> ${ siguiente }</span> 
                 </p>
 
                 <table class="tabla">

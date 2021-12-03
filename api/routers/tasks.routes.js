@@ -21,4 +21,7 @@ module.exports = (app) => {
 
     app.route('/tasks/providers/notice')
     .get(Tasks.sendProvidersNotice);
+    
+    app.route('/tasks/providers/expired')
+    .get(Tasks.sendProvidersExpired)
 }
